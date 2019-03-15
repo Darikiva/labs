@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1552496157 source:d:\1 курс, 2 семестр\Лабораторная №2\lab 2a\main.cpp
+	<iostream>
+	"dynamic_mass.h"
+	"static_mass.h"
+	"spisok.h"
+	<chrono>
+
+1552428889 d:\1 курс, 2 семестр\Лабораторная №2\lab 2a\dynamic_mass.h
+	<vector>
+
+1552426311 d:\1 курс, 2 семестр\Лабораторная №2\lab 2a\static_mass.h
+	<fstream>
+
+1552494302 d:\1 курс, 2 семестр\Лабораторная №2\lab 2a\spisok.h
+	<fstream>
+
