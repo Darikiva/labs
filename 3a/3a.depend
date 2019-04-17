@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1555189118 source:d:\1 курс, 2 семестр\Лабораторная №3\3a\main.cpp
+	<iostream>
+	<algorithm>
+	<chrono>
+	<algorithm>
+
