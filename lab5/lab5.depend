@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1559054864 source:d:\1 курс, 2 семестр\Лабораторная №5\lab5\main.cpp
+	<vector>
+	<iostream>
+	<set>
+	<chrono>
+	"matr.h"
+	"strct.h"
+
+1559054897 d:\1 курс, 2 семестр\Лабораторная №5\lab5\matr.h
+	<set>
+
+1559054896 d:\1 курс, 2 семестр\Лабораторная №5\lab5\strct.h
+
