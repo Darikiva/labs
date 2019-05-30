@@ -6,10 +6,10 @@
 
 struct NodeList
 {
-    int value;
+    double value;
     NodeList* next;
     NodeList* previous;
-    NodeList(int val, NodeList* nex = nullptr, NodeList* prev = nullptr)
+    NodeList(double val, NodeList* nex = nullptr, NodeList* prev = nullptr)
     {
         value = val;
         next = nex;
@@ -32,7 +32,18 @@ int calculate_memory(NodeList* root)
     }
     return answer;
 }
-void add(NodeList** root, int value)
+
+void do_something(NodeList* root, double (*f)(double))
+{
+    if(root==nullptr) return;
+    while(root)
+    {
+        root->value = f(root->value);
+        root = root->next;
+    }
+}
+
+void add(NodeList** root, double value)
 {
     if(*root == nullptr)
     {
@@ -71,7 +82,7 @@ void add(NodeList** root, int value)
     }
 }
 
-void remove(NodeList** root, int value)
+void remove(NodeList** root, double value)
 {
     if(*root == nullptr) return;
     if(value>(*root)->value) remove((&(*root)->next), value);
@@ -102,7 +113,7 @@ void print(NodeList* root)
     }
 }
 
-void find(NodeList* root, int first, int second, std::vector<int>& answer)
+void find(NodeList* root, double first, double second, std::vector<double>& answer)
 {
     while(root)
     {

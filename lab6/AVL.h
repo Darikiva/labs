@@ -3,7 +3,7 @@
 
 struct AVLnode
 {
-    int value;
+    double value;
     unsigned height;
     AVLnode* left;
     AVLnode* right;
@@ -30,6 +30,15 @@ int calculate_memory(AVLnode* root)
     answer+=calculate_memory(root->left);
     answer+=calculate_memory(root->right);
     return answer;
+}
+
+
+void do_something(AVLnode* root, double (*f)(double))
+{
+    if(root == nullptr) return;
+    do_something(root->left, f);
+    root->value = f(root->value);
+    do_something(root->right, f);
 }
 
 unsigned height(AVLnode* root)
@@ -98,7 +107,7 @@ AVLnode* balance(AVLnode** root)
     return *root;
 }
 
-AVLnode* add(AVLnode** root, int value)
+AVLnode* add(AVLnode** root, double value)
 {
     if(!*root)
     {
@@ -129,7 +138,7 @@ AVLnode* removemin(AVLnode* p)
 	return balance(&p);
 }
 
-AVLnode* remove(AVLnode** node, int k)
+AVLnode* remove(AVLnode** node, double k)
 {
 	if(!*node ) return 0;
 	if( k < (*node)->value )
@@ -150,7 +159,7 @@ AVLnode* remove(AVLnode** node, int k)
 	return balance(node);
 }
 
-void find(AVLnode* root, int min, int max, std::vector<int>& answer)
+void find(AVLnode* root, double min, double max, std::vector<double>& answer)
 {
     if(!root) return;
     if(root->value>=min) find(root->left, min, max, answer);

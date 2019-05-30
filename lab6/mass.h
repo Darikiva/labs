@@ -2,8 +2,8 @@
 
 struct ArrNode
 {
-    std::vector<int> arr;
-    ArrNode(int value)
+    std::vector<double> arr;
+    ArrNode(double value)
     {
         arr.push_back(value);
     }
@@ -18,7 +18,16 @@ int calculate_memory(ArrNode* root)
     return answer;
 }
 
-void add(ArrNode** root, int value)
+void do_something(ArrNode* root, double (*f)(double))
+{
+    if(root==nullptr) return;
+    for(auto& i:root->arr)
+    {
+        i = f(i);
+    }
+}
+
+void add(ArrNode** root, double value)
 {
     if(!*root) *root = new ArrNode(value);
     for(int i=0; i<(*root)->arr.size(); i++)
@@ -36,7 +45,7 @@ void add(ArrNode** root, int value)
     (*root)->arr.push_back(value);
 }
 
-void remove(ArrNode** root, int value)
+void remove(ArrNode** root, double value)
 {
     for(int i=0; i<(*root)->arr.size(); i++)
     {
@@ -48,7 +57,7 @@ void remove(ArrNode** root, int value)
     }
 }
 
-void find(ArrNode* root, int min, int max, std::vector<int>& answer)
+void find(ArrNode* root, double min, double max, std::vector<double>& answer)
 {
     for(int i=0; i<root->arr.size(); i++)
     {

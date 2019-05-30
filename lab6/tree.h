@@ -6,7 +6,7 @@ struct TreeNode
     int value;
     TreeNode* left;
     TreeNode* right;
-    TreeNode(int val, TreeNode* lef = nullptr, TreeNode* rig = nullptr)
+    TreeNode(double val, TreeNode* lef = nullptr, TreeNode* rig = nullptr)
     {
         value = val;
         left = lef;
@@ -28,7 +28,15 @@ int calculate_memory(TreeNode* root)
     return answer;
 }
 
-TreeNode* add(TreeNode** root, int value)
+void do_something(TreeNode* root, double (*f)(double))
+{
+    if(root==nullptr) return;
+    do_something(root->left, f);
+    root->value = f(root->value);
+    do_something(root->right, f);
+}
+
+TreeNode* add(TreeNode** root, double value)
 {
     if(*root == nullptr)
     {
@@ -46,7 +54,7 @@ TreeNode* add(TreeNode** root, int value)
     return *root;
 }
 
-void find(TreeNode* root, int min, int max, std::vector<int>& answer)
+void find(TreeNode* root, double min, double max, std::vector<double>& answer)
 {
     if(root == nullptr) return;
     if(root->value>=min) find(root->left, min, max, answer);
@@ -65,7 +73,7 @@ TreeNode** find_prev(TreeNode* root)
     return cur;
 }
 
-void remove(TreeNode** root, int val)
+void remove(TreeNode** root, double val)
 {
     if(*root==nullptr)
     {
@@ -83,7 +91,7 @@ void remove(TreeNode** root, int val)
     {
         if ((*root)->left)
         {
-            if ((*root)->right)   //both children
+            if ((*root)->right)
             {
                 TreeNode** prev_node = find_prev(*root);
                 (*root)->value = (*prev_node)->value;
@@ -91,7 +99,7 @@ void remove(TreeNode** root, int val)
                 delete * prev_node;
                 *prev_node = tmp;
             }
-            else     //only left child
+            else
             {
                 TreeNode* tmp = (*root)->left;
                 delete *root;
@@ -100,13 +108,13 @@ void remove(TreeNode** root, int val)
         }
         else
         {
-            if ((*root)->right)   //only right child
+            if ((*root)->right)
             {
                 TreeNode* tmp = (*root)->right;
                 delete *root;
                 *root = tmp;
             }
-            else     //no children
+            else
             {
                 delete *root;
                 *root = nullptr;

@@ -6,14 +6,14 @@ using std::endl;
 
 struct TTnode
 {
-    std::vector<int> values;
+    std::vector<double> values;
     TTnode *first = nullptr;
     TTnode *second = nullptr;
     TTnode *third = nullptr;
     TTnode *fourth = nullptr;
     TTnode *parent = nullptr;
 
-    bool find(int k)
+    bool find(double k)
     {
         for (const auto& i:values)
             if (i == k)
@@ -21,13 +21,13 @@ struct TTnode
         return false;
     }
 
-    void insert_to_node(int value)
+    void insert_to_node(double value)
     {
         values.push_back(value);
         sort(values.begin(), values.end());
     }
 
-    void remove_from_node(int value)
+    void remove_from_node(double value)
     {
         if(values.size()>=1 && values[0] == value)
         {
@@ -40,7 +40,7 @@ struct TTnode
         }
     }
 
-    void become_node2(int k, TTnode *first_, TTnode *second_)
+    void become_node2(double k, TTnode *first_, TTnode *second_)
     {
         values.resize(0);
         values.push_back(k);
@@ -56,22 +56,35 @@ struct TTnode
     {
         return (first == nullptr) && (second == nullptr) && (third == nullptr);
     }
-    TTnode(int k)
+    TTnode(double k)
     {
         values.push_back(k);
     }
 
-    TTnode (int k, TTnode *first_, TTnode *second_, TTnode *third_, TTnode *fourth_, TTnode *parent_):
+    TTnode (double k, TTnode *first_, TTnode *second_, TTnode *third_, TTnode *fourth_, TTnode *parent_):
         values{k}, first(first_), second(second_), third(third_), fourth(fourth_), parent(parent_) {}
 
     friend TTnode *split(TTnode *item);
-    friend TTnode *add(TTnode *p, int k);
+    friend TTnode *add(TTnode *p, double k);
     friend void print(TTnode*);
 };
 
+void do_something(TTnode* root, double (*f)(double))
+{
+    if(root==nullptr)
+        return;
+    do_something(root->first, f);
+    root->values[0] = f(root->values[0]);
+    do_something(root->second, f);
+    if(root->values.size()==2)
+        root->values[1] = f(root->values[1]);
+    do_something(root->third, f);
+}
+
 int calculate_memory(TTnode* root)
 {
-    if(root==nullptr) return 0;
+    if(root==nullptr)
+        return 0;
     int answer = sizeof(root);
     for(int i=0; i<root->values.size(); i++)
         answer+=sizeof(root->values[i]);
@@ -81,58 +94,84 @@ int calculate_memory(TTnode* root)
     return answer;
 }
 
-TTnode *search(TTnode *p, int k) {
-    if (!p) return nullptr;
+TTnode *search(TTnode *p, double k)
+{
+    if (!p)
+        return nullptr;
 
-    if (p->find(k)) return p;
-    else if (k < p->values[0]) return search(p->first, k);
-    else if ((p->values.size() == 2) && (k < p->values[1]) || (p->values.size() == 1)) return search(p->second, k);
-    else if (p->values.size() == 2) return search(p->third, k);
+    if (p->find(k))
+        return p;
+    else if (k < p->values[0])
+        return search(p->first, k);
+    else if ((p->values.size() == 2) && (k < p->values[1]) || (p->values.size() == 1))
+        return search(p->second, k);
+    else if (p->values.size() == 2)
+        return search(p->third, k);
 }
 
-TTnode* add(TTnode** root, int value) {
+TTnode* add(TTnode** root, double value)
+{
     if (!*root)
     {
         *root = new TTnode(value);
         return *root;
     }
 
-    if ((*root)->is_leaf()) (*root)->insert_to_node(value);
-    else if (value <= (*root)->values[0]) add(&(*root)->first, value);
+    if ((*root)->is_leaf())
+        (*root)->insert_to_node(value);
+    else if (value <= (*root)->values[0])
+        add(&(*root)->first, value);
     else if (((*root)->values.size() == 1) || (((*root)->values.size() == 2)
-            && value <= (*root)->values[1])) add(&(*root)->second, value);
-    else add(&(*root)->third, value);
+             && value <= (*root)->values[1]))
+        add(&(*root)->second, value);
+    else
+        add(&(*root)->third, value);
 
     return split(*root);
 }
 
-TTnode *split(TTnode *node) {
-    if (node->values.size() < 3) return node;
+TTnode *split(TTnode *node)
+{
+    if (node->values.size() < 3)
+        return node;
 
     TTnode *x = new TTnode(node->values[0], node->first, node->second, nullptr, nullptr, node->parent);
     TTnode *y = new TTnode(node->values[2], node->third, node->fourth, nullptr, nullptr, node->parent);
-    if (x->first)  x->first->parent = x;
-    if (x->second) x->second->parent = x;
-    if (y->first)  y->first->parent = y;
-    if (y->second) y->second->parent = y;
+    if (x->first)
+        x->first->parent = x;
+    if (x->second)
+        x->second->parent = x;
+    if (y->first)
+        y->first->parent = y;
+    if (y->second)
+        y->second->parent = y;
 
-    if (node->parent) {
+    if (node->parent)
+    {
         node->parent->insert_to_node(node->values[1]);
 
-        if (node->parent->first == node) node->parent->first = nullptr;
-        else if (node->parent->second == node) node->parent->second = nullptr;
-        else if (node->parent->third == node) node->parent->third = nullptr;
+        if (node->parent->first == node)
+            node->parent->first = nullptr;
+        else if (node->parent->second == node)
+            node->parent->second = nullptr;
+        else if (node->parent->third == node)
+            node->parent->third = nullptr;
 
-        if (node->parent->first == nullptr) {
+        if (node->parent->first == nullptr)
+        {
             node->parent->fourth = node->parent->third;
             node->parent->third = node->parent->second;
             node->parent->second = y;
             node->parent->first = x;
-        } else if (node->parent->second == nullptr) {
+        }
+        else if (node->parent->second == nullptr)
+        {
             node->parent->fourth = node->parent->third;
             node->parent->third = y;
             node->parent->second = x;
-        } else {
+        }
+        else
+        {
             node->parent->fourth = y;
             node->parent->third = x;
         }
@@ -140,7 +179,9 @@ TTnode *split(TTnode *node) {
         TTnode *tmp = node->parent;
         delete node;
         return tmp;
-    } else {
+    }
+    else
+    {
         x->parent = node;
         y->parent = node;
         node->become_node2(node->values[1], x, y);
@@ -148,10 +189,14 @@ TTnode *split(TTnode *node) {
     }
 }
 
-TTnode *search_min(TTnode *p) { // Поиск узла с минимальным элементов в 2-3-дереве с корнем p.
-    if (!p) return p;
-    if (!(p->first)) return p;
-    else return search_min(p->first);
+TTnode *search_min(TTnode *p)   // Поиск узла с минимальным элементов в 2-3-дереве с корнем p.
+{
+    if (!p)
+        return p;
+    if (!(p->first))
+        return p;
+    else
+        return search_min(p->first);
 }
 
 TTnode *redistribute(TTnode *leaf)
@@ -442,7 +487,7 @@ TTnode *fix(TTnode *leaf)
     return fix(leaf);
 }
 
-void remove(TTnode** node, int value)
+void remove(TTnode** node, double value)
 {
     TTnode* tmp = search(*node, value);
 
@@ -457,7 +502,7 @@ void remove(TTnode** node, int value)
 
     if (min)
     {
-        int &z = (value == tmp->values[0] ? tmp->values[0] : tmp->values[1]);
+        double &z = (value == tmp->values[0] ? tmp->values[0] : tmp->values[1]);
         std::swap(z, min->values[0]);
         tmp = min;
     }
@@ -466,7 +511,7 @@ void remove(TTnode** node, int value)
     *node = fix(tmp);
 }
 
-void find(TTnode* root, int min, int max, std::vector<int>& answer)
+void find(TTnode* root, double min, double max, std::vector<double>& answer)
 {
     if(!root)
         return;

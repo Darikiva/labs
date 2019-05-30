@@ -5,6 +5,7 @@
 #include "AVL.h"
 #include "2-3tree.h"
 #include <chrono>
+#include <cmath>
 
 using namespace std;
 using namespace std::chrono;
@@ -113,7 +114,7 @@ void Interactive(T* root)
         case 1:
             {
                 cout << "Enter value: ";
-                int value;
+                double value;
                 cin >> value;
                 add(&root, value);
                 cout << endl;
@@ -122,9 +123,9 @@ void Interactive(T* root)
         case 2:
             {
                 cout << "Enter value: ";
-                int value;
+                double value;
                 cin >> value;
-                std::vector<int> answer;
+                std::vector<double> answer;
                 find(root, value, value, answer);
                 for(const auto& i:answer) cout << i << " ";
                 cout << endl;
@@ -133,9 +134,9 @@ void Interactive(T* root)
         case 3:
             {
                 cout << "Enter 2 values: ";
-                int min, max;
+                double min, max;
                 cin >> min >> max;
-                std::vector<int> answer;
+                std::vector<double> answer;
                 find(root, min, max, answer);
                 for(const auto& i:answer) cout << i << " ";
                 cout << endl;
@@ -144,7 +145,7 @@ void Interactive(T* root)
         case 4:
             {
                 cout << "Enter value: ";
-                int value;
+                double value;
                 cin >> value;
                 remove(&root, value);
                 cout << endl;
@@ -182,7 +183,7 @@ void Demonstrative(T* root)
 
     for(int i=0; i<30; i++)
     {
-        int value = rand()%70;
+        double value = rand()%70;
         cout << "Remove element " << value << ": ";
         remove(&root, value);
         print(root);
@@ -190,9 +191,14 @@ void Demonstrative(T* root)
     }
 
     cout << "Find all elements in range 4-25: ";
-    std::vector<int> answer;
+    std::vector<double> answer;
     find(root, 4, 25, answer);
     for(auto const& i:answer) cout << i << " ";
+    cout << endl;
+
+    cout << "Take sin of all elements: ";
+    do_something(root, sin);
+    print(root);
     cout << endl;
 
     cout << "Thanks for your attention!\n";
@@ -224,9 +230,9 @@ void Benchmark(T* wow)
         start = steady_clock::now();
         for(int i=0; i<number/4; i++)
         {
-            std::vector<int> answer;
-            int min = rand()%400;
-            int max = min+rand()%600;
+            std::vector<double> answer;
+            double min = rand()%400;
+            double max = min+rand()%600;
             find(root, min, max , answer);
         }
         finish = steady_clock::now();
