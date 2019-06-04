@@ -7,26 +7,29 @@ using namespace sf;
 
 float offsetX = 0, offsetY = 0;
 
-const int ground = 320;
-const int H = 20;
+const int H = 24;
 const int W = 105;
 
 std::string TileMape[H] =
 {
-    "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB                                                       ",
-    "B                                                B                                                       ",
-    "B                                                B                                                       ",
-    "B                                                B                                                       ",
-    "BBBBBBBBBBB                                      B                                                       ",
-    "B                                                B                                                       ",
-    "B                                BBBBBBBBBBB     B                                                       ",
-    "B                                                B                                                       ",
-    "B                                                B                                                       ",
-    "B                                                B                                                       ",
     "B                                                BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
-    "B                   BBBBBBBBBB                                                                          B",
+    "B                                                BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+    "B                                                BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+    "B                                                BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+    "B                                                BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+    "B                                                BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+    "B                                                BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+    "B                                                BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+    "B                                                BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+    "B                                                BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+    "B          CCC                                   BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+    "B                                                BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+    "B                     CCC                        BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+    "B                                                BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+    "B                                                BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+    "B     CCC           BBBBBBBBBB                                                                          B",
     "B                                                                                                       B",
-    "B                                                                                                       B",
+    "B            BBB                    CC                                                                  B",
     "B                                                                                                       B",
     "BBBBBBBBBBB                                                                                BBBBBBBBBBBBBB",
     "B                                                                                                       B",
@@ -126,8 +129,8 @@ public:
     PLAYER(Texture &image, bool weapon)
     {
         sprite.setTexture(image);
-        sprite.setTextureRect(IntRect(0, 27, 40, 40));
-        rect = FloatRect(400,100, 40, 40);
+        sprite.setTextureRect(IntRect(0, 0, 75, 96));
+        rect = FloatRect(400,100, 75, 96);
 
         hp = 20;
         is_single_weapon = weapon;
@@ -150,10 +153,10 @@ public:
         Collision(1);
 
         currentFrame += 0.005*time; // draw hero
-        if(currentFrame>6) currentFrame-=6;
+        if(currentFrame>11) currentFrame-=11;
 
-        if(dx>0) sprite.setTextureRect(IntRect(40*(int)currentFrame, 27, 39, 40)); // animation of
-        if(dx<0) sprite.setTextureRect(IntRect(40*(int)currentFrame+38, 27, -39, 40)); // moving
+        if(dx>0) sprite.setTextureRect(IntRect(75*(int)currentFrame, 0, 75, 96)); // animation of
+        if(dx<0) sprite.setTextureRect(IntRect(75*(int)currentFrame+75, 0, -75, 96)); // moving
 
         for(int i=0; i<fire_list.size(); i++)
         {
@@ -161,7 +164,7 @@ public:
             if(fire_list[i].rect.left>800||fire_list[i].rect.left<0) fire_list.erase(fire_list.begin()+i); // delete fire, if it gets over the limit of map
         }
 
-        sprite.setPosition(rect.left, rect.top);
+        sprite.setPosition(rect.left - offsetX, rect.top - offsetY);
 
         if(hp<=0) isAlive = false;
         dx = 0;
@@ -169,15 +172,15 @@ public:
 
     void Collision(int num)
     {
-        for(int i=rect.top/16; i<(rect.top+rect.height)/16; i++)
-            for(int j=rect.left/16; j<(rect.left+rect.width)/16; j++)
+        for(int i=rect.top/70; i<(rect.top+rect.height)/70; i++)
+            for(int j=rect.left/70; j<(rect.left+rect.width)/70; j++)
             {
                 if(TileMape[i][j]=='B')
                 {
-                    if (dy>0 && num==1){ rect.top =   i*16 -  rect.height;  dy=0;   onGround=true; }
-                    if (dy<0 && num==1){ rect.top = i*16 + 16;   dy=0;}
-                    if (dx>0 && num==0){ rect.left =  j*16 -  rect.width; }
-                    if (dx<0 && num==0){ rect.left =  j*16 +16;}
+                    if (dy>0 && num==1){ rect.top =   i*70 -  rect.height;  dy=0;   onGround=true;}
+                    if (dy<0 && num==1){ rect.top = i*70 + 70;   dy=0;}
+                    if (dx>0 && num==0){ rect.left =  j*70 -  rect.width; }
+                    if (dx<0 && num==0){ rect.left =  j*70 + 70;}
                 }
             }
     }
@@ -190,7 +193,7 @@ void print_hp(T person, RenderWindow& window)
     for(int i=0; i<person.hp; i++)
     {
         rectangle.setFillColor(Color::Red);
-        rectangle.setPosition(person.rect.left+i*2, person.rect.top-person.rect.height);
+        rectangle.setPosition(person.rect.left+i*2 - offsetX, person.rect.top-person.rect.height - offsetY);
         window.draw(rectangle);
     }
 }
@@ -208,13 +211,21 @@ int main()
 
 
     Texture t;
-    t.loadFromFile("running.png");
+    t.loadFromFile("walk0001.png");
+
+    Texture Ground;
+    Ground.loadFromFile("ground.png");
+    Sprite ground(Ground);
+
+    Texture Cloud;
+    Cloud.loadFromFile("cloud_1.png");
+    Sprite cloud(Cloud);
 
     PLAYER hero(t, weapon);
 
    // std::vector <ENEMY> enemy;
 
-    RenderWindow window(VideoMode(800, ground), "Test!");
+    RenderWindow window(VideoMode(1330, 700), "Test");
 
     Texture s;
     s.loadFromFile("enemy_running.png");
@@ -222,7 +233,7 @@ int main()
     Texture attack;
     attack.loadFromFile("attack_player.png");
 
-    RectangleShape rectangle(Vector2f(16, 16));
+    RectangleShape rectangle(Vector2f(70, 70));
 
     Clock clock;
 
@@ -245,6 +256,16 @@ int main()
             system("pause");
             return 0;
         }
+
+        for(int i=0; i<H; i++)
+        {
+            for(int j=0; j<W; j++)
+            {
+                rectangle.setFillColor(Color::Red);
+                rectangle.setPosition(j*70 - offsetX, i*70 - offsetY);
+                window.draw(rectangle);
+            }
+        }
         side = rand()%2; // Where new enemy will appear
 
         float time = clock.getElapsedTime().asMicroseconds();
@@ -260,17 +281,17 @@ int main()
 
         if (Keyboard::isKeyPressed(Keyboard::Left)) // Go left
         {
-            hero.dx = -0.1;
+            hero.dx = -0.2;
             direct = false;
         }
         if (Keyboard::isKeyPressed(Keyboard::Right)) // Go right
         {
-            hero.dx = 0.1;
+            hero.dx = 0.2;
             direct = true;
         }
         if (Keyboard::isKeyPressed(Keyboard::Up)) // Jump
         {
-            if(hero.onGround) {hero.dy=-0.4; hero.onGround = false;}
+            if(hero.onGround) {hero.dy=-0.6; hero.onGround = false;}
         }
         if (Keyboard::isKeyPressed(Keyboard::Down)) // Boost speed of falling
         {
@@ -305,13 +326,18 @@ int main()
         for(int i=0; i<H; i++)
             for(int j=0; j<W; j++) // draw map
                 {
-                    if(TileMape[i][j]=='B') rectangle.setFillColor(Color::Green);
-                    if(TileMape[i][j]==' ')
+                    if(TileMape[i][j]=='B')
                     {
-                        rectangle.setFillColor(Color::Black);
+                        ground.setTextureRect(IntRect(0, 0, 70, 70));
+                        ground.setPosition(j*70 - offsetX, i*70 - offsetY);
+                        window.draw(ground);
                     }
-                    rectangle.setPosition(j*16 - offsetX, i*16);
-                    window.draw(rectangle);
+                    if(TileMape[i][j]=='C')
+                    {
+                        cloud.setTextureRect(IntRect(0, 0, 129, 63));
+                        cloud.setPosition(j*70 - offsetX, i*70 - offsetY);
+                        window.draw(cloud);
+                    }
                 }
 
        /* for(int i=0; i<hero.fire_list.size(); i++) // draw shots and check for intersections with enemies
@@ -335,6 +361,8 @@ int main()
             offsetX = hero.rect.left-200;
             //cout << offsetX;
         }
+
+        offsetY = hero.rect.top-300;
 
 
 
