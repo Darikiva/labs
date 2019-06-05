@@ -10,7 +10,7 @@ float offsetX = 0, offsetY = 0;
 const int H = 24;
 const int W = 105;
 
-std::string TileMape[H] =
+std::string TileMap[H] =
 {
     "B                                                BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
     "B                                                BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
@@ -27,71 +27,15 @@ std::string TileMape[H] =
     "B                     CCC                        BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
     "B                                                BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
     "B                                                BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
-    "B     CCC           BBBBBBBBBB                                                                          B",
+    "B     CCC           GGBBBBBBBB                                                                          B",
     "B                                                                                                       B",
-    "B            BBB                    CC                                                                  B",
+    "B            GGB                    CC                                                                  B",
     "B                                                                                                       B",
-    "BBBBBBBBBBB                                                                                BBBBBBBBBBBBBB",
+    "BBBBBBBBBGB                                                                                BBBBBBBBBBBBBB",
     "B                                                                                                       B",
     "B                                                                                                       B",
-    "B                                                                                                       B",
-    "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
-};
-
-class ENEMY{
-public:
-    Sprite sprite;
-    bool isAlive = false;
-    float dx;
-    FloatRect rect;
-    float currentFrame;
-    float hp;
-
-    ENEMY(Texture &image, int x, int y, float hitpoints)
-    {
-        sprite.setTexture(image);
-        sprite.setTextureRect(IntRect(6,1,32,32));
-        rect = FloatRect(x, y, 32, 32);
-
-        isAlive = true;
-        dx = 0.1;
-        currentFrame = 0;
-        hp = hitpoints;
-    }
-
-    void update(float time)
-    {
-        //dx = 0.1;
-        if(rect.left<0)
-        {
-            dx = -dx;
-            rect.left = 0;
-        }
-        if(rect.left+rect.width > W*16)
-        {
-            dx = -dx;
-            rect.left = W*16 - rect.width;
-        }
-        if(dx==0) return;
-        rect.left+= dx*time;
-
-        currentFrame+=0.005*time;
-        if(currentFrame>4) currentFrame-=4;
-
-        if(dx<0) sprite.setTextureRect(IntRect(40*(int)currentFrame, 0, 32, 32));
-        if(dx>0) sprite.setTextureRect(IntRect(40*(int)currentFrame+32, 0, -32, 32));
-
-
-        sprite.setPosition(rect.left - offsetX, rect.top - offsetY);
-    }
-
-    void CollisionX()
-    {
-        if (rect.left<0) {rect.left = 0;}
-        else if(rect.left+rect.width>W*16) {rect.left=W*16-rect.width;}
-
-    }
-
+    "B                              O                   O                                                    B",
+    "BBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBSSSBBBBBBBBBBBBGGBBBBBBBBBBBBBBB"
 };
 
 class ATTACK{
@@ -120,22 +64,17 @@ public:
     FloatRect rect;
     bool onGround, isAlive;
     Sprite sprite;
-    float hp;
-    float damage;
     float currentFrame;
-    bool is_single_weapon;
+
+    double slow = 1;
     std::vector<ATTACK> fire_list;
 
-    PLAYER(Texture &image, bool weapon)
+    PLAYER(Texture &image)
     {
         sprite.setTexture(image);
         sprite.setTextureRect(IntRect(0, 0, 75, 96));
-        rect = FloatRect(400,100, 75, 96);
+        rect = FloatRect(80*70,70*22, 75, 96);
 
-        hp = 20;
-        is_single_weapon = weapon;
-        if(is_single_weapon) damage = 4;
-        else damage = 0.01;
         dx=dy=0;
         currentFrame = 0;
         isAlive = true;
@@ -143,16 +82,15 @@ public:
 
     void update(float time)
     {
-        rect.left += dx * time;
+        rect.left += dx * time * slow;
         Collision(0);
-
 
         if (!onGround) dy=dy+0.0005*time;
         rect.top += dy*time;
         onGround=false;
         Collision(1);
 
-        currentFrame += 0.005*time; // draw hero
+        currentFrame += 0.007*time; // draw hero
         if(currentFrame>11) currentFrame-=11;
 
         if(dx>0) sprite.setTextureRect(IntRect(75*(int)currentFrame, 0, 75, 96)); // animation of
@@ -166,7 +104,6 @@ public:
 
         sprite.setPosition(rect.left - offsetX, rect.top - offsetY);
 
-        if(hp<=0) isAlive = false;
         dx = 0;
     }
 
@@ -175,39 +112,101 @@ public:
         for(int i=rect.top/70; i<(rect.top+rect.height)/70; i++)
             for(int j=rect.left/70; j<(rect.left+rect.width)/70; j++)
             {
-                if(TileMape[i][j]=='B')
+                if(TileMap[i][j]=='G')
+                {
+                    dy = -0.7;
+                    onGround = false;
+
+                    slow = 1;
+                    return;
+                }
+                if(TileMap[i][j]=='B')
                 {
                     if (dy>0 && num==1){ rect.top =   i*70 -  rect.height;  dy=0;   onGround=true;}
                     if (dy<0 && num==1){ rect.top = i*70 + 70;   dy=0;}
                     if (dx>0 && num==0){ rect.left =  j*70 -  rect.width; }
                     if (dx<0 && num==0){ rect.left =  j*70 + 70;}
+
+                    slow = 1;
+
+                }
+                if(TileMap[i][j]=='S')
+                {
+                    if (dy>0 && num==1){ rect.top =   i*70 -  rect.height;  dy=0;   onGround=true;}
+                    if (dy<0 && num==1){ rect.top = i*70 + 70;   dy=0;}
+
+                    slow = 0.5;
                 }
             }
     }
 };
 
-template <typename T>
-void print_hp(T person, RenderWindow& window)
+class ENEMY
 {
-    RectangleShape rectangle(Vector2f(2, 2));
-    for(int i=0; i<person.hp; i++)
+public:
+    float dx,dy;
+    FloatRect rect;
+    Sprite sprite;
+    float currentFrame;
+    bool life;
+
+
+    void set(Texture &image, int x, int y)
     {
-        rectangle.setFillColor(Color::Red);
-        rectangle.setPosition(person.rect.left+i*2 - offsetX, person.rect.top-person.rect.height - offsetY);
-        window.draw(rectangle);
+        sprite.setTexture(image);
+        rect = FloatRect(x,y,43,28);
+
+        dx=0.1;
+        currentFrame = 0;
+        life=true;
     }
-}
+
+    void update(float time)
+    {
+        rect.left += dx * time;
+
+        Collision();
+
+
+        currentFrame += time * 0.005;
+        if (currentFrame > 2)
+            currentFrame -= 2;
+
+        if(dx>0) sprite.setTextureRect(IntRect(43*int(currentFrame)+43,   0, -43, 28));
+        if(dx<0) sprite.setTextureRect(IntRect(43*int(currentFrame), 0, 43, 28));
+        if (!life)
+            sprite.setTextureRect(IntRect(97, 0, 60, 28));
+
+
+        sprite.setPosition(rect.left - offsetX, rect.top - offsetY);
+
+    }
+
+
+    void Collision()
+    {
+
+        for (int i = rect.top/70 ; i<(rect.top+rect.height)/70; i++)
+            for (int j = rect.left/70; j<(rect.left+rect.width)/70; j++)
+                if ((TileMap[i][j]=='B') || (TileMap[i][j]=='O'))
+                {
+                    if (dx>0)
+                    {
+                        rect.left =  j*70 - rect.width;
+                        dx*=-1;
+                    }
+                    else if (dx<0)
+                    {
+                        rect.left =  j*70 + 70;
+                        dx*=-1;
+                    }
+
+                }
+    }
+};
 
 int main()
 {
-    std::cout << "If enemy touches you, you lose health point\n";
-    std::cout << "Green blocks increase your health\n";
-    std::cout << "Blue blocks increase your damage\n";
-    std::cout << "Press A to attack\n";
-    std::cout << "Use arrows to move\n";
-    std::cout << "Do you want to have single weapon (enter 1) or not (enter 0)?";
-    bool weapon;
-    std::cin >> weapon;
 
 
     Texture t;
@@ -221,17 +220,29 @@ int main()
     Cloud.loadFromFile("cloud_1.png");
     Sprite cloud(Cloud);
 
-    PLAYER hero(t, weapon);
+    Texture Cave;
+    Cave.loadFromFile("ground_cave.png");
+    Sprite cave(Cave);
+
+    Texture Sand;
+    Sand.loadFromFile("ground_sand.png");
+    Sprite sand(Sand);
+
+    Texture Live;
+    Live.loadFromFile("coin_bronze.png");
+    Sprite live(Live);
+    int lives = 3;
+
+    PLAYER hero(t);
+
+    Texture enemy_walk;
+    enemy_walk.loadFromFile("slime_normal.png");
+    ENEMY enemy;
+    enemy.set(enemy_walk, 34*70, 22*70+70-28);
 
    // std::vector <ENEMY> enemy;
 
     RenderWindow window(VideoMode(1330, 700), "Test");
-
-    Texture s;
-    s.loadFromFile("enemy_running.png");
-
-    Texture attack;
-    attack.loadFromFile("attack_player.png");
 
     RectangleShape rectangle(Vector2f(70, 70));
 
@@ -247,15 +258,13 @@ int main()
 
     int side;
 
+    bool flag = true;
+
     bool direct;
     while(window.isOpen())
     {
-        if(!hero.isAlive) // If hp<=0, you're dead
-        {
-            std::cout << "YOU DEFEAT";
-            system("pause");
-            return 0;
-        }
+        if(!enemy.life)
+            flag = false;
 
         for(int i=0; i<H; i++)
         {
@@ -266,7 +275,6 @@ int main()
                 window.draw(rectangle);
             }
         }
-        side = rand()%2; // Where new enemy will appear
 
         float time = clock.getElapsedTime().asMicroseconds();
         clock.restart();
@@ -291,70 +299,47 @@ int main()
         }
         if (Keyboard::isKeyPressed(Keyboard::Up)) // Jump
         {
-            if(hero.onGround) {hero.dy=-0.6; hero.onGround = false;}
+            if(hero.onGround) {hero.dy=-0.45; hero.onGround = false;}
         }
         if (Keyboard::isKeyPressed(Keyboard::Down)) // Boost speed of falling
         {
             if(!hero.onGround) {hero.dy+=0.005;}
         }
 
-        speed_fire+=0.005; // limit of shots number
-        if (Keyboard::isKeyPressed(Keyboard::A)&&(speed_fire>=1||speed_fire==0))
-        {
-            ATTACK new_attack(attack, hero.rect.left, hero.rect.top, direct);
-            hero.fire_list.push_back(new_attack); // Add new shot
-            speed_fire = 0;
-        }
-
-        max_count+=0.001; // time when new enemy appears
-        if (max_count>=1||max_count==0)
-        {
-            max_enemy+=0.1; // with every 10 new enemies increase max enemies on the map at the same time
-            enemy_hp+=0.1; // every new enemy has more health points
-            int start_position;
-            if(side==1) start_position = 0; // from which side
-            else start_position = W*16; // new enemy will appear
-            //ENEMY new_enemy(s, start_position, ground-48, enemy_hp);
-            //if(enemy.size()<max_enemy) enemy.push_back(new_enemy);
-            max_count = 0;
-        }
 
         hero.update(time);
+        if(flag) enemy.update(time);
 
         window.clear();
 
         for(int i=0; i<H; i++)
             for(int j=0; j<W; j++) // draw map
                 {
-                    if(TileMape[i][j]=='B')
+                    if(TileMap[i][j]=='B')
                     {
                         ground.setTextureRect(IntRect(0, 0, 70, 70));
                         ground.setPosition(j*70 - offsetX, i*70 - offsetY);
                         window.draw(ground);
                     }
-                    if(TileMape[i][j]=='C')
+                    else if(TileMap[i][j]=='C')
                     {
                         cloud.setTextureRect(IntRect(0, 0, 129, 63));
                         cloud.setPosition(j*70 - offsetX, i*70 - offsetY);
                         window.draw(cloud);
                     }
+                    else if(TileMap[i][j]=='G')
+                    {
+                        cave.setTextureRect(IntRect(0, 0, 70, 70));
+                        cave.setPosition(j*70 - offsetX, i*70 - offsetY);
+                        window.draw(cave);
+                    }
+                    else if(TileMap[i][j]=='S')
+                    {
+                        sand.setTextureRect(IntRect(0, 0, 70, 70));
+                        sand.setPosition(j*70 - offsetX, i*70 - offsetY);
+                        window.draw(sand);
+                    }
                 }
-
-       /* for(int i=0; i<hero.fire_list.size(); i++) // draw shots and check for intersections with enemies
-        {
-            window.draw(hero.fire_list[i].sprite);
-            for(int j=0; j<enemy.size(); j++)
-            {
-                if(hero.fire_list[i].rect.intersects(enemy[j].rect))
-                {
-                    enemy[j].hp-=hero.damage;
-                    if(enemy[j].hp<=0) enemy.erase(enemy.begin()+j);
-                    if(hero.is_single_weapon) hero.fire_list.erase(hero.fire_list.begin()+i);
-                }
-            }
-        }*/
-
-
 
         if (hero.rect.left>200)
         {
@@ -364,21 +349,15 @@ int main()
 
         offsetY = hero.rect.top-300;
 
-
-
-       /* for(int i=0; i<enemy.size(); i++) // draw enemies and check for intersections with our hero
+        if(flag && hero.rect.intersects(enemy.rect))
         {
-            enemy[i].update(time);
-            window.draw(enemy[i].sprite);
-            print_hp(enemy[i], window);
-            if(enemy[i].rect.intersects(hero.rect))
-            {
-                hero.hp-=0.01;
-            }
-        }*/
+            if(hero.dy>0) enemy.life = false;
+            else hero.rect.left-=enemy.rect.width;
+        }
 
         window.draw(hero.sprite); // draw hero
-        print_hp(hero, window); // draw hero's health
+
+        if(flag) window.draw(enemy.sprite);
         window.display();
     }
     return 0;
