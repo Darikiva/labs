@@ -41,7 +41,7 @@ std::string TileMap[H] =
     "BBBBBBBBBGB                                                                                BBBBBBBBBBBBBB",
     "B                                                                                                       B",
     "B                                                                                                       B",
-    "B                              O                   O                                                    B",
+    "B          5               1   O                   O                                                    B",
     "BBBBBBBBBBBBBBGGBBLLBB  BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBSSSBBBBBBBBBBBBGGBBBBBBBBBBBBBBB",
     "BWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWB",
     "BWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWB",
@@ -59,7 +59,8 @@ std::string TileMap[H] =
     "BLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLB"
 };
 
-class ATTACK{
+class ATTACK
+{
 public:
     float dx;
     Sprite sprite;
@@ -79,7 +80,8 @@ public:
     }
 };
 
-class PLAYER{
+class PLAYER
+{
 public:
     float dx, dy;
     float limit_x = 0.2;
@@ -89,6 +91,8 @@ public:
     float currentFrame;
     int lives = 3;
 
+    bool blue_key=false, red_key=false, yellow_key=false, green_key=false;
+
     double slow = 1;
     double slow_water = 1;
 
@@ -96,7 +100,7 @@ public:
     {
         sprite.setTexture(image);
         sprite.setTextureRect(IntRect(0, 0, 75, 96));
-        rect = FloatRect(70,22*70, 53, 96);
+        rect = FloatRect(70,22*70, 75, 96);
 
         dx=dy=0;
         currentFrame = 0;
@@ -185,6 +189,22 @@ public:
                     if (dx>0 && num==0){ rect.left =  j*70 -  rect.width; }
                     if (dx<0 && num==0){ rect.left =  j*70 + 70;}
                 }
+                else if(TileMap[i][j]=='1')
+                {
+                    blue_key = true;
+                    TileMap[i][j] = ' ';
+                }
+                else if(TileMap[i][j]=='5')
+                {
+                    if(blue_key) TileMap[i][j] = ' ';
+                    else
+                    {
+                        if (dy>0 && num==1){ rect.top =   i*70 -  rect.height;  dy=0;   onGround=true;}
+                        if (dy<0 && num==1){ rect.top = i*70 + 70;   dy=0;}
+                        if (dx>0 && num==0){ rect.left =  j*70 -  rect.width; }
+                        if (dx<0 && num==0){ rect.left =  j*70 + 70;}
+                    }
+                }
                 else if(TileMap[i][j]==' ')
                 {
                     slow_water = 1;
@@ -257,10 +277,42 @@ public:
     }
 };
 
+
 int main()
 {
+    Font font;
+    font.loadFromFile("font.ttf");
+    Text text("YOU DEFEAT\n Press Tab", font, 50);
+    text.setStyle(sf::Text::Bold | sf::Text::Underlined);
+
     Texture t;
     t.loadFromFile("walk0001.png");
+
+    Texture Live;
+    Live.loadFromFile("coin_bronze.png");
+    Sprite live(Live);
+
+    PLAYER hero(t);
+
+    Texture enemy_walk;
+    enemy_walk.loadFromFile("slime_normal.png");
+    std::vector<ENEMY> enemies(1);
+    enemies[0].set(enemy_walk, 34*70, 22*70+70-28);
+
+
+    RenderWindow window(VideoMode(1330, 700), "Test");
+
+    RectangleShape rectangle(Vector2f(70, 70));
+
+    Clock clock;
+
+    Texture Blue;
+    Blue.loadFromFile("key_blue.png");
+    Sprite blue(Blue);
+
+    Texture Lock_b;
+    Lock_b.loadFromFile("lock_blue.png");
+    Sprite lock_b(Lock_b);
 
     Texture Ground;
     Ground.loadFromFile("ground.png");
@@ -278,10 +330,6 @@ int main()
     Sand.loadFromFile("ground_sand.png");
     Sprite sand(Sand);
 
-    Texture Live;
-    Live.loadFromFile("coin_bronze.png");
-    Sprite live(Live);
-
     Texture Lava;
     Lava.loadFromFile("lava.png");
     Sprite lava(Lava);
@@ -290,38 +338,22 @@ int main()
     Water.loadFromFile("water.png");
     Sprite water(Water);
 
-    PLAYER hero(t);
-
-    Texture enemy_walk;
-    enemy_walk.loadFromFile("slime_normal.png");
-    ENEMY enemy;
-    enemy.set(enemy_walk, 34*70, 22*70+70-28);
-
-
-    RenderWindow window(VideoMode(1330, 700), "Test");
-
-    RectangleShape rectangle(Vector2f(70, 70));
-
-    Clock clock;
-
-    float speed_fire = 0;
-    float max_count = 0;
-    int bonus_damage = 0;
-    float bonus_count = 0;
-    int bonus_number;
-    float max_enemy = 10;
-    float enemy_hp = 10;
-
-    int side;
-
-    bool flag = true;
-
     int time_hero = 0;
     bool direct;
     while(window.isOpen())
     {
-        if(!enemy.life)
-            flag = false;
+        if(hero.lives <= 0)
+        {
+            text.setPosition(70*6, 70*4);
+            window.clear();
+            window.draw(text);
+            window.display();
+            while(!Keyboard::isKeyPressed(Keyboard::Tab));
+            return 0;
+        }
+
+        if(time_hero) time_hero++;
+        if(time_hero>50) time_hero = 0;
 
         for(int i=0; i<H; i++)
         {
@@ -370,64 +402,66 @@ int main()
 
 
         hero.update(time, direct);
-        if(flag) enemy.update(time);
+        for(auto& enemy:enemies) enemy.update(time);
 
-        window.clear();
+        text.setPosition(35*3, 0);//задаем позицию текста, центр камеры
+		window.draw(text);
 
-        for(int i=0; i<H; i++)
-            for(int j=0; j<W; j++) // draw map
+
+    window.clear();
+
+    for(int i=0; i<H; i++)
+        for(int j=0; j<W; j++) // draw map
+            {
+                if(TileMap[i][j]=='B')
                 {
-                    if(TileMap[i][j]=='B')
-                    {
-                        ground.setTextureRect(IntRect(0, 0, 70, 70));
-                        ground.setPosition(j*70 - offsetX, i*70 - offsetY);
-                        window.draw(ground);
-                    }
-                    else if(TileMap[i][j]=='C')
-                    {
-                        cloud.setTextureRect(IntRect(0, 0, 129, 63));
-                        cloud.setPosition(j*70 - offsetX, i*70 - offsetY);
-                        window.draw(cloud);
-                    }
-                    else if(TileMap[i][j]=='G')
-                    {
-                        cave.setTextureRect(IntRect(0, 0, 70, 70));
-                        cave.setPosition(j*70 - offsetX, i*70 - offsetY);
-                        window.draw(cave);
-                    }
-                    else if(TileMap[i][j]=='S')
-                    {
-                        sand.setTextureRect(IntRect(0, 0, 70, 70));
-                        sand.setPosition(j*70 - offsetX, i*70 - offsetY);
-                        window.draw(sand);
-                    }
-                    else if(TileMap[i][j]=='W')
-                    {
-                        water.setTextureRect(IntRect(0, 0, 70, 70));
-                        water.setPosition(j*70 - offsetX, i*70 - offsetY);
-                        window.draw(water);
-                    }
-                    else if(TileMap[i][j]=='L')
-                    {
-                        lava.setTextureRect(IntRect(0, 0, 70, 70));
-                        lava.setPosition(j*70 - offsetX, i*70 - offsetY);
-                        window.draw(lava);
-                    }
+                    ground.setTextureRect(IntRect(0, 0, 70, 70));
+                    ground.setPosition(j*70 - offsetX, i*70 - offsetY);
+                    window.draw(ground);
                 }
-
-
-        if(flag && hero.rect.intersects(enemy.rect))
-        {
-            if(hero.dy>0)
-            {
-                enemy.life = false;
+                else if(TileMap[i][j]=='C')
+                {
+                    cloud.setTextureRect(IntRect(0, 0, 129, 63));
+                    cloud.setPosition(j*70 - offsetX, i*70 - offsetY);
+                    window.draw(cloud);
+                }
+                else if(TileMap[i][j]=='G')
+                {
+                    cave.setTextureRect(IntRect(0, 0, 70, 70));
+                    cave.setPosition(j*70 - offsetX, i*70 - offsetY);
+                    window.draw(cave);
+                }
+                else if(TileMap[i][j]=='S')
+                {
+                    sand.setTextureRect(IntRect(0, 0, 70, 70));
+                    sand.setPosition(j*70 - offsetX, i*70 - offsetY);
+                    window.draw(sand);
+                }
+                else if(TileMap[i][j]=='W')
+                {
+                    water.setTextureRect(IntRect(0, 0, 70, 70));
+                    water.setPosition(j*70 - offsetX, i*70 - offsetY);
+                    window.draw(water);
+                }
+                else if(TileMap[i][j]=='L')
+                {
+                    lava.setTextureRect(IntRect(0, 0, 70, 70));
+                    lava.setPosition(j*70 - offsetX, i*70 - offsetY);
+                    window.draw(lava);
+                }
+                else if(TileMap[i][j]=='1')
+                {
+                    blue.setTextureRect(IntRect(0, 0, 60, 37));
+                    blue.setPosition(j*70 - offsetX, i*70 - offsetY);
+                    window.draw(blue);
+                }
+                else if(TileMap[i][j]=='5')
+                {
+                    lock_b.setTextureRect(IntRect(0, 0, 70, 70));
+                    lock_b.setPosition(j*70 - offsetX, i*70 - offsetY);
+                    window.draw(lock_b);
+                }
             }
-            else
-            {
-                hero.lives--;
-                hero.dy -=0.3;
-            }
-        }
 
         if (hero.rect.left>200)
         {
@@ -436,6 +470,22 @@ int main()
 
         offsetY = hero.rect.top-300;
 
+        for(int i=0; i<enemies.size(); i++)
+        {
+            if(hero.rect.intersects(enemies[i].rect))
+            {
+                if(hero.dy>0)
+                {
+                    enemies.erase(enemies.begin()+i);
+                }
+                else if(time_hero == 0)
+                {
+                    hero.lives--;
+                    time_hero = 1;
+                }
+                break;
+            }
+        }
         window.draw(hero.sprite); // draw hero
 
         for(int i=0; i<hero.lives; i++)
@@ -444,7 +494,7 @@ int main()
             window.draw(live);
         }
 
-        if(flag) window.draw(enemy.sprite);
+        for(const auto& enemy:enemies) window.draw(enemy.sprite);
         window.display();
     }
     return 0;
