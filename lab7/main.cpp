@@ -7,12 +7,12 @@ using namespace sf;
 
 float offsetX = 0, offsetY = 0;
 
-const int H = 24;
+const int H = 28;
 const int W = 105;
 
 std::string TileMap[H] =
 {
-    "B                                                BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+    "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
     "B                                                BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
     "B                                                BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
     "B                                                BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
@@ -35,7 +35,11 @@ std::string TileMap[H] =
     "B                                                                                                       B",
     "B                                                                                                       B",
     "B                              O                   O                                                    B",
-    "BBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBSSSBBBBBBBBBBBBGGBBBBBBBBBBBBBBB"
+    "BBBBBBBBBBBBBBGGBBBBBB  BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBSSSBBBBBBBBBBBBGGBBBBBBBBBBBBBBB",
+    "BWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWB",
+    "BWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWB",
+    "BWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWB",
+    "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
 };
 
 class ATTACK{
@@ -67,13 +71,13 @@ public:
     float currentFrame;
 
     double slow = 1;
-    std::vector<ATTACK> fire_list;
+    double slow_water = 1;
 
     PLAYER(Texture &image)
     {
         sprite.setTexture(image);
         sprite.setTextureRect(IntRect(0, 0, 75, 96));
-        rect = FloatRect(80*70,70*22, 75, 96);
+        rect = FloatRect(70,22*70, 75, 96);
 
         dx=dy=0;
         currentFrame = 0;
@@ -85,8 +89,8 @@ public:
         rect.left += dx * time * slow;
         Collision(0);
 
-        if (!onGround) dy=dy+0.0005*time;
-        rect.top += dy*time;
+        if (!onGround) dy=dy+0.0005*time*slow_water;
+        rect.top += dy*time*slow_water;
         onGround=false;
         Collision(1);
 
@@ -95,12 +99,6 @@ public:
 
         if(dx>0) sprite.setTextureRect(IntRect(75*(int)currentFrame, 0, 75, 96)); // animation of
         if(dx<0) sprite.setTextureRect(IntRect(75*(int)currentFrame+75, 0, -75, 96)); // moving
-
-        for(int i=0; i<fire_list.size(); i++)
-        {
-            fire_list[i].update(time);
-            if(fire_list[i].rect.left>800||fire_list[i].rect.left<0) fire_list.erase(fire_list.begin()+i); // delete fire, if it gets over the limit of map
-        }
 
         sprite.setPosition(rect.left - offsetX, rect.top - offsetY);
 
@@ -114,13 +112,18 @@ public:
             {
                 if(TileMap[i][j]=='G')
                 {
-                    dy = -0.7;
-                    onGround = false;
+
+                    if(dy>=0 && num==1){ dy = -0.7; onGround = false;}
+                    else if (dy<0 && num==1){ rect.top = i*70 + 70;   dy=0;}
+
+                    if (dx>0 && num==0){ rect.left =  j*70 -  rect.width; }
+                    if (dx<0 && num==0){ rect.left =  j*70 + 70;}
 
                     slow = 1;
+                    slow_water = 1;
                     return;
                 }
-                if(TileMap[i][j]=='B')
+                else if(TileMap[i][j]=='B')
                 {
                     if (dy>0 && num==1){ rect.top =   i*70 -  rect.height;  dy=0;   onGround=true;}
                     if (dy<0 && num==1){ rect.top = i*70 + 70;   dy=0;}
@@ -128,14 +131,24 @@ public:
                     if (dx<0 && num==0){ rect.left =  j*70 + 70;}
 
                     slow = 1;
-
+                    slow_water = 1;
                 }
-                if(TileMap[i][j]=='S')
+                else if(TileMap[i][j]=='S')
                 {
                     if (dy>0 && num==1){ rect.top =   i*70 -  rect.height;  dy=0;   onGround=true;}
                     if (dy<0 && num==1){ rect.top = i*70 + 70;   dy=0;}
 
                     slow = 0.5;
+                    slow_water = 1;
+                }
+                else if(TileMap[i][j]=='W')
+                {
+                    onGround = false;
+                    slow_water = 0.5;
+                }
+                else if(TileMap[i][j]==' ')
+                {
+                    slow_water = 1;
                 }
             }
     }
@@ -207,8 +220,6 @@ public:
 
 int main()
 {
-
-
     Texture t;
     t.loadFromFile("walk0001.png");
 
@@ -233,6 +244,10 @@ int main()
     Sprite live(Live);
     int lives = 3;
 
+    Texture Water;
+    Water.loadFromFile("water.png");
+    Sprite water(Water);
+
     PLAYER hero(t);
 
     Texture enemy_walk;
@@ -240,7 +255,6 @@ int main()
     ENEMY enemy;
     enemy.set(enemy_walk, 34*70, 22*70+70-28);
 
-   // std::vector <ENEMY> enemy;
 
     RenderWindow window(VideoMode(1330, 700), "Test");
 
@@ -260,6 +274,7 @@ int main()
 
     bool flag = true;
 
+    int time_hero = 0;
     bool direct;
     while(window.isOpen())
     {
@@ -279,6 +294,9 @@ int main()
         float time = clock.getElapsedTime().asMicroseconds();
         clock.restart();
 
+       // if(time_hero>0) time_hero++;
+
+        //if(time_hero>50000000) time_hero=0;
         time = time/800;
         Event event;
         while(window.pollEvent(event))
@@ -300,10 +318,12 @@ int main()
         if (Keyboard::isKeyPressed(Keyboard::Up)) // Jump
         {
             if(hero.onGround) {hero.dy=-0.45; hero.onGround = false;}
+            else if(hero.slow_water!=1) {hero.dy-=0.02;}
         }
         if (Keyboard::isKeyPressed(Keyboard::Down)) // Boost speed of falling
         {
             if(!hero.onGround) {hero.dy+=0.005;}
+            else if(hero.slow_water!=1) {hero.dy+=0.003;}
         }
 
 
@@ -339,23 +359,42 @@ int main()
                         sand.setPosition(j*70 - offsetX, i*70 - offsetY);
                         window.draw(sand);
                     }
+                    else if(TileMap[i][j]=='W')
+                    {
+                        water.setTextureRect(IntRect(0, 0, 70, 70));
+                        water.setPosition(j*70 - offsetX, i*70 - offsetY);
+                        window.draw(water);
+                    }
                 }
+
+
+        if(flag && hero.rect.intersects(enemy.rect))
+        {
+            if(hero.dy>0)
+            {
+                enemy.life = false;
+            }
+            else
+            {
+                lives--;
+                hero.dy -=0.3;
+            }
+        }
 
         if (hero.rect.left>200)
         {
             offsetX = hero.rect.left-200;
-            //cout << offsetX;
         }
 
         offsetY = hero.rect.top-300;
 
-        if(flag && hero.rect.intersects(enemy.rect))
-        {
-            if(hero.dy>0) enemy.life = false;
-            else hero.rect.left-=enemy.rect.width;
-        }
-
         window.draw(hero.sprite); // draw hero
+
+        for(int i=0; i<lives; i++)
+        {
+            live.setPosition(i*35, 0);
+            window.draw(live);
+        }
 
         if(flag) window.draw(enemy.sprite);
         window.display();
