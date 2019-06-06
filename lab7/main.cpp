@@ -7,8 +7,15 @@ using namespace sf;
 
 float offsetX = 0, offsetY = 0;
 
-const int H = 28;
+const int H = 38;
 const int W = 105;
+
+template <typename T>
+T module(const T& number)
+{
+    if(number<0) return -number;
+    else return number;
+}
 
 std::string TileMap[H] =
 {
@@ -35,11 +42,21 @@ std::string TileMap[H] =
     "B                                                                                                       B",
     "B                                                                                                       B",
     "B                              O                   O                                                    B",
-    "BBBBBBBBBBBBBBGGBBBBBB  BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBSSSBBBBBBBBBBBBGGBBBBBBBBBBBBBBB",
+    "BBBBBBBBBBBBBBGGBBLLBB  BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBSSSBBBBBBBBBBBBGGBBBBBBBBBBBBBBB",
     "BWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWB",
     "BWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWB",
     "BWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWB",
-    "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+    "BWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWB",
+    "BWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWB",
+    "BWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWB",
+    "BWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWB",
+    "BWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWB",
+    "BWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWB",
+    "BLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLB",
+    "BLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLB",
+    "BLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLB",
+    "BLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLB",
+    "BLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLB"
 };
 
 class ATTACK{
@@ -65,10 +82,12 @@ public:
 class PLAYER{
 public:
     float dx, dy;
+    float limit_x = 0.2;
     FloatRect rect;
     bool onGround, isAlive;
     Sprite sprite;
     float currentFrame;
+    int lives = 3;
 
     double slow = 1;
     double slow_water = 1;
@@ -77,15 +96,20 @@ public:
     {
         sprite.setTexture(image);
         sprite.setTextureRect(IntRect(0, 0, 75, 96));
-        rect = FloatRect(70,22*70, 75, 96);
+        rect = FloatRect(70,22*70, 53, 96);
 
         dx=dy=0;
         currentFrame = 0;
         isAlive = true;
     }
 
-    void update(float time)
+    void update(float time, bool direct)
     {
+        if(module(dx)>limit_x)
+        {
+            if(dx>0) dx = limit_x;
+            else dx = -limit_x;
+        }
         rect.left += dx * time * slow;
         Collision(0);
 
@@ -102,7 +126,16 @@ public:
 
         sprite.setPosition(rect.left - offsetX, rect.top - offsetY);
 
-        dx = 0;
+        if(module(dx)<0.02)
+        {
+            dx = 0;
+        }
+
+        if(dx!=0)
+        {
+            if(dx-0.02>0)dx -= 0.02;
+            else if(dx+0.02<0) dx+=0.02;
+        }
     }
 
     void Collision(int num)
@@ -112,10 +145,8 @@ public:
             {
                 if(TileMap[i][j]=='G')
                 {
-
-                    if(dy>=0 && num==1){ dy = -0.7; onGround = false;}
-                    else if (dy<0 && num==1){ rect.top = i*70 + 70;   dy=0;}
-
+                    if (dy<0 && num==1){ rect.top = i*70 + 70;   dy=0;}
+                    if (dy>0 && num==1){ rect.top =   i*70 -  rect.height;  dy=-0.7;   onGround=true;}
                     if (dx>0 && num==0){ rect.left =  j*70 -  rect.width; }
                     if (dx<0 && num==0){ rect.left =  j*70 + 70;}
 
@@ -145,6 +176,14 @@ public:
                 {
                     onGround = false;
                     slow_water = 0.5;
+                }
+                else if(TileMap[i][j]=='L')
+                {
+                    lives--;
+                    if (dy>0 && num==1){ rect.top =   i*70 -  rect.height;  dy=0;   onGround=true;}
+                    if (dy<0 && num==1){ rect.top = i*70 + 70;   dy=0;}
+                    if (dx>0 && num==0){ rect.left =  j*70 -  rect.width; }
+                    if (dx<0 && num==0){ rect.left =  j*70 + 70;}
                 }
                 else if(TileMap[i][j]==' ')
                 {
@@ -242,7 +281,10 @@ int main()
     Texture Live;
     Live.loadFromFile("coin_bronze.png");
     Sprite live(Live);
-    int lives = 3;
+
+    Texture Lava;
+    Lava.loadFromFile("lava.png");
+    Sprite lava(Lava);
 
     Texture Water;
     Water.loadFromFile("water.png");
@@ -307,12 +349,12 @@ int main()
 
         if (Keyboard::isKeyPressed(Keyboard::Left)) // Go left
         {
-            hero.dx = -0.2;
+            hero.dx -= 0.04;
             direct = false;
         }
         if (Keyboard::isKeyPressed(Keyboard::Right)) // Go right
         {
-            hero.dx = 0.2;
+            hero.dx += 0.04;
             direct = true;
         }
         if (Keyboard::isKeyPressed(Keyboard::Up)) // Jump
@@ -327,7 +369,7 @@ int main()
         }
 
 
-        hero.update(time);
+        hero.update(time, direct);
         if(flag) enemy.update(time);
 
         window.clear();
@@ -365,6 +407,12 @@ int main()
                         water.setPosition(j*70 - offsetX, i*70 - offsetY);
                         window.draw(water);
                     }
+                    else if(TileMap[i][j]=='L')
+                    {
+                        lava.setTextureRect(IntRect(0, 0, 70, 70));
+                        lava.setPosition(j*70 - offsetX, i*70 - offsetY);
+                        window.draw(lava);
+                    }
                 }
 
 
@@ -376,7 +424,7 @@ int main()
             }
             else
             {
-                lives--;
+                hero.lives--;
                 hero.dy -=0.3;
             }
         }
@@ -390,7 +438,7 @@ int main()
 
         window.draw(hero.sprite); // draw hero
 
-        for(int i=0; i<lives; i++)
+        for(int i=0; i<hero.lives; i++)
         {
             live.setPosition(i*35, 0);
             window.draw(live);
