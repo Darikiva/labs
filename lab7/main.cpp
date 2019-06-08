@@ -20,64 +20,43 @@ T module(const T& number)
 std::string TileMap[H] =
 {
     "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
-    "B                                                BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
-    "B                                                BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
-    "B                                                BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
-    "B                                                BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
-    "B                                                BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
-    "B                                                BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
-    "B                                                BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
-    "B                                                BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
-    "B                                                BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
-    "B          CCC                                   BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
-    "B                                                BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
-    "B                     CCC                        BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
-    "B                                                BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
-    "B                                                BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
-    "B     CCC           GGBBBBBBBB                                                                          B",
-    "B                                                                                                       B",
-    "B            GGB                    CC                                                                  B",
-    "B                                                                                                       B",
-    "BBBBBBBBBGB                                                                                BBBBBBBBBBBBBB",
-    "B                                                                                                       B",
-    "B                                                                                                       B",
-    "B          5               1   O                   O                                                    B",
-    "BBBBBBBBBBBBBBGGBBLLBB  BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBSSSBBBBBBBBBBBBGGBBBBBBBBBBBBBBB",
-    "BWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWB",
-    "BWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWB",
-    "BWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWB",
-    "BWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWB",
-    "BWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWB",
-    "BWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWB",
-    "BWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWB",
-    "BWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWB",
-    "BWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWB",
-    "BLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLB",
+    "B1   CCCC                         B              BLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLB",
+    "B E E E E  E  O                   B              B                                                      B",
+    "BSSSSSSSSSSSGG    LL              B       B      B                                                      B",
+    "B                                 BOE E O B      B                                                      B",
+    "B                                 BSBBSB  BBBB   B                                                      B",
+    "B    CC                           B       BBBBB  B          O E  O    O  E    O   E   EO  E    E  OE   4B",
+    "B                                 B OE E  B       BBBBMMBBBBGGBBGGBBGGBBGGBBGGBBGGBBGGBBGGBBGGBBGGBBGGBBB",
+    "B                 GG              B  BSBSBB              BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+    "B                                 B       B             3BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+    "B          C                      BOE E O B      BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+    "B                                 BSBSBS  B      MMMMMMMMMMMMMMMMMMMMMMMMBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+    "B                     CCC                 B      MMMMMMMMMMMMMMMMMMMMMMMMBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+    "B            GG                     OE E  B      BBBBBBBBBBBBBBBBBBBBBBMMBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+    "B                                    BSBSBB      BBBBBBBBBBBBBBBBBBBBBBMMBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+    "B     CCC           GGBBBBBBBBBBBBBB      BBBBBBB             B                                         B",
+    "B                                                             B                                         B",
+    "B            GGB                    CC                        B                                         B",
+    "B                                                             B                                         B",
+    "B                                                             B                            BBBBBBBBBBBBBB",
+    "BBBBBB                                                        B                                         B",
+    "B                                                             B                                         B",
+    "BF8765                         O                   O          B                                         B",
+    "BBBBWWBBBBBBBBGGBBLLBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGBBBBBBBBBBLLLBBBBBBBBBBBBBGGBBBBBBBBBBBB  B",
+    "BWWWWWWWLWWWWWWWLWWWWWWWWWWWWWLWWLWWWWWLWWLWWWWWWWWWWWWWWWWWWLWWWWWWLWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWB",
+    "BWWWWWWWLWWWWWWWLWWWWWWWWWWWWWLWWWWWWWLWWWWWWWWWWWWWWWWWWWWWWLWWWWWWLWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWB",
+    "BWWWWWWWLWWWLWWWLWWWWWLLLLWWWLWWWWWWWWLWWWWWWWWWWWWWWWLLLLLWWLWWLWWWLWWWWWWWWWWWLLWWWWWLLWWWWWLLWWWWWWWWB",
+    "BWWWWLWWLWWWLWWWLWWWWWLWWWLWWLWWWWWWWWLWWWWWWWWWWWWWWWLWWWWWWLWWLWWWLWWWWWWWWWWLWWLWWWLWWLWWWLWWLWWWWWWWB",
+    "BWWWWLWWLWWWLWWWLWWWWWLWWWLWWLLLWWLLWWLWWLLLWWWWWWWWWWLWWWWWWLWWLWWWLWWWWWWWWWWWWLWWWWWWWLWWWWWLWWWWWWWWB",
+    "BWWWWLWWLWWWLWWWLWWWWWLWWWLWWLWWWWWLWWLWWWLWWWWWWWWWWWLWWWWWWLWWLWWWLWWWWWWWWWWWWLWWWWWWLWWWWWWLWWWWWWWWB",
+    "B2WWWLWWWWWWLWWWWWWWWWLWWWLWWWWWWWWLWWWWWWWLWWWWWWWWWWLWWWLLLLWWLWWWWWWWWWWWWWWWWWWWWWWWLWWWWWWWWWWWWWWWB",
+    "BWWWWLWWWWWWLWWWWWWWWWLLLLWWWWWWWWWLWWWWWWWLWWWWWWWWWWLWWWWWWWWWLWWWWWWWWWWWWWWWWLWWWWWWWWWWWWWLWWWWWWWWB",
+    "BWWWWLWWWWWWLWWWWWWWWWWWWWWWWWWWWWWLWWWWWWWWWWWWWWWWWWLWWWWWWWWWLWWWWWWWWWWWWWWWWWWWWWWWLWWWWWWWWWWWWWWWB",
+    "BLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLWWWWWWWWWLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLB",
     "BLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLB",
     "BLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLB",
     "BLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLB",
     "BLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLB"
-};
-
-class ATTACK
-{
-public:
-    float dx;
-    Sprite sprite;
-    FloatRect rect;
-    ATTACK(Texture &image, int x, int y, bool direct)
-    {
-        sprite.setTexture(image);
-        rect = FloatRect(x, y, 12, 12);
-
-        if(direct) dx = 0.2;
-        else dx = -0.2;
-    }
-    void update(float time)
-    {
-        rect.left+= dx*time;
-        sprite.setPosition(rect.left, rect.top);
-    }
 };
 
 class PLAYER
@@ -85,11 +64,13 @@ class PLAYER
 public:
     float dx, dy;
     float limit_x = 0.2;
+    float limit_y = 0.2;
     FloatRect rect;
     bool onGround, isAlive;
     Sprite sprite;
     float currentFrame;
     int lives = 3;
+    bool win = false, is_secret = false;
 
     bool blue_key=false, red_key=false, yellow_key=false, green_key=false;
 
@@ -100,7 +81,7 @@ public:
     {
         sprite.setTexture(image);
         sprite.setTextureRect(IntRect(0, 0, 75, 96));
-        rect = FloatRect(70,22*70, 75, 96);
+        rect = FloatRect(70*6,22*70, 75, 96);
 
         dx=dy=0;
         currentFrame = 0;
@@ -119,6 +100,11 @@ public:
 
         if (!onGround) dy=dy+0.0005*time*slow_water;
         rect.top += dy*time*slow_water;
+        if(module(dy)>limit_y && slow_water!=1)
+        {
+            if(dy>0 && dy>limit_y) dy = limit_y;
+            else if(dy<0 && dy<(-2*limit_y)) dy = -2*limit_y;
+        }
         onGround=false;
         Collision(1);
 
@@ -145,12 +131,13 @@ public:
     void Collision(int num)
     {
         for(int i=rect.top/70; i<(rect.top+rect.height)/70; i++)
+        {
             for(int j=rect.left/70; j<(rect.left+rect.width)/70; j++)
             {
                 if(TileMap[i][j]=='G')
                 {
                     if (dy<0 && num==1){ rect.top = i*70 + 70;   dy=0;}
-                    if (dy>0 && num==1){ rect.top =   i*70 -  rect.height;  dy=-0.7;   onGround=true;}
+                    if (dy>0 && num==1){ rect.top =   i*70 -  rect.height;  dy=-0.65;   onGround=true;}
                     if (dx>0 && num==0){ rect.left =  j*70 -  rect.width; }
                     if (dx<0 && num==0){ rect.left =  j*70 + 70;}
 
@@ -172,6 +159,8 @@ public:
                 {
                     if (dy>0 && num==1){ rect.top =   i*70 -  rect.height;  dy=0;   onGround=true;}
                     if (dy<0 && num==1){ rect.top = i*70 + 70;   dy=0;}
+                    if (dx>0 && num==0){ rect.left =  j*70 -  rect.width; }
+                    if (dx<0 && num==0){ rect.left =  j*70 + 70;}
 
                     slow = 0.5;
                     slow_water = 1;
@@ -194,9 +183,28 @@ public:
                     blue_key = true;
                     TileMap[i][j] = ' ';
                 }
+                else if(TileMap[i][j]=='2')
+                {
+                    red_key = true;
+                    TileMap[i][j] = 'W';
+                }
+                else if(TileMap[i][j]=='3')
+                {
+                    yellow_key = true;
+                    TileMap[i][j] = ' ';
+                }
+                else if(TileMap[i][j]=='4')
+                {
+                    green_key = true;
+                    TileMap[i][j] = ' ';
+                }
                 else if(TileMap[i][j]=='5')
                 {
-                    if(blue_key) TileMap[i][j] = ' ';
+                    if(blue_key)
+                    {
+                        TileMap[i][j] = ' ';
+                        blue_key = false;
+                    }
                     else
                     {
                         if (dy>0 && num==1){ rect.top =   i*70 -  rect.height;  dy=0;   onGround=true;}
@@ -205,11 +213,66 @@ public:
                         if (dx<0 && num==0){ rect.left =  j*70 + 70;}
                     }
                 }
+                else if(TileMap[i][j]=='6')
+                {
+                    if(red_key)
+                    {
+                        TileMap[i][j] = ' ';
+                        red_key = false;
+                    }
+                    else
+                    {
+                        if (dy>0 && num==1){ rect.top =   i*70 -  rect.height;  dy=0;   onGround=true;}
+                        if (dy<0 && num==1){ rect.top = i*70 + 70;   dy=0;}
+                        if (dx>0 && num==0){ rect.left =  j*70 -  rect.width; }
+                        if (dx<0 && num==0){ rect.left =  j*70 + 70;}
+                    }
+                }
+                else if(TileMap[i][j]=='7')
+                {
+                    if(yellow_key)
+                    {
+                        TileMap[i][j] = ' ';
+                        yellow_key = false;
+                    }
+                    else
+                    {
+                        if (dy>0 && num==1){ rect.top =   i*70 -  rect.height;  dy=0;   onGround=true;}
+                        if (dy<0 && num==1){ rect.top = i*70 + 70;   dy=0;}
+                        if (dx>0 && num==0){ rect.left =  j*70 -  rect.width; }
+                        if (dx<0 && num==0){ rect.left =  j*70 + 70;}
+                    }
+                }
+                else if(TileMap[i][j]=='8')
+                {
+                    if(green_key)
+                    {
+                        TileMap[i][j] = ' ';
+                        green_key = false;
+                    }
+                    else
+                    {
+                        if (dy>0 && num==1){ rect.top =   i*70 -  rect.height;  dy=0;   onGround=true;}
+                        if (dy<0 && num==1){ rect.top = i*70 + 70;   dy=0;}
+                        if (dx>0 && num==0){ rect.left =  j*70 -  rect.width; }
+                        if (dx<0 && num==0){ rect.left =  j*70 + 70;}
+                    }
+                }
+                else if(TileMap[i][j]=='F')
+                {
+                    win = true;
+                }
+                else if(TileMap[i][j]=='M')
+                {
+                    is_secret = true;
+                    TileMap[i][j] = ' ';
+                }
                 else if(TileMap[i][j]==' ')
                 {
                     slow_water = 1;
                 }
             }
+        }
     }
 };
 
@@ -228,7 +291,7 @@ public:
         sprite.setTexture(image);
         rect = FloatRect(x,y,43,28);
 
-        dx=0.1;
+        dx=0.15;
         currentFrame = 0;
         life=true;
     }
@@ -302,8 +365,6 @@ int main()
 
     RenderWindow window(VideoMode(1330, 700), "Test");
 
-    RectangleShape rectangle(Vector2f(70, 70));
-
     Clock clock;
 
     Texture Blue;
@@ -313,6 +374,31 @@ int main()
     Texture Lock_b;
     Lock_b.loadFromFile("lock_blue.png");
     Sprite lock_b(Lock_b);
+
+    Texture Red;
+    Red.loadFromFile("key_red.png");
+    Sprite red(Red);
+
+    Texture Lock_r;
+    Lock_r.loadFromFile("lock_red.png");
+    Sprite lock_r(Lock_r);
+
+    Texture Green;
+    Green.loadFromFile("key_green.png");
+    Sprite green(Green);
+
+    Texture Lock_g;
+    Lock_g.loadFromFile("lock_green.png");
+    Sprite lock_g(Lock_g);
+
+    Texture Yellow;
+    Yellow.loadFromFile("key_yellow.png");
+    Sprite yellow(Yellow);
+
+    Texture Lock_y;
+    Lock_y.loadFromFile("lock_yellow.png");
+    Sprite lock_y(Lock_y);
+
 
     Texture Ground;
     Ground.loadFromFile("ground.png");
@@ -342,6 +428,19 @@ int main()
     bool direct;
     while(window.isOpen())
     {
+        if(hero.win)
+        {
+            window.clear();
+            Font font;
+            font.loadFromFile("font.ttf");
+            Text text("YOU WIN\n Press Esc", font, 50);
+            text.setStyle(sf::Text::Bold | sf::Text::Underlined);
+            text.setPosition(70*4, 70*3);
+            window.draw(text);
+            window.display();
+            while(!Keyboard::isKeyPressed(Keyboard::Escape));
+            return 0;
+        }
         if(hero.lives <= 0)
         {
             text.setPosition(70*6, 70*4);
@@ -353,16 +452,10 @@ int main()
         }
 
         if(time_hero) time_hero++;
-        if(time_hero>50) time_hero = 0;
-
-        for(int i=0; i<H; i++)
+        if(time_hero>100)
         {
-            for(int j=0; j<W; j++)
-            {
-                rectangle.setFillColor(Color::Red);
-                rectangle.setPosition(j*70 - offsetX, i*70 - offsetY);
-                window.draw(rectangle);
-            }
+            time_hero = 0;
+            hero.sprite.setColor(Color::White);
         }
 
         float time = clock.getElapsedTime().asMicroseconds();
@@ -391,8 +484,12 @@ int main()
         }
         if (Keyboard::isKeyPressed(Keyboard::Up)) // Jump
         {
-            if(hero.onGround) {hero.dy=-0.45; hero.onGround = false;}
-            else if(hero.slow_water!=1) {hero.dy-=0.02;}
+            if(hero.onGround) {hero.dy=-0.50; hero.onGround = false;}
+            else if(hero.slow_water!=1)
+            {
+               // if(hero.dy>0) hero.dy = 0;
+                hero.dy-=0.02;
+            }
         }
         if (Keyboard::isKeyPressed(Keyboard::Down)) // Boost speed of falling
         {
@@ -411,9 +508,10 @@ int main()
     window.clear();
 
     for(int i=0; i<H; i++)
-        for(int j=0; j<W; j++) // draw map
+    {
+        for(int j=0; j<W; j++)
             {
-                if(TileMap[i][j]=='B')
+                if(TileMap[i][j]=='B' || TileMap[i][j]=='M')
                 {
                     ground.setTextureRect(IntRect(0, 0, 70, 70));
                     ground.setPosition(j*70 - offsetX, i*70 - offsetY);
@@ -455,17 +553,61 @@ int main()
                     blue.setPosition(j*70 - offsetX, i*70 - offsetY);
                     window.draw(blue);
                 }
+                else if(TileMap[i][j]=='2')
+                {
+                    red.setTextureRect(IntRect(0, 0, 70, 70));
+                    red.setPosition(j*70 - offsetX, i*70 - offsetY);
+                    window.draw(red);
+                }
+                else if(TileMap[i][j]=='3')
+                {
+                    yellow.setTextureRect(IntRect(0, 0, 60, 37));
+                    yellow.setPosition(j*70 - offsetX, i*70 - offsetY);
+                    window.draw(yellow);
+                }
+                else if(TileMap[i][j]=='4')
+                {
+                    green.setTextureRect(IntRect(0, 0, 70, 70));
+                    green.setPosition(j*70 - offsetX, i*70 - offsetY);
+                    window.draw(green);
+                }
                 else if(TileMap[i][j]=='5')
                 {
                     lock_b.setTextureRect(IntRect(0, 0, 70, 70));
                     lock_b.setPosition(j*70 - offsetX, i*70 - offsetY);
                     window.draw(lock_b);
                 }
+                else if(TileMap[i][j]=='6')
+                {
+                    lock_r.setTextureRect(IntRect(0, 0, 70, 70));
+                    lock_r.setPosition(j*70 - offsetX, i*70 - offsetY);
+                    window.draw(lock_r);
+                }
+                else if(TileMap[i][j]=='7')
+                {
+                    lock_y.setTextureRect(IntRect(0, 0, 70, 70));
+                    lock_y.setPosition(j*70 - offsetX, i*70 - offsetY);
+                    window.draw(lock_y);
+                }
+                else if(TileMap[i][j]=='8')
+                {
+                    lock_g.setTextureRect(IntRect(0, 0, 70, 70));
+                    lock_g.setPosition(j*70 - offsetX, i*70 - offsetY);
+                    window.draw(lock_g);
+                }
+                else if(TileMap[i][j]=='E')
+                {
+                    ENEMY new_enemy;
+                    new_enemy.set(enemy_walk, j*70-offsetX, i*70 - offsetY+42);
+                    enemies.push_back(new_enemy);
+                    TileMap[i][j] = ' ';
+                }
             }
+    }
 
-        if (hero.rect.left>200)
+        if (hero.rect.left>300)
         {
-            offsetX = hero.rect.left-200;
+            offsetX = hero.rect.left-300;
         }
 
         offsetY = hero.rect.top-300;
@@ -480,6 +622,7 @@ int main()
                 }
                 else if(time_hero == 0)
                 {
+                    hero.sprite.setColor(Color::Red);
                     hero.lives--;
                     time_hero = 1;
                 }
@@ -492,6 +635,38 @@ int main()
         {
             live.setPosition(i*35, 0);
             window.draw(live);
+        }
+
+        if(hero.blue_key)
+        {
+            RectangleShape rectangle(Vector2f(6, 6));
+            rectangle.setFillColor(Color::Blue);
+            rectangle.setPosition(hero.rect.left - offsetX, hero.rect.top - offsetY-10);
+            window.draw(rectangle);
+        }
+
+        if(hero.red_key)
+        {
+            RectangleShape rectangle(Vector2f(6, 6));
+            rectangle.setFillColor(Color::Red);
+            rectangle.setPosition(hero.rect.left+9-offsetX, hero.rect.top - offsetY-10);
+            window.draw(rectangle);
+        }
+
+        if(hero.yellow_key)
+        {
+            RectangleShape rectangle(Vector2f(6, 6));
+            rectangle.setFillColor(Color::Yellow);
+            rectangle.setPosition(hero.rect.left+15-offsetX, hero.rect.top-offsetY-10);
+            window.draw(rectangle);
+        }
+
+        if(hero.green_key)
+        {
+            RectangleShape rectangle(Vector2f(6, 6));
+            rectangle.setFillColor(Color::Green);
+            rectangle.setPosition(hero.rect.left+21-offsetX, hero.rect.top-offsetY-10);
+            window.draw(rectangle);
         }
 
         for(const auto& enemy:enemies) window.draw(enemy.sprite);
