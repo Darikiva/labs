@@ -39,7 +39,7 @@ std::string TileMap[H] =
     "B            GGB                    CC                        B                                         B",
     "B                                                             B                                         B",
     "B                                                             B                            BBBBBBBBBBBBBB",
-    "BBBBBB                                                        B                                         B",
+    "BBBBBBA                                                       B                                         B",
     "B                                                             B                                         B",
     "BF8765                         O                   O          B                                         B",
     "BBBBWWBBBBBBBBGGBBLLBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGBBBBBBBBBBLLLBBBBBBBBBBBBBGGBBBBBBBBBBBB  B",
@@ -602,6 +602,24 @@ int main()
                     enemies.push_back(new_enemy);
                     TileMap[i][j] = ' ';
                 }
+                else if(TileMap[i][j]=='F')
+                {
+                    Font font;
+                    font.loadFromFile("font.ttf");
+                    Text finish("FINISH", font, 20);
+                    finish.setStyle(sf::Text::Bold | sf::Text::Underlined);
+                    finish.setPosition(j*70 - offsetX, i*70 - offsetY);
+                    window.draw(finish);
+                }
+                else if(TileMap[i][j]=='A')
+                {
+                    Font font;
+                    font.loadFromFile("font.ttf");
+                    Text start("GO TO FINISH\n it's on the left\n (find keys to open locks)", font, 15);
+                    start.setStyle(sf::Text::Bold | sf::Text::Underlined);
+                    start.setPosition(j*70 - offsetX, i*70 -offsetY);
+                    window.draw(start);
+                }
             }
     }
 
@@ -657,7 +675,7 @@ int main()
         {
             RectangleShape rectangle(Vector2f(6, 6));
             rectangle.setFillColor(Color::Yellow);
-            rectangle.setPosition(hero.rect.left+15-offsetX, hero.rect.top-offsetY-10);
+            rectangle.setPosition(hero.rect.left+18-offsetX, hero.rect.top-offsetY-10);
             window.draw(rectangle);
         }
 
@@ -665,7 +683,7 @@ int main()
         {
             RectangleShape rectangle(Vector2f(6, 6));
             rectangle.setFillColor(Color::Green);
-            rectangle.setPosition(hero.rect.left+21-offsetX, hero.rect.top-offsetY-10);
+            rectangle.setPosition(hero.rect.left+27-offsetX, hero.rect.top-offsetY-10);
             window.draw(rectangle);
         }
 
