@@ -340,8 +340,72 @@ public:
     }
 };
 
+int game(RenderWindow&);
 
 int main()
+{
+    Font font;
+    font.loadFromFile("font.ttf");
+    Text Play("PLAY", font, 70);
+    Play.setStyle(sf::Text::Bold);
+    Play.setPosition(20, 70);
+
+    //Text Help("HELP", font, 70);
+    //Help.setStyle(sf::Text::Bold);
+    //Help.setPosition(20, 200);
+
+    Text Exit("EXIT", font, 70);
+    Exit.setStyle(sf::Text::Bold);
+    Exit.setPosition(20, 330);
+
+    RenderWindow menu(VideoMode(300, 600), "Menu");
+
+    RectangleShape rectangle(Vector2f(30, 30));
+    rectangle.setFillColor(Color::Blue);
+    rectangle.setPosition(0, 0);
+
+    while(menu.isOpen())
+    {
+        Play.setColor(Color::White);
+       // Help.setColor(Color::White);
+        Exit.setColor(Color::White);
+
+        int command = 0;
+
+        if(IntRect(20, 90, 200, 90).contains(Mouse::getPosition(menu)))
+        {
+            Play.setColor(Color::Yellow);
+            command = 1;
+        }
+        if(IntRect(20, 310, 200, 90).contains(Mouse::getPosition(menu)))
+        {
+            Exit.setColor(Color::Yellow);
+            command = 2;
+        }
+
+        if(Mouse::isButtonPressed(Mouse::Left))
+            switch (command)
+            {
+            case 1:
+                {
+                    RenderWindow window(VideoMode(1330, 700), "Game");
+                    game(window);
+                }
+                break;
+            case 2:
+                return 0;
+            }
+        menu.clear();
+        menu.draw(Play);
+        //menu.draw(Help);
+        menu.draw(Exit);
+        menu.display();
+
+    }
+    return 0;
+}
+
+int game(RenderWindow& window)
 {
     Font font;
     font.loadFromFile("font.ttf");
@@ -362,8 +426,6 @@ int main()
     std::vector<ENEMY> enemies(1);
     enemies[0].set(enemy_walk, 34*70, 22*70+70-28);
 
-
-    RenderWindow window(VideoMode(1330, 700), "Test");
 
     Clock clock;
 
@@ -431,8 +493,6 @@ int main()
         if(hero.win)
         {
             window.clear();
-            Font font;
-            font.loadFromFile("font.ttf");
             Text text("YOU WIN\n Press Esc", font, 50);
             text.setStyle(sf::Text::Bold | sf::Text::Underlined);
             text.setPosition(70*4, 70*3);
@@ -447,7 +507,7 @@ int main()
             window.clear();
             window.draw(text);
             window.display();
-            while(!Keyboard::isKeyPressed(Keyboard::Tab));
+            while(!Keyboard::isKeyPressed(Keyboard::Tab) && !Keyboard::isKeyPressed(Keyboard::Q));
             return 0;
         }
 
