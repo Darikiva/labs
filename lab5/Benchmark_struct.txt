@@ -1,0 +1,460 @@
+10 vertexes, 20 edges
+        Memory: 16416 bytes
+        Number components: 0 ms
+        Matrix of minimal distances: 0 ms
+        Span tree based on dfs: 0 ms
+        Span tree based on dfs in order: 0 ms
+        Minimal span tree: 0 ms
+10 vertexes, 40 edges
+        Memory: 16728 bytes
+        Number components: 0 ms
+        Matrix of minimal distances: 1 ms
+        Span tree based on dfs: 0 ms
+        Span tree based on dfs in order: 1 ms
+        Minimal span tree: 0 ms
+20 vertexes, 60 edges
+        Memory: 17400 bytes
+        Number components: 0 ms
+        Matrix of minimal distances: 0 ms
+        Span tree based on dfs: 0 ms
+        Span tree based on dfs in order: 0 ms
+        Minimal span tree: 0 ms
+20 vertexes, 120 edges
+        Memory: 18600 bytes
+        Number components: 0 ms
+        Matrix of minimal distances: 0 ms
+        Span tree based on dfs: 0 ms
+        Span tree based on dfs in order: 1 ms
+        Minimal span tree: 0 ms
+40 vertexes, 120 edges
+        Memory: 18792 bytes
+        Number components: 1 ms
+        Matrix of minimal distances: 2 ms
+        Span tree based on dfs: 0 ms
+        Span tree based on dfs in order: 1 ms
+        Minimal span tree: 1 ms
+40 vertexes, 240 edges
+        Memory: 21504 bytes
+        Number components: 1 ms
+        Matrix of minimal distances: 1 ms
+        Span tree based on dfs: 0 ms
+        Span tree based on dfs in order: 0 ms
+        Minimal span tree: 4 ms
+40 vertexes, 480 edges
+        Memory: 25824 bytes
+        Number components: 0 ms
+        Matrix of minimal distances: 5 ms
+        Span tree based on dfs: 0 ms
+        Span tree based on dfs in order: 1 ms
+        Minimal span tree: 7 ms
+80 vertexes, 240 edges
+        Memory: 21600 bytes
+        Number components: 1 ms
+        Matrix of minimal distances: 2 ms
+        Span tree based on dfs: 1 ms
+        Span tree based on dfs in order: 2 ms
+        Minimal span tree: 11 ms
+80 vertexes, 480 edges
+        Memory: 27048 bytes
+        Number components: 1 ms
+        Matrix of minimal distances: 4 ms
+        Span tree based on dfs: 0 ms
+        Span tree based on dfs in order: 2 ms
+        Minimal span tree: 27 ms
+80 vertexes, 960 edges
+        Memory: 37272 bytes
+        Number components: 3 ms
+        Matrix of minimal distances: 10 ms
+        Span tree based on dfs: 0 ms
+        Span tree based on dfs in order: 2 ms
+        Minimal span tree: 44 ms
+80 vertexes, 1920 edges
+        Memory: 55680 bytes
+        Number components: 6 ms
+        Matrix of minimal distances: 20 ms
+        Span tree based on dfs: 1 ms
+        Span tree based on dfs in order: 6 ms
+        Minimal span tree: 84 ms
+160 vertexes, 480 edges
+        Memory: 27480 bytes
+        Number components: 1 ms
+        Matrix of minimal distances: 11 ms
+        Span tree based on dfs: 0 ms
+        Span tree based on dfs in order: 1 ms
+        Minimal span tree: 85 ms
+160 vertexes, 960 edges
+        Memory: 38616 bytes
+        Number components: 2 ms
+        Matrix of minimal distances: 20 ms
+        Span tree based on dfs: 1 ms
+        Span tree based on dfs in order: 3 ms
+        Minimal span tree: 171 ms
+160 vertexes, 1920 edges
+        Memory: 60504 bytes
+        Number components: 8 ms
+        Matrix of minimal distances: 47 ms
+        Span tree based on dfs: 2 ms
+        Span tree based on dfs in order: 7 ms
+        Minimal span tree: 361 ms
+160 vertexes, 3840 edges
+        Memory: 101520 bytes
+        Number components: 16 ms
+        Matrix of minimal distances: 85 ms
+        Span tree based on dfs: 0 ms
+        Span tree based on dfs in order: 15 ms
+        Minimal span tree: 773 ms
+160 vertexes, 7680 edges
+        Memory: 172200 bytes
+        Number components: 34 ms
+        Matrix of minimal distances: 282 ms
+        Span tree based on dfs: 5 ms
+        Span tree based on dfs in order: 41 ms
+        Minimal span tree: 1553 ms
+320 vertexes, 960 edges
+        Memory: 38928 bytes
+        Number components: 3 ms
+        Matrix of minimal distances: 48 ms
+        Span tree based on dfs: 0 ms
+        Span tree based on dfs in order: 5 ms
+        Minimal span tree: 728 ms
+320 vertexes, 1920 edges
+        Memory: 61776 bytes
+        Number components: 6 ms
+        Matrix of minimal distances: 89 ms
+        Span tree based on dfs: 0 ms
+        Span tree based on dfs in order: 13 ms
+        Minimal span tree: 1569 ms
+320 vertexes, 3840 edges
+        Memory: 106656 bytes
+        Number components: 14 ms
+        Matrix of minimal distances: 167 ms
+        Span tree based on dfs: 1 ms
+        Span tree based on dfs in order: 15 ms
+        Minimal span tree: 3297 ms
+320 vertexes, 7680 edges
+        Memory: 193560 bytes
+        Number components: 58 ms
+        Matrix of minimal distances: 546 ms
+        Span tree based on dfs: 1 ms
+        Span tree based on dfs in order: 31 ms
+        Minimal span tree: 6452 ms
+320 vertexes, 15360 edges
+        Memory: 357456 bytes
+        Number components: 76 ms
+        Matrix of minimal distances: 1060 ms
+        Span tree based on dfs: 1 ms
+        Span tree based on dfs in order: 63 ms
+        Minimal span tree: 11243 ms
+        For oriented graph
+10 vertexes, 10 edges
+        Memory: 16128 bytes
+        Number components: 0 ms
+        Span tree based on dfs: 0 ms
+        Span tree based on dfs in order: 0 ms
+        Can't be topologically sorted
+10 vertexes, 20 edges
+        Memory: 16248 bytes
+        Number components: 0 ms
+        Span tree based on dfs: 0 ms
+        Span tree based on dfs in order: 0 ms
+        Can't be topologically sorted
+10 vertexes, 40 edges
+        Memory: 16488 bytes
+        Number components: 0 ms
+        Span tree based on dfs: 0 ms
+        Span tree based on dfs in order: 1 ms
+        Can't be topologically sorted
+20 vertexes, 20 edges
+        Memory: 16248 bytes
+        Number components: 0 ms
+        Span tree based on dfs: 0 ms
+        Span tree based on dfs in order: 0 ms
+        Can't be topologically sorted
+20 vertexes, 40 edges
+        Memory: 16488 bytes
+        Number components: 0 ms
+        Span tree based on dfs: 0 ms
+        Span tree based on dfs in order: 0 ms
+        Can't be topologically sorted
+20 vertexes, 80 edges
+        Memory: 16968 bytes
+        Number components: 0 ms
+        Span tree based on dfs: 0 ms
+        Span tree based on dfs in order: 0 ms
+        Can't be topologically sorted
+20 vertexes, 160 edges
+        Memory: 17928 bytes
+        Number components: 1 ms
+        Span tree based on dfs: 0 ms
+        Span tree based on dfs in order: 0 ms
+        Can't be topologically sorted
+40 vertexes, 40 edges
+        Memory: 16488 bytes
+        Number components: 0 ms
+        Span tree based on dfs: 0 ms
+        Span tree based on dfs in order: 1 ms
+        Can't be topologically sorted
+40 vertexes, 80 edges
+        Memory: 16968 bytes
+        Number components: 1 ms
+        Span tree based on dfs: 0 ms
+        Span tree based on dfs in order: 0 ms
+        Can't be topologically sorted
+40 vertexes, 160 edges
+        Memory: 17928 bytes
+        Number components: 0 ms
+        Span tree based on dfs: 0 ms
+        Span tree based on dfs in order: 0 ms
+        Can't be topologically sorted
+40 vertexes, 320 edges
+        Memory: 19848 bytes
+        Number components: 1 ms
+        Span tree based on dfs: 0 ms
+        Span tree based on dfs in order: 0 ms
+        Can't be topologically sorted
+40 vertexes, 640 edges
+        Memory: 23688 bytes
+        Number components: 1 ms
+        Span tree based on dfs: 1 ms
+        Span tree based on dfs in order: 2 ms
+        Can't be topologically sorted
+80 vertexes, 80 edges
+        Memory: 16968 bytes
+        Number components: 0 ms
+        Span tree based on dfs: 0 ms
+        Span tree based on dfs in order: 0 ms
+        Can't be topologically sorted
+80 vertexes, 160 edges
+        Memory: 17928 bytes
+        Number components: 0 ms
+        Span tree based on dfs: 0 ms
+        Span tree based on dfs in order: 0 ms
+        Can't be topologically sorted
+80 vertexes, 320 edges
+        Memory: 19848 bytes
+        Number components: 2 ms
+        Span tree based on dfs: 0 ms
+        Span tree based on dfs in order: 1 ms
+        Can't be topologically sorted
+80 vertexes, 640 edges
+        Memory: 23688 bytes
+        Number components: 2 ms
+        Span tree based on dfs: 0 ms
+        Span tree based on dfs in order: 1 ms
+        Can't be topologically sorted
+80 vertexes, 1280 edges
+        Memory: 31368 bytes
+        Number components: 2 ms
+        Span tree based on dfs: 0 ms
+        Span tree based on dfs in order: 2 ms
+        Can't be topologically sorted
+80 vertexes, 2560 edges
+        Memory: 46728 bytes
+        Number components: 4 ms
+        Span tree based on dfs: 0 ms
+        Span tree based on dfs in order: 5 ms
+        Can't be topologically sorted
+160 vertexes, 160 edges
+        Memory: 17928 bytes
+        Number components: 1 ms
+        Span tree based on dfs: 0 ms
+        Span tree based on dfs in order: 1 ms
+        Topological sorting: 0 ms
+160 vertexes, 320 edges
+        Memory: 19848 bytes
+        Number components: 1 ms
+        Span tree based on dfs: 0 ms
+        Span tree based on dfs in order: 2 ms
+        Can't be topologically sorted
+160 vertexes, 640 edges
+        Memory: 23688 bytes
+        Number components: 0 ms
+        Span tree based on dfs: 0 ms
+        Span tree based on dfs in order: 1 ms
+        Can't be topologically sorted
+160 vertexes, 1280 edges
+        Memory: 31368 bytes
+        Number components: 2 ms
+        Span tree based on dfs: 0 ms
+        Span tree based on dfs in order: 2 ms
+        Can't be topologically sorted
+160 vertexes, 2560 edges
+        Memory: 46728 bytes
+        Number components: 7 ms
+        Span tree based on dfs: 1 ms
+        Span tree based on dfs in order: 4 ms
+        Can't be topologically sorted
+160 vertexes, 5120 edges
+        Memory: 77448 bytes
+        Number components: 11 ms
+        Span tree based on dfs: 0 ms
+        Span tree based on dfs in order: 9 ms
+        Can't be topologically sorted
+160 vertexes, 10240 edges
+        Memory: 138888 bytes
+        Number components: 19 ms
+        Span tree based on dfs: 0 ms
+        Span tree based on dfs in order: 18 ms
+        Can't be topologically sorted
+320 vertexes, 320 edges
+        Memory: 19848 bytes
+        Number components: 1 ms
+        Span tree based on dfs: 0 ms
+        Span tree based on dfs in order: 2 ms
+        Can't be topologically sorted
+320 vertexes, 640 edges
+        Memory: 23688 bytes
+        Number components: 5 ms
+        Span tree based on dfs: 0 ms
+        Span tree based on dfs in order: 2 ms
+        Can't be topologically sorted
+320 vertexes, 1280 edges
+        Memory: 31368 bytes
+        Number components: 2 ms
+        Span tree based on dfs: 1 ms
+        Span tree based on dfs in order: 2 ms
+        Can't be topologically sorted
+320 vertexes, 2560 edges
+        Memory: 46728 bytes
+        Number components: 5 ms
+        Span tree based on dfs: 1 ms
+        Span tree based on dfs in order: 4 ms
+        Can't be topologically sorted
+320 vertexes, 5120 edges
+        Memory: 77448 bytes
+        Number components: 11 ms
+        Span tree based on dfs: 2 ms
+        Span tree based on dfs in order: 9 ms
+        Can't be topologically sorted
+320 vertexes, 10240 edges
+        Memory: 138888 bytes
+        Number components: 23 ms
+        Span tree based on dfs: 0 ms
+        Span tree based on dfs in order: 19 ms
+        Can't be topologically sorted
+320 vertexes, 20480 edges
+        Memory: 261768 bytes
+        Number components: 42 ms
+        Span tree based on dfs: 2 ms
+        Span tree based on dfs in order: 39 ms
+        Can't be topologically sorted
+320 vertexes, 40960 edges
+        Memory: 507528 bytes
+        Number components: 85 ms
+        Span tree based on dfs: 3 ms
+        Span tree based on dfs in order: 81 ms
+        Can't be topologically sorted
+640 vertexes, 640 edges
+        Memory: 23688 bytes
+        Number components: 2 ms
+        Span tree based on dfs: 0 ms
+        Span tree based on dfs in order: 2 ms
+        Can't be topologically sorted
+640 vertexes, 1280 edges
+        Memory: 31368 bytes
+        Number components: 3 ms
+        Span tree based on dfs: 1 ms
+        Span tree based on dfs in order: 4 ms
+        Can't be topologically sorted
+640 vertexes, 2560 edges
+        Memory: 46728 bytes
+        Number components: 5 ms
+        Span tree based on dfs: 1 ms
+        Span tree based on dfs in order: 7 ms
+        Can't be topologically sorted
+640 vertexes, 5120 edges
+        Memory: 77448 bytes
+        Number components: 12 ms
+        Span tree based on dfs: 1 ms
+        Span tree based on dfs in order: 11 ms
+        Can't be topologically sorted
+640 vertexes, 10240 edges
+        Memory: 138888 bytes
+        Number components: 21 ms
+        Span tree based on dfs: 1 ms
+        Span tree based on dfs in order: 23 ms
+        Can't be topologically sorted
+640 vertexes, 20480 edges
+        Memory: 261768 bytes
+        Number components: 43 ms
+        Span tree based on dfs: 1 ms
+        Span tree based on dfs in order: 42 ms
+        Can't be topologically sorted
+640 vertexes, 40960 edges
+        Memory: 507528 bytes
+        Number components: 89 ms
+        Span tree based on dfs: 1 ms
+        Span tree based on dfs in order: 87 ms
+        Can't be topologically sorted
+640 vertexes, 81920 edges
+        Memory: 999048 bytes
+        Number components: 167 ms
+        Span tree based on dfs: 4 ms
+        Span tree based on dfs in order: 163 ms
+        Can't be topologically sorted
+640 vertexes, 163840 edges
+        Memory: 1982088 bytes
+        Number components: 324 ms
+        Span tree based on dfs: 10 ms
+        Span tree based on dfs in order: 335 ms
+        Can't be topologically sorted
+1280 vertexes, 1280 edges
+        Memory: 31368 bytes
+        Number components: 3 ms
+        Span tree based on dfs: 3 ms
+        Span tree based on dfs in order: 5 ms
+        Can't be topologically sorted
+1280 vertexes, 2560 edges
+        Memory: 46728 bytes
+        Number components: 7 ms
+        Span tree based on dfs: 2 ms
+        Span tree based on dfs in order: 10 ms
+        Can't be topologically sorted
+1280 vertexes, 5120 edges
+        Memory: 77448 bytes
+        Number components: 11 ms
+        Span tree based on dfs: 3 ms
+        Span tree based on dfs in order: 13 ms
+        Can't be topologically sorted
+1280 vertexes, 10240 edges
+        Memory: 138888 bytes
+        Number components: 22 ms
+        Span tree based on dfs: 3 ms
+        Span tree based on dfs in order: 22 ms
+        Can't be topologically sorted
+1280 vertexes, 20480 edges
+        Memory: 261768 bytes
+        Number components: 43 ms
+        Span tree based on dfs: 2 ms
+        Span tree based on dfs in order: 49 ms
+        Can't be topologically sorted
+1280 vertexes, 40960 edges
+        Memory: 507528 bytes
+        Number components: 87 ms
+        Span tree based on dfs: 3 ms
+        Span tree based on dfs in order: 88 ms
+        Can't be topologically sorted
+1280 vertexes, 81920 edges
+        Memory: 999048 bytes
+        Number components: 169 ms
+        Span tree based on dfs: 5 ms
+        Span tree based on dfs in order: 169 ms
+        Can't be topologically sorted
+1280 vertexes, 163840 edges
+        Memory: 1982088 bytes
+        Number components: 345 ms
+        Span tree based on dfs: 9 ms
+        Span tree based on dfs in order: 336 ms
+        Can't be topologically sorted
+1280 vertexes, 327680 edges
+        Memory: 3948168 bytes
+        Number components: 706 ms
+        Span tree based on dfs: 16 ms
+        Span tree based on dfs in order: 672 ms
+        Can't be topologically sorted
+1280 vertexes, 655360 edges
+        Memory: 7880328 bytes
+        Number components: 1411 ms
+        Span tree based on dfs: 31 ms
+        Span tree based on dfs in order: 1421 ms
+        Can't be topologically sorted

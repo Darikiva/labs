@@ -1,0 +1,44 @@
+20 elements
+        Add: 0 ms
+        Remove: 0 ms
+        Insert: 0 ms
+40 elements
+        Add: 0 ms
+        Remove: 0 ms
+        Insert: 0 ms
+80 elements
+        Add: 0 ms
+        Remove: 0 ms
+        Insert: 0 ms
+160 elements
+        Add: 0 ms
+        Remove: 0 ms
+        Insert: 0 ms
+320 elements
+        Add: 0 ms
+        Remove: 0 ms
+        Insert: 1 ms
+640 elements
+        Add: 0 ms
+        Remove: 3 ms
+        Insert: 2 ms
+1280 elements
+        Add: 1 ms
+        Remove: 7 ms
+        Insert: 5 ms
+2560 elements
+        Add: 1 ms
+        Remove: 34 ms
+        Insert: 21 ms
+5120 elements
+        Add: 2 ms
+        Remove: 123 ms
+        Insert: 88 ms
+10240 elements
+        Add: 2 ms
+        Remove: 518 ms
+        Insert: 371 ms
+20480 elements
+        Add: 4 ms
+        Remove: 2316 ms
+        Insert: 1696 ms

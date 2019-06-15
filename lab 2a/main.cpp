@@ -87,6 +87,7 @@ int main()
                     break;
                 case 3:
                     benchmark(rect_static);
+                    break;
                 default:
                     std::cout << "There is no such mode!\n";
                 }
@@ -104,6 +105,7 @@ int main()
                     break;
                 case 3:
                     benchmark(rect_dynamic);
+                    break;
                 default:
                     std::cout << "There is no such mode!\n";
                 }
@@ -137,19 +139,19 @@ int main()
 template <typename T>
 void benchmark(T rect_list)
 {
+    using namespace std;
     unsigned int N = 10;
     unsigned int time = 0;
-    while(time<10000)
+    while(N<50000 && time<5000)
     {
         if(time<1000) N*=2;
         else N+=0.2*N;
-        auto start = steady_clock::now();
+
+        cout << N << " elements\n";
+
         rect_list.create_empty(N);
-        for(unsigned int i=0; i<N; i++)
-        {
-            unsigned int index = rand()%N;
-            rect_list.remove_element(index);
-        }
+
+        auto start = steady_clock::now();
         for(unsigned int i=0; i<N; ++i)
         {
             Rectangle new_element;
@@ -159,11 +161,25 @@ void benchmark(T rect_list)
             new_element.point2.y = rand()%10;
             rect_list.push(new_element);
         }
+        auto finish = steady_clock::now();
+        time = duration_cast<milliseconds>(finish-start).count();
+        cout << '\t' << "Add: " << time << " ms\n";
+
+        if(time > 5000) return;
+
+        start = steady_clock::now();
         for(unsigned int i=0; i<N; i++)
         {
             unsigned int index = rand()%N;
             rect_list.remove_element(index);
         }
+        finish = steady_clock::now();
+        time = duration_cast<milliseconds>(finish-start).count();
+        cout << '\t' << "Remove: " << time << " ms\n";
+
+        if(time > 5000) return;
+
+        start = steady_clock::now();
         for(unsigned int i=0; i<N; i++)
         {
             unsigned int index = rand()%N;
@@ -174,9 +190,9 @@ void benchmark(T rect_list)
             new_element.point2.y = rand()%10;
             rect_list.insert_new(new_element, index);
         }
-        auto finish = steady_clock::now();
+        finish = steady_clock::now();
         time = duration_cast<milliseconds>(finish-start).count();
-        std::cout << N << " : " << time << " ms\n";
+        cout << '\t' << "Insert: " << time << " ms\n";
     }
 }
 
@@ -251,6 +267,7 @@ void demonstration(T rect_list)
             rect_list.remove_element(index);
         }
 }
+
 template <typename T>
 void interactive(T rect_list, unsigned int number)
 {

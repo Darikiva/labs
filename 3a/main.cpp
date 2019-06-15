@@ -427,11 +427,11 @@ void benchmark_total()
         }
         else cout << "too long" << endl;
 
-        if(time1>=10000) q1 = false;
-        if(time2>=10000) q2 = false;
-        if(time3>=10000) q3 = false;
-        if(time4>=10000) q4 = false;
-        if(time5>=10000) q5 = false;
+        if(time1>=5000) q1 = false;
+        if(time2>=5000) q2 = false;
+        if(time3>=5000) q3 = false;
+        if(time4>=5000) q4 = false;
+        if(time5>=5000) q5 = false;
 
         if(N<10000) N*=2;
         else if(N>=100'000)
@@ -539,11 +539,11 @@ void benchmark_total()
         }
         else cout << "too long" << endl;
 
-        if(time1>=10000) q1 = false;
-        if(time2>=10000) q2 = false;
-        if(time3>=10000) q3 = false;
-        if(time4>=10000) q4 = false;
-        if(time5>=10000) q5 = false;
+        if(time1>=5000) q1 = false;
+        if(time2>=5000) q2 = false;
+        if(time3>=5000) q3 = false;
+        if(time4>=5000) q4 = false;
+        if(time5>=5000) q5 = false;
 
         if(N<10000) N*=2;
         else if(N>=100'000)
@@ -651,11 +651,11 @@ void benchmark_total()
         }
         else cout << "too long" << endl;
 
-        if(time1>=10000) q1 = false;
-        if(time2>=10000) q2 = false;
-        if(time3>=10000) q3 = false;
-        if(time4>=10000) q4 = false;
-        if(time5>=10000) q5 = false;
+        if(time1>=5000) q1 = false;
+        if(time2>=5000) q2 = false;
+        if(time3>=5000) q3 = false;
+        if(time4>=5000) q4 = false;
+        if(time5>=5000) q5 = false;
 
         if(N<10000) N*=2;
         else if(N>=100'000)

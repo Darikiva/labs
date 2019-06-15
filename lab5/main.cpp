@@ -528,7 +528,7 @@ void Benchmark_Matr()
         GraphMatr graph = rand_GraphMatr(vertex, edges);
 
         cout << vertex << " vertexes, " << edges << " edges" << endl;
-        cout << '\t' << "Memory: " << calculate_memory(graph) << endl;
+        cout << '\t' << "Memory: " << calculate_memory(graph) << " bytes" << endl;
 
         auto start = steady_clock::now();
         number_component(graph);
@@ -591,7 +591,7 @@ void Benchmark_Matr()
         GraphStruct graph = rand_GraphStruct(vertex, edges, true);
 
         cout << vertex << " vertexes, " << edges << " edges" << endl;
-        cout << '\t' << "Memory: " << calculate_memory(graph) << endl;
+        cout << '\t' << "Memory: " << calculate_memory(graph) << " bytes" << endl;
 
         auto start = steady_clock::now();
         number_component(graph);
@@ -653,7 +653,7 @@ void Benchmark_Struct()
 
         cout << vertex << " vertexes, " << edges << " edges" << endl;
 
-        cout << '\t' << "Memory: " << calculate_memory(graph) << endl;
+        cout << '\t' << "Memory: " << calculate_memory(graph) << " bytes" << endl;
         auto start = steady_clock::now();
         number_component(graph);
         auto finish = steady_clock::now();
@@ -715,7 +715,7 @@ void Benchmark_Struct()
         GraphStruct graph = rand_GraphStruct(vertex, edges, true);
 
         cout << vertex << " vertexes, " << edges << " edges" << endl;
-        cout << '\t' << "Memory: " << calculate_memory(graph) << endl;
+        cout << '\t' << "Memory: " << calculate_memory(graph) << " bytes" << endl;
 
         auto start = steady_clock::now();
         number_component(graph);
