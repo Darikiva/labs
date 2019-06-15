@@ -59,7 +59,8 @@ int help()
     cout << "9. Topological sort\n";
     cout << "10. Build span tree\n";
     cout << "11. Build min span tree\n";
-    cout << "12. Exit\n";
+    cout << "12. Draw graph\n";
+    cout << "13. Exit\n";
     cout << "Enter your choice: ";
     int choice;
     cin >> choice;
@@ -328,6 +329,11 @@ void Interactive(T& graph)
             }
             break;
         case 12:
+            {
+                draw_graph(graph);
+            }
+            break;
+        case 13:
             return;
         default:
             cout << "No such option\n";
@@ -381,7 +387,7 @@ void Demonstration_Matr()
     cout << endl << "The weight of min span tree: " << dfs(min_span_tree(graph), 0, visited, false);
     cout << endl << endl;
 
-
+    draw_graph(graph);
 
 
     cout << "Make new oriented graph with 5 vertexes and 8 edges:";
@@ -423,6 +429,8 @@ void Demonstration_Matr()
 
     cout << "Topological sorting based on dfs: " << endl;
     for(const auto i:top_sorting(new_graph)) cout << i << " ";
+
+    draw_graph(graph);
 }
 
 void Demonstration_Struct()
@@ -471,7 +479,7 @@ void Demonstration_Struct()
     cout << endl << "The weight of min span tree: " << dfs(min_span_tree(graph), 0, visited, false);
     cout << endl << endl;
 
-
+    draw_graph(graph);
 
 
     cout << "Make new oriented graph with 5 vertexes and 8 edges:";
@@ -513,6 +521,8 @@ void Demonstration_Struct()
 
     cout << "Topological sorting based on dfs: " << endl;
     for(const auto i:top_sorting(new_graph)) cout << i << " ";
+
+    draw_graph(new_graph);
 }
 
 void Benchmark_Matr()

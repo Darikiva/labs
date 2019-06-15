@@ -1,11 +1,12 @@
 #ifndef MATR_H_INCLUDED
 #define MATR_H_INCLUDED
 #include <set>
+#include <SFML/Graphics.hpp>
 using std::cin;
 using std::cout;
 using std::endl;
 
-const int MAX_VERTICES = 300;
+const int MAX_VERTICES = 200;
 
 template <typename T>
 T min(const T& first, const T& second)
@@ -330,5 +331,78 @@ GraphMatr min_span_tree(const GraphMatr& graph)
         vertexes.push_back(index2);
     }
     return answer;
+}
+
+void draw_graph(const GraphMatr& graph)
+{
+    using namespace sf;
+    Font font;
+    font.loadFromFile("font.ttf");
+    RectangleShape rectangles[graph.vertex_count];
+    int h = 60;
+    int w = 0;
+    int index = -1;
+    for(int i=0; i<graph.vertex_count; i++)
+    {
+        if(i/(h/60)>=20)
+        {
+            w+=60;
+            h+=60;
+        }
+        rectangles[i].setSize(Vector2f(30, 30));
+        rectangles[i].setFillColor(Color::Blue);
+        rectangles[i].setPosition(60*(i-w), h);
+    }
+    RenderWindow window(VideoMode(1000, 700), "Graph");
+    while (window.isOpen())
+    {
+        Event event;
+        while(window.pollEvent(event))
+        {
+            if(event.type == Event::Closed)
+                window.close();
+        }
+        window.clear();
+        for(int i=0; i<graph.vertex_count; i++)
+        {
+            if(IntRect(rectangles[i].getPosition().x, rectangles[i].getPosition().y,
+                   rectangles[i].getSize().x, rectangles[i].getSize().y).contains(Mouse::getPosition(window))
+                &&Mouse::isButtonPressed(Mouse::Left))
+            {
+                if(index<0 || i==index)
+                {
+                    rectangles[i].setPosition(Vector2f(Mouse::getPosition(window).x-15, Mouse::getPosition(window).y-15));
+                    index = i;
+                    break;
+                }
+            }
+        }
+        if(!Mouse::isButtonPressed(Mouse::Left)) index = -1;
+        for(int i=0; i<graph.vertex_count; i++)
+        {
+            for(int j=0; j<graph.vertex_count; j++)
+            {
+                if(graph.adjacent[i][j]!=0)
+                {
+                    VertexArray line(Lines, 2);
+                    line[0].position = Vector2f(rectangles[i].getPosition().x + 15,
+                                                rectangles[i].getPosition().y + 15);
+                    line[1].position = Vector2f(rectangles[j].getPosition().x + 15,
+                                                rectangles[j].getPosition().y + 15);
+                    line[0].color = Color::Red;
+                    line[1].color = Color::Red;
+                    window.draw(line);
+
+                    Text text(std::to_string(graph.adjacent[i][j]), font, 20);
+                    text.setPosition((rectangles[i].getPosition().x+rectangles[j].getPosition().x)/2,
+                                     (rectangles[i].getPosition().y+rectangles[j].getPosition().y)/2);
+                    window.draw(text);
+                }
+            }
+        }
+        for(int i=0; i<graph.vertex_count; i++)
+            window.draw(rectangles[i]);
+        window.display();
+    }
 }
 #endif // MATR_H_INCLUDED

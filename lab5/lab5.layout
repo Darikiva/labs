@@ -2,27 +2,25 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
-	<File name="main.cpp" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="20087" topLine="634" />
-		</Cursor>
-		<Folding>
-			<Collapse line="49" />
-		</Folding>
-	</File>
 	<File name="matr.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="3478" topLine="82" />
+			<Cursor1 position="11375" topLine="352" />
 		</Cursor>
 		<Folding>
-			<Collapse line="25" />
-			<Collapse line="60" />
-			<Collapse line="79" />
+			<Collapse line="61" />
+			<Collapse line="67" />
+			<Collapse line="80" />
+			<Collapse line="86" />
 		</Folding>
+	</File>
+	<File name="main.cpp" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="11972" topLine="385" />
+		</Cursor>
 	</File>
 	<File name="strct.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="4280" topLine="74" />
+			<Cursor1 position="12074" topLine="432" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>
