@@ -6,15 +6,17 @@
 #include <sstream>
 #include <chrono>
 #include <algorithm>
+#include <io.h>
 #include "lab3b.h"
 
-using namespace std;
-using namespace std::chrono;
+using std::cin;
+using std::cout;
+using std::endl;
 
 unsigned int get_id()
 {
     unsigned int id;
-    ifstream file("id.txt");
+    std::ifstream file("id.txt");
     file >> id;
     file.close();
     return id;
@@ -23,7 +25,7 @@ unsigned int get_id()
 class Product
 {
 public:
-    string name;
+    std::string name;
     int amount;
     int meas_num;
     int term;
@@ -38,12 +40,12 @@ public:
         ID = id;
         id++;
     };
-    string measure[5] = {"", "kilograms", "liters", "pieces", "packages"};
-    string rand_names[6] = {"lemon", "apple", "juice", "fish", "meat", "plate"};
+    std::string measure[5] = {"", "kilograms", "liters", "pieces", "packages"};
+    std::string rand_names[6] = {"lemon", "apple", "juice", "fish", "meat", "plate"};
 private:
 };
 
-istream& operator>> (istream& in, tm& date)
+std::istream& operator>> (std::istream& in, tm& date)
 {
     in >> date.tm_year;
     in >> date.tm_mon;
@@ -51,7 +53,7 @@ istream& operator>> (istream& in, tm& date)
     return in;
 }
 
-ostream& operator<< (ostream& out, vector <Product>& info_list)
+std::ostream& operator<< (std::ostream& out, std::vector <Product>& info_list)
 {
     for(auto i:info_list)
     {
@@ -60,7 +62,7 @@ ostream& operator<< (ostream& out, vector <Product>& info_list)
     return out;
 }
 
-operator== (const Product& word1, const string& word2)
+operator== (const Product& word1, const std::string& word2)
 {
     if (word2.size()>word1.name.size())
         return false;
@@ -70,7 +72,7 @@ operator== (const Product& word1, const string& word2)
     return true;
 }
 
-operator== (const Product& product, const pair<tm, tm>& date_2)
+operator== (const Product& product, const std::pair<tm, tm>& date_2)
 {
     if(product.date.tm_year<date_2.first.tm_year)
         return false;
@@ -116,19 +118,31 @@ operator<(const tm date1, const tm date2)
     return false;
 }
 
+std::ifstream::pos_type filesize_txt(const char* filename)
+{
+    std::ifstream in(filename, std::ifstream::ate);
+    return in.tellg();
+}
+
+std::ifstream::pos_type filesize_bin(const char* filename)
+{
+    std::ifstream in(filename, std::ifstream::ate | std::ifstream::binary);
+    return in.tellg();
+}
+
 void delete_full_binary()
 {
-    ofstream file1("saved_list.bin", ios::trunc);
+    std::ofstream file1("saved_list.bin", std::ios::trunc);
     file1.close();
 }
 
 void delete_full_txt()
 {
-    ofstream file("saved_list.txt", ios::trunc);
+    std::ofstream file("saved_list.txt", std::ios::trunc);
     file.close();
 }
 
-void add_product(vector <Product>& info_list, unsigned int& id)
+void add_product(std::vector <Product>& info_list, unsigned int& id)
 {
     Product product;
     product.enter();
@@ -136,9 +150,9 @@ void add_product(vector <Product>& info_list, unsigned int& id)
     info_list.push_back(product);
 }
 
-void save_txt(const vector <Product>& info_list)
+void save_txt(const std::vector <Product>& info_list)
 {
-    ofstream file("saved_list.txt", ofstream::app);
+    std::ofstream file("saved_list.txt", std::ofstream::app);
     for(auto item: info_list)
     {
         file << item.name << " " << item.meas_num << " ";
@@ -150,9 +164,9 @@ void save_txt(const vector <Product>& info_list)
     file.close();
 }
 
-void save_binary(vector <Product> info_list)
+void save_binary(std::vector <Product> info_list)
 {
-    ofstream file("saved_list.bin", ios::in|ios::binary|ios::app);
+    std::ofstream file("saved_list.bin", std::ios::in|std::ios::binary|std::ios::app);
     for(auto &i:info_list)
     {
         size_t name_size = i.name.size();
@@ -169,7 +183,7 @@ void save_binary(vector <Product> info_list)
     file.close();
 }
 
-bool is_in_vector(const vector <Product>& info_list, unsigned int id)
+bool is_in_vector(const std::vector <Product>& info_list, unsigned int id)
 {
     for(auto &i:info_list)
         if (i.ID == id)
@@ -177,15 +191,15 @@ bool is_in_vector(const vector <Product>& info_list, unsigned int id)
     return false;
 }
 
-void read_from_txt(vector <Product>& info_list)
+void read_from_txt(std::vector <Product>& info_list)
 {
-    string line;
-    ifstream file;
+    std::string line;
+    std::ifstream file;
     file.open("saved_list.txt");
     while(getline(file, line))
     {
         Product new_product;
-        istringstream record(line);
+        std::istringstream record(line);
         record >> new_product.name;
         record >> new_product.meas_num;
         record >> new_product.amount;
@@ -198,10 +212,10 @@ void read_from_txt(vector <Product>& info_list)
     }
 }
 
-void read_from_binary(vector <Product>& info_list)
+void read_from_binary(std::vector <Product>& info_list)
 {
-    ifstream file;
-    file.open("saved_list.bin", ios::out|ios::binary);
+    std::ifstream file;
+    file.open("saved_list.bin", std::ios::out|std::ios::binary);
     while(file.peek()!=EOF)
     {
         Product new_product;
@@ -222,7 +236,7 @@ void read_from_binary(vector <Product>& info_list)
     file.close();
 }
 
-void print_all(vector <Product> info_list)
+void print_all(std::vector <Product> info_list)
 {
     read_from_binary(info_list);
     read_from_txt(info_list);
@@ -232,9 +246,9 @@ void print_all(vector <Product> info_list)
 
 
 template<typename T>
-vector <Product> Find(vector <Product>& info_list, T element, int term = -1)
+std::vector <Product> Find(std::vector <Product>& info_list, T element, int term = -1)
 {
-    vector <Product> result;
+    std::vector <Product> result;
     for(auto item:info_list)
     {
         if (item == element)
@@ -248,12 +262,12 @@ vector <Product> Find(vector <Product>& info_list, T element, int term = -1)
     return result;
 }
 
-void FIND(vector <Product> info_list)
+void FIND(std::vector <Product> info_list)
 {
     int choice, meas, term;
-    string word;
-    pair <tm, tm> date;
-    vector <Product> result;
+    std::string word;
+    std::pair <tm, tm> date;
+    std::vector <Product> result;
 
     read_from_txt(info_list);
     read_from_binary(info_list);
@@ -293,9 +307,9 @@ void FIND(vector <Product> info_list)
     cout << result;
 }
 
-void modify(vector <Product> product_list)
+void modify(std::vector <Product> product_list)
 {
-    string name;
+    std::string name;
     cout << "Enter the name of modifying product: ";
     cin >> name;
     for(auto &item: product_list)
@@ -320,7 +334,7 @@ void modify(vector <Product> product_list)
 
 void modify_txt()
 {
-    vector <Product> new_list;
+    std::vector <Product> new_list;
     read_from_txt(new_list);
     delete_full_txt();
     modify(new_list);
@@ -329,14 +343,14 @@ void modify_txt()
 
 void modify_bin()
 {
-    vector <Product> new_list;
+    std::vector <Product> new_list;
     read_from_binary(new_list);
     delete_full_binary();
     modify(new_list);
     save_binary(new_list);
 }
 
-void delete_element(vector <Product>& info_list, string name)
+void delete_element(std::vector <Product>& info_list, std::string name)
 {
     for(unsigned int i=0; i<info_list.size(); ++i)
     {
@@ -345,8 +359,8 @@ void delete_element(vector <Product>& info_list, string name)
             info_list.erase(info_list.begin()+i);
         }
     }
-    vector <Product> new_list_bin;
-    vector <Product> new_list_txt;
+    std::vector <Product> new_list_bin;
+    std::vector <Product> new_list_txt;
     read_from_txt(new_list_txt);
     read_from_binary(new_list_bin);
     delete_full_binary();
@@ -383,7 +397,7 @@ void help()
 }
 
 template <typename First, typename Second = nullptr_t>
-void sort_list(vector <Product>& product_list,
+void sort_list(std::vector <Product>& product_list,
                First (Product::*pointer1),
                Second (Product::*pointer2) = nullptr)
 {
@@ -415,7 +429,7 @@ int sort_command()
     return command;
 }
 
-void sort_choice(vector <Product>& product_list)
+void sort_choice(std::vector <Product>& product_list)
 {
     cout << "1. Sort by 1 field\n";
     cout << "2. Sort by 2 fields\n";
@@ -563,19 +577,19 @@ void sort_choice(vector <Product>& product_list)
     }
 }
 
-void menu(vector<Product>& info_list, unsigned int& id);
-void benchmark_bin(vector <Product>& info_list);
-void benchmark_txt(vector<Product>& info_list);
+void menu(std::vector<Product>& info_list, unsigned int& id);
+void benchmark_bin(std::vector <Product>& info_list);
+void benchmark_txt(std::vector<Product>& info_list);
 void demonstrative(unsigned int& id);
-void benchmark_sort(void(*func)(vector<Product>&));
+void benchmark_sort(void(*func)(std::vector<Product>&));
 template<typename First, typename Second = nullptr_t>
-void benchmark_sort(void(*func)(vector<Product>&, First (Product::*pointer1), Second (Product::*pointer2)),
+void benchmark_sort(void(*func)(std::vector<Product>&, First (Product::*pointer1), Second (Product::*pointer2)),
                     First (Product::*field1), Second (Product::*field2) = nullptr);
 
 int main()
 {
     unsigned int id = get_id();
-    vector <Product> info_list;
+    std::vector <Product> info_list;
     int mode_choice;
     int choice, command;
     cout << "1. Interactive\n";
@@ -667,7 +681,7 @@ int main()
         }
         break;
     }
-    ofstream file("id.txt");
+    std::ofstream file("id.txt");
     file << id;
     file.close();
     return 0;
@@ -712,10 +726,10 @@ void Product::print()
     cout << endl;
 }
 
-void menu(vector<Product>& info_list, unsigned int& id)
+void menu(std::vector<Product>& info_list, unsigned int& id)
 {
     int number, choice;
-    string name;
+    std::string name;
     while(cin)
     {
         help();
@@ -772,7 +786,7 @@ void menu(vector<Product>& info_list, unsigned int& id)
         case 8:
             cout << "1. From txt\n";
             cout << "2. From bin\n";
-            cout << "3. From vector\n";
+            cout << "3. From std::vector\n";
             cin >> choice;
             switch(choice)
             {
@@ -802,15 +816,16 @@ void menu(vector<Product>& info_list, unsigned int& id)
     }
 }
 
-void benchmark_bin(vector <Product>& info_list)
+void benchmark_bin(std::vector <Product>& info_list)
 {
+    using namespace std::chrono;
     cout << "**************BENCHMARK BINARY*************\n";
 
     unsigned int time = 0;
-    pair<tm, tm> date;
+    std::pair<tm, tm> date;
     int N = 10, l = 2, n = 0;
 
-    while(time<=10000)
+    while(N<200000)
     {
         date.first.tm_year = rand()%2019;
         date.first.tm_mon = rand()%12;
@@ -833,6 +848,8 @@ void benchmark_bin(vector <Product>& info_list)
             ++l;
         }
 
+        cout << N << " elements" << endl;
+        auto start = steady_clock::now();
         for(int i=0; i<N; ++i)
         {
             Product new_product;
@@ -845,35 +862,60 @@ void benchmark_bin(vector <Product>& info_list)
             new_product.date.tm_mday = rand()%31+1;
             info_list.push_back(new_product);
         }
-
-        string name = info_list[0].rand_names[rand()%6];
-        auto start = steady_clock::now();
-        save_binary(info_list);
-        Find(info_list, name);
-        Find(info_list, 2, 150);
-        Find(info_list, date);
-        info_list.resize(0);
-        read_from_binary(info_list);
         auto finish = steady_clock::now();
+        time = duration_cast<milliseconds>(finish-start).count();
+        cout << '\t' << "Add: " << time << " ms" << endl;
+
+        start = steady_clock::now();
+        save_binary(info_list);
+        finish = steady_clock::now();
+        time = duration_cast<milliseconds>(finish-start).count();
+        cout << '\t' << "Save: " << time << " ms"
+             << " \\\ " << filesize_bin("saved_list.bin") << " bytes" << endl;
+
+        std::string name = info_list[0].rand_names[rand()%6];
+        start = steady_clock::now();
+        Find(info_list, name);
+        finish = steady_clock::now();
+        time = duration_cast<milliseconds>(finish-start).count();
+        cout << '\t' << "Find by name: " << time << " ms\n";
+
+        start = steady_clock::now();
+        Find(info_list, 2, 150);
+        finish = steady_clock::now();
+        time = duration_cast<milliseconds>(finish-start).count();
+        cout << '\t' << "Find by measure and term: " << time << " ms\n";
+
+        start = steady_clock::now();
+        Find(info_list, date);
+        finish = steady_clock::now();
+        time = duration_cast<milliseconds>(finish-start).count();
+        cout << '\t' << "Find by date: " << time << " ms\n";
+        info_list.resize(0);
+
+        start = steady_clock::now();
+        read_from_binary(info_list);
+        finish = steady_clock::now();
+        time = duration_cast<milliseconds>(finish-start).count();
+        cout << '\t' << "Read from file: " << time << " ms\n";
 
         info_list.resize(0);
-        time = duration_cast<milliseconds>(finish-start).count();
-        cout << N << " : " << time << " ms\n";
     }
 
     delete_full_binary();
     cout << "****************************\n";
 }
 
-void benchmark_txt(vector <Product>& info_list)
+void benchmark_txt(std::vector <Product>& info_list)
 {
+    using namespace std::chrono;
     cout << "*****************BENCHMARK TXT********************\n";
 
     unsigned int time = 0;
-    pair<tm, tm> date;
+    std::pair<tm, tm> date;
     int N = 10, l = 2, n = 0;
 
-    while(time<=10000)
+    while(N<200000)
     {
         date.first.tm_year = rand()%2019;
         date.first.tm_mon = rand()%12;
@@ -896,6 +938,7 @@ void benchmark_txt(vector <Product>& info_list)
             ++l;
         }
 
+        cout << N << " elements" << endl;
         auto start = steady_clock::now();
         for(int i=0; i<N; ++i)
         {
@@ -909,27 +952,51 @@ void benchmark_txt(vector <Product>& info_list)
             new_product.date.tm_mday = rand()%31+1;
             info_list.push_back(new_product);
         }
-
-        string name = info_list[0].rand_names[rand()%6];
-        save_txt(info_list);
-        Find(info_list, name);
-        Find(info_list, 2, 150);
-        Find(info_list, date);
-        info_list.resize(0);
-        read_from_txt(info_list);
-        info_list.resize(0);
         auto finish = steady_clock::now();
-
         time = duration_cast<milliseconds>(finish-start).count();
-        cout << N << " : " << time << " ms\n";
+        cout << '\t' << "Add: " << time << " ms" << endl;
+
+        start = steady_clock::now();
+        save_txt(info_list);
+        finish = steady_clock::now();
+        time = duration_cast<milliseconds>(finish-start).count();
+        cout << '\t' << "Save: " << time << " ms"  << " / " << filesize_txt("saved_list.txt") << " bytes" << endl;
+
+        std::string name = info_list[0].rand_names[rand()%6];
+        start = steady_clock::now();
+        Find(info_list, name);
+        finish = steady_clock::now();
+        time = duration_cast<milliseconds>(finish-start).count();
+        cout << '\t' << "Find by name: " << time << " ms\n";
+
+        start = steady_clock::now();
+        Find(info_list, 2, 150);
+        finish = steady_clock::now();
+        time = duration_cast<milliseconds>(finish-start).count();
+        cout << '\t' << "Find by measure and term: " << time << " ms\n";
+
+        start = steady_clock::now();
+        Find(info_list, date);
+        finish = steady_clock::now();
+        time = duration_cast<milliseconds>(finish-start).count();
+        cout << '\t' << "Find by date: " << time << " ms\n";
+        info_list.resize(0);
+
+        start = steady_clock::now();
+        read_from_txt(info_list);
+        finish = steady_clock::now();
+        time = duration_cast<milliseconds>(finish-start).count();
+        cout << '\t' << "Read from file: " << time << " ms\n";
+
+        info_list.resize(0);
     }
     delete_full_txt();
 }
 
 void demonstrative(unsigned int& id)
 {
-    vector <Product> info_list;
-    vector <Product> trash_list;
+    std::vector <Product> info_list;
+    std::vector <Product> trash_list;
     int number = 40;
 
     for(int i=0; i<number; ++i)
@@ -953,7 +1020,7 @@ void demonstrative(unsigned int& id)
     save_binary(info_list);
     cout << "*********\n";
 
-    cout << "Delete vector\n";
+    cout << "Delete std::vector\n";
     info_list.resize(0);
     cout << "*********\n";
 
@@ -966,7 +1033,7 @@ void demonstrative(unsigned int& id)
     save_txt(info_list);
     cout << "*********\n";
 
-    cout << "Delete vector\n";
+    cout << "Delete std::vector\n";
     info_list.resize(0);
 
     cout << "Read from txt file and print\n";
@@ -990,7 +1057,7 @@ void demonstrative(unsigned int& id)
     cout << "*********\n";
 
     cout << "Find elements which were made between 1000.10.09 and 2000.8.12\n";
-    pair <tm, tm> date;
+    std::pair <tm, tm> date;
     date.first.tm_year = 1000;
     date.first.tm_mon = 10;
     date.first.tm_mday = 9;
@@ -1016,13 +1083,14 @@ void demonstrative(unsigned int& id)
 
 }
 
-void benchmark_sort(void (*func)(vector <Product>&))
+void benchmark_sort(void (*func)(std::vector <Product>&))
 {
-    vector <Product> info_list;
+    using namespace std::chrono;
+    std::vector <Product> info_list;
     unsigned int time = 0;
-    pair<tm, tm> date;
+    std::pair<tm, tm> date;
     int N = 10, l = 2, n = 0;
-    while(time<=6000)
+    while(N<1000000 && time<5000)
     {
         if(time<=1000)
         {
@@ -1049,25 +1117,26 @@ void benchmark_sort(void (*func)(vector <Product>&))
             info_list.push_back(new_product);
         }
 
-        string name = info_list[0].rand_names[rand()%6];
+        std::string name = info_list[0].rand_names[rand()%6];
         auto start = steady_clock::now();
         func(info_list);
         auto finish = steady_clock::now();
         info_list.resize(0);
         time = duration_cast<milliseconds>(finish-start).count();
-        cout << N << " : " << time << " ms\n";
+        cout << N << " elements : " << time << " ms\n";
     }
 }
 
 template<typename First, typename Second>
-void benchmark_sort(void(*func)(vector<Product>&, First (Product::*pointer1), Second (Product::*pointer2)),
+void benchmark_sort(void(*func)(std::vector<Product>&, First (Product::*pointer1), Second (Product::*pointer2)),
                     First (Product::*field1), Second (Product::*field2))
 {
-    vector <Product> info_list;
+    using namespace std::chrono;
+    std::vector <Product> info_list;
     unsigned int time = 0;
-    pair<tm, tm> date;
+    std::pair<tm, tm> date;
     int N = 10, l = 2, n = 0;
-    while(time<=6000)
+    while(N<1000000 && time<5000)
     {
         if(time<=1000)
         {
@@ -1094,12 +1163,12 @@ void benchmark_sort(void(*func)(vector<Product>&, First (Product::*pointer1), Se
             info_list.push_back(new_product);
         }
 
-        string name = info_list[0].rand_names[rand()%6];
+        std::string name = info_list[0].rand_names[rand()%6];
         auto start = steady_clock::now();
         func(info_list, field1, field2);
         auto finish = steady_clock::now();
         info_list.resize(0);
         time = duration_cast<milliseconds>(finish-start).count();
-        cout << N << " : " << time << " ms\n";
+        cout << N << " elements : " << time << " ms\n";
     }
 }

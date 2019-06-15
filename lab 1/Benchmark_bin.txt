@@ -1,0 +1,105 @@
+20 elements
+        Add: 0 ms
+        Save: 3 ms \ 731 bytes
+        Find by name: 0 ms
+        Find by measure and term: 0 ms
+        Find by date: 0 ms
+        Read from file: 0 ms
+40 elements
+        Add: 0 ms
+        Save: 1 ms \ 1469 bytes
+        Find by name: 0 ms
+        Find by measure and term: 0 ms
+        Find by date: 0 ms
+        Read from file: 0 ms
+80 elements
+        Add: 0 ms
+        Save: 2 ms \ 2932 bytes
+        Find by name: 0 ms
+        Find by measure and term: 0 ms
+        Find by date: 0 ms
+        Read from file: 1 ms
+160 elements
+        Add: 1 ms
+        Save: 8 ms \ 5877 bytes
+        Find by name: 2 ms
+        Find by measure and term: 0 ms
+        Find by date: 0 ms
+        Read from file: 0 ms
+320 elements
+        Add: 0 ms
+        Save: 9 ms \ 11725 bytes
+        Find by name: 3 ms
+        Find by measure and term: 1 ms
+        Find by date: 2 ms
+        Read from file: 2 ms
+640 elements
+        Add: 1 ms
+        Save: 11 ms \ 23479 bytes
+        Find by name: 1 ms
+        Find by measure and term: 1 ms
+        Find by date: 1 ms
+        Read from file: 5 ms
+1280 elements
+        Add: 3 ms
+        Save: 15 ms \ 46891 bytes
+        Find by name: 3 ms
+        Find by measure and term: 1 ms
+        Find by date: 2 ms
+        Read from file: 4 ms
+2560 elements
+        Add: 7 ms
+        Save: 24 ms \ 93867 bytes
+        Find by name: 2 ms
+        Find by measure and term: 4 ms
+        Find by date: 2 ms
+        Read from file: 10 ms
+5120 elements
+        Add: 15 ms
+        Save: 40 ms \ 187721 bytes
+        Find by name: 5 ms
+        Find by measure and term: 7 ms
+        Find by date: 4 ms
+        Read from file: 21 ms
+10240 elements
+        Add: 25 ms
+        Save: 75 ms \ 375474 bytes
+        Find by name: 11 ms
+        Find by measure and term: 14 ms
+        Find by date: 10 ms
+        Read from file: 40 ms
+20480 elements
+        Add: 53 ms
+        Save: 138 ms \ 750921 bytes
+        Find by name: 24 ms
+        Find by measure and term: 27 ms
+        Find by date: 41 ms
+        Read from file: 82 ms
+40960 elements
+        Add: 106 ms
+        Save: 306 ms \ 1501895 bytes
+        Find by name: 48 ms
+        Find by measure and term: 54 ms
+        Find by date: 70 ms
+        Read from file: 193 ms
+81920 elements
+        Add: 208 ms
+        Save: 724 ms \ 3003765 bytes
+        Find by name: 91 ms
+        Find by measure and term: 108 ms
+        Find by date: 118 ms
+        Read from file: 420 ms
+163840 elements
+        Add: 431 ms
+        Save: 1117 ms \ 6007509 bytes
+        Find by name: 186 ms
+        Find by measure and term: 214 ms
+        Find by date: 225 ms
+        Read from file: 767 ms
+327680 elements
+        Add: 858 ms
+        Save: 2853 ms \ 12014936 bytes
+        Find by name: 379 ms
+        Find by measure and term: 472 ms
+        Find by date: 696 ms
+        Read from file: 1685 ms

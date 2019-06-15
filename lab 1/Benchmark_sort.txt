@@ -1,0 +1,105 @@
+Counting sort
+20 elements : 0 ms
+40 elements : 0 ms
+80 elements : 0 ms
+160 elements : 0 ms
+320 elements : 1 ms
+640 elements : 1 ms
+1280 elements : 1 ms
+2560 elements : 5 ms
+5120 elements : 10 ms
+10240 elements : 23 ms
+20480 elements : 42 ms
+40960 elements : 85 ms
+81920 elements : 173 ms
+163840 elements : 356 ms
+327680 elements : 728 ms
+655360 elements : 1482 ms
+1310720 elements : 2943 ms
+
+Radix sort
+20 elements : 1 ms
+40 elements : 1 ms
+80 elements : 1 ms
+160 elements : 1 ms
+320 elements : 4 ms
+640 elements : 7 ms
+1280 elements : 16 ms
+2560 elements : 34 ms
+5120 elements : 64 ms
+10240 elements : 127 ms
+20480 elements : 257 ms
+40960 elements : 550 ms
+81920 elements : 1056 ms
+163840 elements : 2135 ms
+245760 elements : 3119 ms
+327680 elements : 4259 ms
+409600 elements : 5341 ms
+
+Sort by field 'name'
+20 elements : 1 ms
+40 elements : 1 ms
+80 elements : 0 ms
+160 elements : 1 ms
+320 elements : 3 ms
+640 elements : 10 ms
+1280 elements : 23 ms
+2560 elements : 51 ms
+5120 elements : 109 ms
+10240 elements : 252 ms
+20480 elements : 575 ms
+40960 elements : 1443 ms
+81920 elements : 3001 ms
+122880 elements : 4142 ms
+163840 elements : 5932 ms
+
+Sort by field 'Amount'
+20 elements : 1 ms
+40 elements : 0 ms
+80 elements : 1 ms
+160 elements : 2 ms
+320 elements : 5 ms
+640 elements : 12 ms
+1280 elements : 32 ms
+2560 elements : 65 ms
+5120 elements : 144 ms
+10240 elements : 306 ms
+20480 elements : 629 ms
+40960 elements : 1317 ms
+81920 elements : 2635 ms
+122880 elements : 4116 ms
+163840 elements : 5857 ms
+
+Sort by 2 fields 'name'+'amount'
+20 elements : 0 ms
+40 elements : 1 ms
+80 elements : 0 ms
+160 elements : 2 ms
+320 elements : 14 ms
+640 elements : 17 ms
+1280 elements : 29 ms
+2560 elements : 66 ms
+5120 elements : 158 ms
+10240 elements : 313 ms
+20480 elements : 713 ms
+40960 elements : 1478 ms
+81920 elements : 3221 ms
+122880 elements : 4626 ms
+163840 elements : 6314 ms
+
+Sort by 2 fields 'measure'+'data'
+20 elements : 0 ms
+40 elements : 1 ms
+80 elements : 0 ms
+160 elements : 1 ms
+320 elements : 7 ms
+640 elements : 14 ms
+1280 elements : 31 ms
+2560 elements : 64 ms
+5120 elements : 148 ms
+10240 elements : 345 ms
+20480 elements : 698 ms
+40960 elements : 1486 ms
+81920 elements : 2965 ms
+122880 elements : 4676 ms
+163840 elements : 6371 ms
