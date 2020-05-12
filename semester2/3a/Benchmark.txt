@@ -1,0 +1,529 @@
+	Random elements:
+10 elements:
+        Insertion sort: 0ms
+        Quick sort: 0ms
+        Merge sort: 0ms
+        Combined(merge+bubble) sort: 0ms
+        Library sort: 0ms
+20 elements:
+        Insertion sort: 0ms
+        Quick sort: 0ms
+        Merge sort: 0ms
+        Combined(merge+bubble) sort: 0ms
+        Library sort: 0ms
+40 elements:
+        Insertion sort: 0ms
+        Quick sort: 0ms
+        Merge sort: 0ms
+        Combined(merge+bubble) sort: 0ms
+        Library sort: 0ms
+80 elements:
+        Insertion sort: 0ms
+        Quick sort: 0ms
+        Merge sort: 0ms
+        Combined(merge+bubble) sort: 0ms
+        Library sort: 0ms
+160 elements:
+        Insertion sort: 0ms
+        Quick sort: 0ms
+        Merge sort: 0ms
+        Combined(merge+bubble) sort: 0ms
+        Library sort: 0ms
+320 elements:
+        Insertion sort: 0ms
+        Quick sort: 1ms
+        Merge sort: 0ms
+        Combined(merge+bubble) sort: 1ms
+        Library sort: 0ms
+640 elements:
+        Insertion sort: 0ms
+        Quick sort: 0ms
+        Merge sort: 0ms
+        Combined(merge+bubble) sort: 0ms
+        Library sort: 0ms
+1280 elements:
+        Insertion sort: 1ms
+        Quick sort: 0ms
+        Merge sort: 0ms
+        Combined(merge+bubble) sort: 0ms
+        Library sort: 1ms
+2560 elements:
+        Insertion sort: 6ms
+        Quick sort: 0ms
+        Merge sort: 0ms
+        Combined(merge+bubble) sort: 0ms
+        Library sort: 0ms
+5120 elements:
+        Insertion sort: 26ms
+        Quick sort: 0ms
+        Merge sort: 2ms
+        Combined(merge+bubble) sort: 0ms
+        Library sort: 1ms
+10240 elements:
+        Insertion sort: 109ms
+        Quick sort: 4ms
+        Merge sort: 1ms
+        Combined(merge+bubble) sort: 2ms
+        Library sort: 3ms
+20480 elements:
+        Insertion sort: 467ms
+        Quick sort: 6ms
+        Merge sort: 4ms
+        Combined(merge+bubble) sort: 3ms
+        Library sort: 6ms
+30720 elements:
+        Insertion sort: 1027ms
+        Quick sort: 11ms
+        Merge sort: 7ms
+        Combined(merge+bubble) sort: 7ms
+        Library sort: 9ms
+40960 elements:
+        Insertion sort: 1829ms
+        Quick sort: 17ms
+        Merge sort: 9ms
+        Combined(merge+bubble) sort: 9ms
+        Library sort: 15ms
+51200 elements:
+        Insertion sort: 2813ms
+        Quick sort: 21ms
+        Merge sort: 12ms
+        Combined(merge+bubble) sort: 12ms
+        Library sort: 16ms
+61440 elements:
+        Insertion sort: 4112ms
+        Quick sort: 25ms
+        Merge sort: 17ms
+        Combined(merge+bubble) sort: 15ms
+        Library sort: 20ms
+71680 elements:
+        Insertion sort: 5580ms
+        Quick sort: 28ms
+        Merge sort: 24ms
+        Combined(merge+bubble) sort: 20ms
+        Library sort: 29ms
+81920 elements:
+        Insertion sort: too long
+        Quick sort: 33ms
+        Merge sort: 22ms
+        Combined(merge+bubble) sort: 21ms
+        Library sort: 27ms
+92160 elements:
+        Insertion sort: too long
+        Quick sort: 39ms
+        Merge sort: 24ms
+        Combined(merge+bubble) sort: 23ms
+        Library sort: 32ms
+102400 elements:
+        Insertion sort: too long
+        Quick sort: 41ms
+        Merge sort: 28ms
+        Combined(merge+bubble) sort: 29ms
+        Library sort: 34ms
+174079 elements:
+        Insertion sort: too long
+        Quick sort: 86ms
+        Merge sort: 48ms
+        Combined(merge+bubble) sort: 47ms
+        Library sort: 61ms
+295934 elements:
+        Insertion sort: too long
+        Quick sort: 149ms
+        Merge sort: 116ms
+        Combined(merge+bubble) sort: 83ms
+        Library sort: 106ms
+503087 elements:
+        Insertion sort: too long
+        Quick sort: 297ms
+        Merge sort: 146ms
+        Combined(merge+bubble) sort: 147ms
+        Library sort: 192ms
+855247 elements:
+        Insertion sort: too long
+        Quick sort: 584ms
+        Merge sort: 256ms
+        Combined(merge+bubble) sort: 282ms
+        Library sort: 321ms
+1453919 elements:
+        Insertion sort: too long
+        Quick sort: 1296ms
+        Merge sort: 462ms
+        Combined(merge+bubble) sort: 436ms
+        Library sort: 586ms
+2471662 elements:
+        Insertion sort: too long
+        Quick sort: 3125ms
+        Merge sort: 768ms
+        Combined(merge+bubble) sort: 798ms
+        Library sort: 1003ms
+4201825 elements:
+        Insertion sort: too long
+        Quick sort: 7720ms
+        Merge sort: 1344ms
+        Combined(merge+bubble) sort: 1356ms
+        Library sort: 1781ms
+7143102 elements:
+        Insertion sort: too long
+        Quick sort: too long
+        Merge sort: 2328ms
+        Combined(merge+bubble) sort: 2323ms
+        Library sort: 3050ms
+12143273 elements:
+        Insertion sort: too long
+        Quick sort: too long
+        Merge sort: 4039ms
+        Combined(merge+bubble) sort: 4038ms
+        Library sort: 5266ms
+
+
+        Massive in correct order elements:
+10 elements:
+        Insertion sort: 0ms
+        Quick sort: 0ms
+        Merge sort: 0ms
+        Combined(merge+bubble) sort: 0ms
+        Library sort: 0ms
+20 elements:
+        Insertion sort: 0ms
+        Quick sort: 0ms
+        Merge sort: 0ms
+        Combined(merge+bubble) sort: 0ms
+        Library sort: 0ms
+40 elements:
+        Insertion sort: 0ms
+        Quick sort: 0ms
+        Merge sort: 0ms
+        Combined(merge+bubble) sort: 0ms
+        Library sort: 0ms
+80 elements:
+        Insertion sort: 0ms
+        Quick sort: 0ms
+        Merge sort: 0ms
+        Combined(merge+bubble) sort: 0ms
+        Library sort: 0ms
+160 elements:
+        Insertion sort: 0ms
+        Quick sort: 0ms
+        Merge sort: 0ms
+        Combined(merge+bubble) sort: 0ms
+        Library sort: 0ms
+320 elements:
+        Insertion sort: 0ms
+        Quick sort: 2ms
+        Merge sort: 0ms
+        Combined(merge+bubble) sort: 0ms
+        Library sort: 0ms
+640 elements:
+        Insertion sort: 0ms
+        Quick sort: 3ms
+        Merge sort: 0ms
+        Combined(merge+bubble) sort: 0ms
+        Library sort: 0ms
+1280 elements:
+        Insertion sort: 0ms
+        Quick sort: 17ms
+        Merge sort: 0ms
+        Combined(merge+bubble) sort: 0ms
+        Library sort: 1ms
+2560 elements:
+        Insertion sort: 0ms
+        Quick sort: 69ms
+        Merge sort: 0ms
+        Combined(merge+bubble) sort: 0ms
+        Library sort: 1ms
+5120 elements:
+        Insertion sort: 0ms
+        Quick sort: 272ms
+        Merge sort: 0ms
+        Combined(merge+bubble) sort: 0ms
+        Library sort: 1ms
+10240 elements:
+        Insertion sort: 0ms
+        Quick sort: 1145ms
+        Merge sort: 1ms
+        Combined(merge+bubble) sort: 0ms
+        Library sort: 2ms
+20480 elements:
+        Insertion sort: 0ms
+        Quick sort: 4543ms
+        Merge sort: 2ms
+        Combined(merge+bubble) sort: 1ms
+        Library sort: 2ms
+30720 elements:
+        Insertion sort: 0ms
+        Quick sort: 10261ms
+        Merge sort: 4ms
+        Combined(merge+bubble) sort: 2ms
+        Library sort: 4ms
+40960 elements:
+        Insertion sort: 0ms
+        Quick sort: too long
+        Merge sort: 4ms
+        Combined(merge+bubble) sort: 4ms
+        Library sort: 5ms
+51200 elements:
+        Insertion sort: 1ms
+        Quick sort: too long
+        Merge sort: 5ms
+        Combined(merge+bubble) sort: 8ms
+        Library sort: 10ms
+61440 elements:
+        Insertion sort: 0ms
+        Quick sort: too long
+        Merge sort: 8ms
+        Combined(merge+bubble) sort: 11ms
+        Library sort: 10ms
+71680 elements:
+        Insertion sort: 0ms
+        Quick sort: too long
+        Merge sort: 8ms
+        Combined(merge+bubble) sort: 10ms
+        Library sort: 11ms
+81920 elements:
+        Insertion sort: 0ms
+        Quick sort: too long
+        Merge sort: 13ms
+        Combined(merge+bubble) sort: 10ms
+        Library sort: 15ms
+92160 elements:
+        Insertion sort: 1ms
+        Quick sort: too long
+        Merge sort: 11ms
+        Combined(merge+bubble) sort: 10ms
+        Library sort: 14ms
+102400 elements:
+        Insertion sort: 1ms
+        Quick sort: too long
+        Merge sort: 16ms
+        Combined(merge+bubble) sort: 11ms
+        Library sort: 16ms
+174079 elements:
+        Insertion sort: 0ms
+        Quick sort: too long
+        Merge sort: 20ms
+        Combined(merge+bubble) sort: 21ms
+        Library sort: 34ms
+295934 elements:
+        Insertion sort: 1ms
+        Quick sort: too long
+        Merge sort: 37ms
+        Combined(merge+bubble) sort: 80ms
+        Library sort: 49ms
+503087 elements:
+        Insertion sort: 2ms
+        Quick sort: too long
+        Merge sort: 64ms
+        Combined(merge+bubble) sort: 64ms
+        Library sort: 90ms
+855247 elements:
+        Insertion sort: 5ms
+        Quick sort: too long
+        Merge sort: 121ms
+        Combined(merge+bubble) sort: 115ms
+        Library sort: 170ms
+1453919 elements:
+        Insertion sort: 9ms
+        Quick sort: too long
+        Merge sort: 235ms
+        Combined(merge+bubble) sort: 202ms
+        Library sort: 294ms
+2471662 elements:
+        Insertion sort: 17ms
+        Quick sort: too long
+        Merge sort: 392ms
+        Combined(merge+bubble) sort: 360ms
+        Library sort: 525ms
+4201825 elements:
+        Insertion sort: 28ms
+        Quick sort: too long
+        Merge sort: 616ms
+        Combined(merge+bubble) sort: 669ms
+        Library sort: 898ms
+7143102 elements:
+        Insertion sort: 49ms
+        Quick sort: too long
+        Merge sort: 1119ms
+        Combined(merge+bubble) sort: 1139ms
+        Library sort: 1622ms
+12143273 elements:
+        Insertion sort: 85ms
+        Quick sort: too long
+        Merge sort: 1968ms
+        Combined(merge+bubble) sort: 1968ms
+        Library sort: 2899ms
+
+
+        Massive in incorrect order:
+10 elements:
+        Insertion sort: 0ms
+        Quick sort: 0ms
+        Merge sort: 0ms
+        Combined(merge+bubble) sort: 0ms
+        Library sort: 0ms
+20 elements:
+        Insertion sort: 0ms
+        Quick sort: 0ms
+        Merge sort: 0ms
+        Combined(merge+bubble) sort: 0ms
+        Library sort: 0ms
+40 elements:
+        Insertion sort: 0ms
+        Quick sort: 0ms
+        Merge sort: 0ms
+        Combined(merge+bubble) sort: 0ms
+        Library sort: 0ms
+80 elements:
+        Insertion sort: 0ms
+        Quick sort: 0ms
+        Merge sort: 0ms
+        Combined(merge+bubble) sort: 0ms
+        Library sort: 0ms
+160 elements:
+        Insertion sort: 0ms
+        Quick sort: 0ms
+        Merge sort: 0ms
+        Combined(merge+bubble) sort: 0ms
+        Library sort: 0ms
+320 elements:
+        Insertion sort: 0ms
+        Quick sort: 1ms
+        Merge sort: 0ms
+        Combined(merge+bubble) sort: 0ms
+        Library sort: 0ms
+640 elements:
+        Insertion sort: 1ms
+        Quick sort: 4ms
+        Merge sort: 0ms
+        Combined(merge+bubble) sort: 0ms
+        Library sort: 0ms
+1280 elements:
+        Insertion sort: 3ms
+        Quick sort: 10ms
+        Merge sort: 0ms
+        Combined(merge+bubble) sort: 0ms
+        Library sort: 0ms
+2560 elements:
+        Insertion sort: 13ms
+        Quick sort: 44ms
+        Merge sort: 0ms
+        Combined(merge+bubble) sort: 0ms
+        Library sort: 0ms
+5120 elements:
+        Insertion sort: 54ms
+        Quick sort: 168ms
+        Merge sort: 0ms
+        Combined(merge+bubble) sort: 0ms
+        Library sort: 0ms
+10240 elements:
+        Insertion sort: 226ms
+        Quick sort: 675ms
+        Merge sort: 0ms
+        Combined(merge+bubble) sort: 1ms
+        Library sort: 1ms
+20480 elements:
+        Insertion sort: 906ms
+        Quick sort: 2757ms
+        Merge sort: 1ms
+        Combined(merge+bubble) sort: 1ms
+        Library sort: 3ms
+30720 elements:
+        Insertion sort: 2045ms
+        Quick sort: 6185ms
+        Merge sort: 3ms
+        Combined(merge+bubble) sort: 3ms
+        Library sort: 3ms
+40960 elements:
+        Insertion sort: 3647ms
+        Quick sort: too long
+        Merge sort: 3ms
+        Combined(merge+bubble) sort: 3ms
+        Library sort: 6ms
+51200 elements:
+        Insertion sort: 5752ms
+        Quick sort: too long
+        Merge sort: 5ms
+        Combined(merge+bubble) sort: 5ms
+        Library sort: 6ms
+61440 elements:
+        Insertion sort: too long
+        Quick sort: too long
+        Merge sort: 6ms
+        Combined(merge+bubble) sort: 9ms
+        Library sort: 7ms
+71680 elements:
+        Insertion sort: too long
+        Quick sort: too long
+        Merge sort: 8ms
+        Combined(merge+bubble) sort: 11ms
+        Library sort: 9ms
+81920 elements:
+        Insertion sort: too long
+        Quick sort: too long
+        Merge sort: 9ms
+        Combined(merge+bubble) sort: 8ms
+        Library sort: 11ms
+92160 elements:
+        Insertion sort: too long
+        Quick sort: too long
+        Merge sort: 13ms
+        Combined(merge+bubble) sort: 12ms
+        Library sort: 12ms
+102400 elements:
+        Insertion sort: too long
+        Quick sort: too long
+        Merge sort: 15ms
+        Combined(merge+bubble) sort: 38ms
+        Library sort: 21ms
+174079 elements:
+        Insertion sort: too long
+        Quick sort: too long
+        Merge sort: 25ms
+        Combined(merge+bubble) sort: 22ms
+        Library sort: 23ms
+295934 elements:
+        Insertion sort: too long
+        Quick sort: too long
+        Merge sort: 38ms
+        Combined(merge+bubble) sort: 42ms
+        Library sort: 43ms
+503087 elements:
+        Insertion sort: too long
+        Quick sort: too long
+        Merge sort: 73ms
+        Combined(merge+bubble) sort: 71ms
+        Library sort: 71ms
+855247 elements:
+        Insertion sort: too long
+        Quick sort: too long
+        Merge sort: 125ms
+        Combined(merge+bubble) sort: 120ms
+        Library sort: 128ms
+1453919 elements:
+        Insertion sort: too long
+        Quick sort: too long
+        Merge sort: 218ms
+        Combined(merge+bubble) sort: 213ms
+        Library sort: 233ms
+2471662 elements:
+        Insertion sort: too long
+        Quick sort: too long
+        Merge sort: 395ms
+        Combined(merge+bubble) sort: 381ms
+        Library sort: 410ms
+4201825 elements:
+        Insertion sort: too long
+        Quick sort: too long
+        Merge sort: 656ms
+        Combined(merge+bubble) sort: 732ms
+        Library sort: 737ms
+7143102 elements:
+        Insertion sort: too long
+        Quick sort: too long
+        Merge sort: 1174ms
+        Combined(merge+bubble) sort: 1212ms
+        Library sort: 1253ms
+12143273 elements:
+        Insertion sort: too long
+        Quick sort: too long
+        Merge sort: 2033ms
+        Combined(merge+bubble) sort: 2038ms
+        Library sort: 2225ms
