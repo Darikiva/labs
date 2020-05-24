@@ -15,44 +15,43 @@ bool operator<(const std::pair<int, int> lhs, const std::pair<int, int> rhs) {
 template<typename Item>
 std::vector<int> dijkstra(Graph<Item> &graph, int index = 0) {
     std::vector<int> answer(graph.vertex_count());
-    std::vector<bool> is_available(graph.vertex_count());
+    std::vector<bool> used(graph.vertex_count());
     for (int i = 0; i < graph.vertex_count(); i++) {
-        answer[i] = -1;
-        is_available[i] = false;
+        answer[i] = INT_MAX;
+        used[i] = false;
     }
     answer[index] = 0;
-    for (int i = index; i < graph.vertex_count(); i++) {
-        if (!is_available[i] && i != index) continue;
-        auto next = graph.vertex(i)->next;
-        while (next != nullptr) {
-            if (answer[next->num] < 0)
-                answer[next->num] = answer[i] + next->weight;
-            else
-                answer[next->num] = std::min(answer[next->num], answer[i] + next->weight);
-            is_available[next->num] = true;
-            next = next->next;
+    for (int i = 0; i < graph.vertex_count(); i++) {
+        int v{-1};
+        for (int j = 0; j < graph.vertex_count(); ++j) {
+            if (!used[j] && (v == -1 || answer[j] < answer[v]))
+                v = j;
         }
-    }
-
-    for (int i = 0; i < index; i++) {
-        if (!is_available[i]) continue;
-        auto next = graph.vertex(i)->next;
-        while (next != nullptr) {
-            if (answer[next->num] < 0)
-                answer[next->num] = answer[i] + next->weight;
-            else
-                answer[next->num] = std::min(answer[next->num], answer[i] + next->weight);
-            is_available[next->num] = true;
-            next = next->next;
+        if (answer[v] == INT_MAX)
+            break;
+        used[v] = true;
+        auto current_vertex = graph.vertex(v);
+        auto curr = current_vertex->next;
+        while (curr != nullptr) {
+            if (answer[v] + curr->weight < answer[curr->num])
+                answer[curr->num] = answer[v] + curr->weight;
+            curr = curr->next;
         }
     }
     return answer;
 }
 
+template <typename Item>
+std::vector<int> fordBellman(Graph<Item>& graph, int index = 0) {
+    std::vector<int> answer;
+    if(fordBellman(graph, index, answer)) return answer;
+    else return {};
+}
+
 template<typename Item>
 bool fordBellman(Graph<Item> &graph, int index, std::vector<int> &answer) {
     answer.resize(graph.vertex_count());
-    for (auto &i: answer) i = 1;
+    for (auto &i: answer) i = INT_MAX;
     answer[index] = 0;
     for (int i = 0; i < graph.vertex_count(); ++i) {
         for (int j = 0; j < graph.vertex_count(); ++j) {
@@ -82,8 +81,8 @@ bool fordBellman(Graph<Item> &graph, int index, std::vector<int> &answer) {
 }
 
 template<typename Item>
-std::vector<std::vector<std::pair<int, int>>> johnson(const Graph<Item> &graph) {
-    std::vector<std::vector<std::pair<int, int>>> answer;
+std::vector<std::vector<int>> johnson(const Graph<Item> &graph) {
+    std::vector<std::vector<int>> answer;
 
     Graph<Item> new_graph = graph;
 
@@ -113,9 +112,9 @@ std::vector<std::vector<std::pair<int, int>>> johnson(const Graph<Item> &graph) 
 
         for (int i = 0; i < last_graph.vertex_count(); ++i) {
             auto tmp = dijkstra(last_graph, i);
-            std::vector<std::pair<int, int>> for_ans;
+            std::vector<int> for_ans;
             for (auto j = 0; j < tmp.size(); ++j) {
-                if (tmp[j] != -1) for_ans.push_back(std::make_pair(j, tmp[j] + v[j] - v[i])); // restoring weights
+                if (tmp[j] != -1) for_ans.push_back(tmp[j] + v[j] - v[i]); // restoring weights
             }
             answer.push_back(for_ans);
         }
