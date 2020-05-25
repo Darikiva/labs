@@ -12,7 +12,7 @@
 
 namespace mAlgorithms {
     template<typename Item>
-    std::future<std::vector<int>> mDijkstra(Graph<Item> &graph, int index = 0) {
+    std::future<std::vector<int>> dijkstra(Graph<Item> &graph, int index = 0) {
         auto handle = [](Graph<Item> &graph, int index = 0) -> std::vector<int> {
             std::vector<int> answer(graph.vertex_count());
             std::vector<bool> used(graph.vertex_count());
@@ -48,14 +48,7 @@ namespace mAlgorithms {
     }
 
     template<typename Item>
-    std::vector<int> mFordBellman(Graph<Item> &graph, int index = 0) {
-        std::vector<int> answer;
-        if (mFordBellman(graph, index, answer)) return answer;
-        else return {};
-    }
-
-    template<typename Item>
-    bool mFordBellman(Graph<Item> &graph, int index, std::vector<int> &answer) {
+    bool fordBellman(Graph<Item> &graph, int index, std::vector<int> &answer) {
         answer.resize(graph.vertex_count());
         for (auto &i: answer) i = INT_MAX;
         answer[index] = 0;
@@ -86,7 +79,16 @@ namespace mAlgorithms {
     }
 
     template<typename Item>
-    std::vector<std::vector<int>> mJohnson(Graph<Item> &graph) {
+    std::vector<int> fordBellman(Graph<Item> &graph, int index = 0) {
+        std::vector<int> answer;
+        if (fordBellman(graph, index, answer)) return answer;
+        else return {};
+    }
+
+
+
+    template<typename Item>
+    std::vector<std::vector<int>> johnson(Graph<Item> &graph, int thread_number = 1) {
         std::vector<std::vector<int>> answer(graph.vertex_count());
 
         Graph<Item> new_graph = graph;
@@ -98,7 +100,7 @@ namespace mAlgorithms {
 
 
         std::vector<int> v;
-        if (!mFordBellman(new_graph, graph.vertex_count(), v)) {
+        if (!fordBellman(new_graph, graph.vertex_count(), v)) {
             std::cout << "Has negative cycle" << std::endl;
             return {{}};
         } else {
@@ -114,34 +116,24 @@ namespace mAlgorithms {
                 }
             }
 
-
-//        for (int i = 0; i < last_graph.vertex_count(); ++i) {
-//            std::vector<int> tmp = dijkstra(last_graph, i).get();
-//            std::vector<int> for_ans;
-//            for (auto j = 0; j < tmp.size(); ++j) {
-//                if (tmp[j] != -1) for_ans.push_back(tmp[j] + v[j] - v[i]); // restoring weights
-//            }
-//            answer.push_back(for_ans);
-//        }
-
             int i = 0;
             int index = 0;
             int fulled = 0;
             std::vector<std::pair<std::shared_ptr<std::future<std::vector<int> > >, int> > wow(4);
             while (fulled < last_graph.vertex_count()) {
-                if (index < 4) {
-                    wow[index] = std::make_pair(std::make_shared<std::future<std::vector<int> > >(mDijkstra(graph, i)),
+                if (index < thread_number) {
+                    wow[index] = std::make_pair(std::make_shared<std::future<std::vector<int> > >(dijkstra(graph, i)),
                                                 i);
                     ++i;
                     ++index;
                 } else {
-                    for (int j = 0; j < 4; ++j) {
+                    for (int j = 0; j < thread_number; ++j) {
                         if (wow[j].first->valid()) {
                             answer[wow[j].second] = wow[j].first->get();
                             fulled++;
                             if (i < last_graph.vertex_count()) {
                                 wow[j] = std::make_pair(
-                                        std::make_shared<std::future<std::vector<int> > >(mDijkstra(graph, i)), i);
+                                        std::make_shared<std::future<std::vector<int> > >(dijkstra(graph, i)), i);
                                 ++i;
                             }
                         }

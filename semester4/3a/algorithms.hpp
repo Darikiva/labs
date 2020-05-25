@@ -41,13 +41,6 @@ namespace algorithms {
     }
 
     template<typename Item>
-    std::vector<int> fordBellman(Graph<Item> &graph, int index = 0) {
-        std::vector<int> answer;
-        if (fordBellman(graph, index, answer)) return answer;
-        else return {};
-    }
-
-    template<typename Item>
     bool fordBellman(Graph<Item> &graph, int index, std::vector<int> &answer) {
         answer.resize(graph.vertex_count());
         for (auto &i: answer) i = INT_MAX;
@@ -77,6 +70,13 @@ namespace algorithms {
         }
 
         return true;
+    }
+
+    template<typename Item>
+    std::vector<int> fordBellman(Graph<Item> &graph, int index = 0) {
+        std::vector<int> answer;
+        if (fordBellman(graph, index, answer)) return answer;
+        else return {};
     }
 
     template<typename Item>

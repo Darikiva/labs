@@ -9,5 +9,5 @@ option(BUILD_TEST "Tefdfsd fst" ON)
 add_executable(main main.cpp Graph.tpp algorithms.hpp multiTheadAlgorithms.hpp)
 
 if(BUILD_TEST)
-    add_executable(test test.cpp)
+    add_executable(test test.cpp multiThreadTest.cpp)
 endif()
