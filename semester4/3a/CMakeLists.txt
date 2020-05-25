@@ -5,9 +5,9 @@ project(3a)
 set(CMAKE_CXX_STANDARD 14)
 
 option(BUILD_TEST "Tefdfsd fst" ON)
-option(BUILD_MAIN "Build main" OFF)
 
-add_executable(3a main.cpp Graph.tpp algorithms.hpp)
+add_executable(main main.cpp Graph.tpp algorithms.hpp multiTheadAlgorithms.hpp)
+
 if(BUILD_TEST)
-    add_executable(test test.cpp Graph.tpp algorithms.hpp)
+    add_executable(test test.cpp)
 endif()

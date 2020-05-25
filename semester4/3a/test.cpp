@@ -10,6 +10,7 @@
 #include <thread>
 #include <iostream>
 
+using namespace algorithms;
 
 TEST_CASE ("Testing graph") {
     using namespace std;
