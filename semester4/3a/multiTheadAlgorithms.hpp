@@ -9,6 +9,9 @@
 #include <vector>
 #include <thread>
 #include <future>
+#include <chrono>
+
+using namespace std::chrono;
 
 namespace mAlgorithms {
     template<typename Item>
@@ -119,7 +122,7 @@ namespace mAlgorithms {
             int i = 0;
             int index = 0;
             int fulled = 0;
-            std::vector<std::pair<std::shared_ptr<std::future<std::vector<int> > >, int> > wow(4);
+            std::vector<std::pair<std::shared_ptr<std::future<std::vector<int> > >, int> > wow(thread_number);
             while (fulled < last_graph.vertex_count()) {
                 if (index < thread_number) {
                     wow[index] = std::make_pair(std::make_shared<std::future<std::vector<int> > >(dijkstra(graph, i)),

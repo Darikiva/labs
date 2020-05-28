@@ -57,7 +57,6 @@ TEST_CASE ("Testing Ford-Bellman algorithm") {
     using namespace std;
     Graph<int> graph;
     graph.randGraph(10, 80);
-    graph.print();
     CHECK(dijkstra(graph) == fordBellman(graph));
 }
 

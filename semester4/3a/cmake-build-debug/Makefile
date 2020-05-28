@@ -123,32 +123,59 @@ depend:
 	$(MAKE) -f CMakeFiles/3a.dir/build.make CMakeFiles/3a.dir/build
 .PHONY : 3a/fast
 
-main.o: main.cpp.o
+catch.o: catch.cpp.o
 
-.PHONY : main.o
+.PHONY : catch.o
 
 # target to build an object file
-main.cpp.o:
-	$(MAKE) -f CMakeFiles/3a.dir/build.make CMakeFiles/3a.dir/main.cpp.o
-.PHONY : main.cpp.o
+catch.cpp.o:
+	$(MAKE) -f CMakeFiles/3a.dir/build.make CMakeFiles/3a.dir/catch.cpp.o
+.PHONY : catch.cpp.o
 
-main.i: main.cpp.i
+catch.i: catch.cpp.i
 
-.PHONY : main.i
+.PHONY : catch.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) -f CMakeFiles/3a.dir/build.make CMakeFiles/3a.dir/main.cpp.i
-.PHONY : main.cpp.i
+catch.cpp.i:
+	$(MAKE) -f CMakeFiles/3a.dir/build.make CMakeFiles/3a.dir/catch.cpp.i
+.PHONY : catch.cpp.i
 
-main.s: main.cpp.s
+catch.s: catch.cpp.s
 
-.PHONY : main.s
+.PHONY : catch.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) -f CMakeFiles/3a.dir/build.make CMakeFiles/3a.dir/main.cpp.s
-.PHONY : main.cpp.s
+catch.cpp.s:
+	$(MAKE) -f CMakeFiles/3a.dir/build.make CMakeFiles/3a.dir/catch.cpp.s
+.PHONY : catch.cpp.s
+
+graph_test.o: graph_test.cpp.o
+
+.PHONY : graph_test.o
+
+# target to build an object file
+graph_test.cpp.o:
+	$(MAKE) -f CMakeFiles/3a.dir/build.make CMakeFiles/3a.dir/graph_test.cpp.o
+.PHONY : graph_test.cpp.o
+
+graph_test.i: graph_test.cpp.i
+
+.PHONY : graph_test.i
+
+# target to preprocess a source file
+graph_test.cpp.i:
+	$(MAKE) -f CMakeFiles/3a.dir/build.make CMakeFiles/3a.dir/graph_test.cpp.i
+.PHONY : graph_test.cpp.i
+
+graph_test.s: graph_test.cpp.s
+
+.PHONY : graph_test.s
+
+# target to generate assembly for a file
+graph_test.cpp.s:
+	$(MAKE) -f CMakeFiles/3a.dir/build.make CMakeFiles/3a.dir/graph_test.cpp.s
+.PHONY : graph_test.cpp.s
 
 # Help Target
 help:
@@ -159,9 +186,12 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... 3a"
 	@echo "... edit_cache"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
+	@echo "... catch.o"
+	@echo "... catch.i"
+	@echo "... catch.s"
+	@echo "... graph_test.o"
+	@echo "... graph_test.i"
+	@echo "... graph_test.s"
 .PHONY : help
 
 

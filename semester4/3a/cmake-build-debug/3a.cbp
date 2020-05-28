@@ -80,7 +80,22 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/cygdrive/c/Users/darik/labs/semester4/3a/main.cpp">
+		<Unit filename="/cygdrive/c/Users/darik/labs/semester4/3a/Graph.hpp">
+			<Option target="3a"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/darik/labs/semester4/3a/Graph.tpp">
+			<Option target="3a"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/darik/labs/semester4/3a/algorithms.hpp">
+			<Option target="3a"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/darik/labs/semester4/3a/catch.cpp">
+			<Option target="3a"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/darik/labs/semester4/3a/catch.hpp">
+			<Option target="3a"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/darik/labs/semester4/3a/graph_test.cpp">
 			<Option target="3a"/>
 		</Unit>
 		<Unit filename="/cygdrive/c/Users/darik/labs/semester4/3a/CMakeLists.txt">

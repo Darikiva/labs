@@ -1,7 +1,8 @@
 file(REMOVE_RECURSE
   "3a.exe"
   "3a.pdb"
-  "CMakeFiles/3a.dir/main.cpp.o"
+  "CMakeFiles/3a.dir/catch.cpp.o"
+  "CMakeFiles/3a.dir/graph_test.cpp.o"
   "lib3a.dll.a"
 )
 
