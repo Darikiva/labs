@@ -1,0 +1,78 @@
+Graph: 10 vertexes; 1 edges
+Not thread: 0ms 	2 thread: 2ms 	3 thread: 1ms
+Graph: 20 vertexes; 7 edges
+Not thread: 0ms 	2 thread: 4ms 	3 thread: 4ms
+Graph: 30 vertexes; 17 edges
+Not thread: 2ms 	2 thread: 6ms 	3 thread: 6ms
+Graph: 40 vertexes; 31 edges
+Not thread: 6ms 	2 thread: 10ms 	3 thread: 9ms
+Graph: 50 vertexes; 49 edges
+Not thread: 9ms 	2 thread: 16ms 	3 thread: 13ms
+Graph: 60 vertexes; 70 edges
+Not thread: 17ms 	2 thread: 22ms 	3 thread: 17ms
+Graph: 70 vertexes; 96 edges
+Not thread: 27ms 	2 thread: 34ms 	3 thread: 41ms
+Graph: 80 vertexes; 126 edges
+Not thread: 47ms 	2 thread: 51ms 	3 thread: 39ms
+Graph: 90 vertexes; 160 edges
+Not thread: 60ms 	2 thread: 52ms 	3 thread: 44ms
+Graph: 100 vertexes; 198 edges
+Not thread: 88ms 	2 thread: 68ms 	3 thread: 52ms
+Graph: 110 vertexes; 239 edges
+Not thread: 89ms 	2 thread: 52ms 	3 thread: 45ms
+Graph: 120 vertexes; 285 edges
+Not thread: 82ms 	2 thread: 65ms 	3 thread: 68ms
+Graph: 130 vertexes; 335 edges
+Not thread: 148ms 	2 thread: 82ms 	3 thread: 82ms
+Graph: 140 vertexes; 389 edges
+Not thread: 124ms 	2 thread: 94ms 	3 thread: 91ms
+Graph: 150 vertexes; 447 edges
+Not thread: 166ms 	2 thread: 116ms 	3 thread: 93ms
+Graph: 160 vertexes; 508 edges
+Not thread: 254ms 	2 thread: 143ms 	3 thread: 108ms
+Graph: 170 vertexes; 574 edges
+Not thread: 210ms 	2 thread: 156ms 	3 thread: 142ms
+Graph: 180 vertexes; 644 edges
+Not thread: 317ms 	2 thread: 222ms 	3 thread: 141ms
+Graph: 190 vertexes; 718 edges
+Not thread: 313ms 	2 thread: 227ms 	3 thread: 253ms
+Graph: 200 vertexes; 796 edges
+Not thread: 372ms 	2 thread: 262ms 	3 thread: 191ms
+Graph: 210 vertexes; 877 edges
+Not thread: 745ms 	2 thread: 379ms 	3 thread: 270ms
+Graph: 220 vertexes; 963 edges
+Not thread: 450ms 	2 thread: 331ms 	3 thread: 252ms
+Graph: 230 vertexes; 1053 edges
+Not thread: 543ms 	2 thread: 374ms 	3 thread: 383ms
+Graph: 240 vertexes; 1147 edges
+Not thread: 571ms 	2 thread: 418ms 	3 thread: 350ms
+Graph: 250 vertexes; 1245 edges
+Not thread: 639ms 	2 thread: 836ms 	3 thread: 425ms
+Graph: 260 vertexes; 1346 edges
+Not thread: 733ms 	2 thread: 553ms 	3 thread: 419ms
+Graph: 270 vertexes; 1452 edges
+Not thread: 930ms 	2 thread: 823ms 	3 thread: 488ms
+Graph: 280 vertexes; 1562 edges
+Not thread: 1594ms 	2 thread: 785ms 	3 thread: 604ms
+Graph: 290 vertexes; 1676 edges
+Not thread: 1219ms 	2 thread: 836ms 	3 thread: 645ms
+Graph: 300 vertexes; 1794 edges
+Not thread: 2844ms 	2 thread: 1247ms 	3 thread: 640ms
+Graph: 310 vertexes; 1915 edges
+Not thread: 1304ms 	2 thread: 929ms 	3 thread: 703ms
+Graph: 320 vertexes; 2041 edges
+Not thread: 1422ms 	2 thread: 944ms 	3 thread: 773ms
+Graph: 330 vertexes; 2171 edges
+Not thread: 1594ms 	2 thread: 1417ms 	3 thread: 890ms
+Graph: 340 vertexes; 2305 edges
+Not thread: 1908ms 	2 thread: 1682ms 	3 thread: 1364ms
+Graph: 350 vertexes; 2443 edges
+Not thread: 1776ms 	2 thread: 1629ms 	3 thread: 950ms
+Graph: 360 vertexes; 2584 edges
+Not thread: 1974ms 	2 thread: 1396ms 	3 thread: 1165ms
+Graph: 370 vertexes; 2730 edges
+Not thread: 2143ms 	2 thread: 1434ms 	3 thread: 1189ms
+Graph: 380 vertexes; 2880 edges
+Not thread: 2380ms 	2 thread: 2070ms 	3 thread: 1266ms
+Graph: 390 vertexes; 3034 edges
+Not thread: 2442ms 	2 thread: 2381ms 	3 thread: 1276ms
