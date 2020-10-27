@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gems
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="gems.xsd"
+>
+
+    <gem id="1">
+        <name value="dfl"/>
+        <preciousness value="semiprecious"/>
+        <origin value="string"/>
+        <visualParameters color="red" transparency="3" edges="4"/>
+        <weight value="3"/>
+    </gem>
+
+    <gem id="2">
+        <name value="Amethyst"/>
+        <preciousness value="semiprecious"/>
+        <origin value="Rubizhne"/>
+        <visualParameters color="magenta" transparency="50" edges="10"/>
+        <weight value="50"/>
+    </gem>
+
+    <gem>
+        <name value="diamond"/>
+        <preciousness value="precious"/>
+        <origin value="Kyiv"/>
+        <visualParameters color="white" transparency="90" edges="15"/>
+        <weight value="2"/>
+    </gem>
+
+    <gem>
+        <fds></fds>
+        <name value="asdf"/>
+        <preciousness value="precious"/>
+        <origin value="asdf"/>
+        <visualParameters color="red" transparency="3" edges="5"/>
+        <weight value="3"/>
+    </gem>
+
+</gems>
