@@ -1,4 +1,4 @@
-package com.testClient;
+package com.nonblockqueue;
 
 public class NonBlockingQueue {
     private Node head = null;

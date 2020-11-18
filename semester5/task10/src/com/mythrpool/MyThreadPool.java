@@ -1,11 +1,9 @@
-package com.testClient;
+package com.mythrpool;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
-import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.Future;
 
 public class MyThreadPool {
     private Queue<Runnable> taskQueue = null;
