@@ -29,7 +29,6 @@
     </gem>
 
     <gem>
-        <fds></fds>
         <name value="asdf"/>
         <preciousness value="precious"/>
         <origin value="asdf"/>

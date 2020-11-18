@@ -14,7 +14,7 @@ public class Main {
 
     public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException, XMLStreamException {
 	// write your code here
-        ArrayList<Gem> gems = GemStAXParser.parse("Gems/gems.xml");
+        ArrayList<Gem> gems = GemStAXParser.parse("Gems/gems.xml", "Gems/gems.xsd");
         for (Gem gem: gems) {
             gem.printGem();
         }

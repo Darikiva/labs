@@ -20,12 +20,14 @@ import java.util.Map;
 
 public class GemSAXParser {
     private static ArrayList<Gem> gems = new ArrayList<>();
-    public static ArrayList<Gem> parse(String file_name) throws ParserConfigurationException, SAXException, IOException {
+    public static ArrayList<Gem> parse(String XMLpath, String XSDpath) throws ParserConfigurationException, SAXException, IOException {
+        if (XSDpath != null)
+            if (!MyValidator.validate(XMLpath, XSDpath)) return new ArrayList<>();
         SAXParserFactory factory = SAXParserFactory.newInstance();
         SAXParser parser = factory.newSAXParser();
 
         AdvancedXMLHandler handler = new AdvancedXMLHandler();
-        parser.parse(new File(file_name), handler);
+        parser.parse(new File(XMLpath), handler);
 
         return gems;
     }

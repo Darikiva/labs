@@ -19,13 +19,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class GemDOMParser {
-    public static ArrayList<Gem> parse(String file_name) throws IOException, SAXException, ParserConfigurationException {
+    public static ArrayList<Gem> parse(String XMLpath, String XSDpath) throws IOException, SAXException, ParserConfigurationException {
+        if (XSDpath != null)
+            if (!MyValidator.validate(XMLpath, XSDpath)) return new ArrayList<>();
+
         ArrayList<Gem> gems = new ArrayList<>();
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 
         DocumentBuilder builder = factory.newDocumentBuilder();
 
-        Document document = builder.parse(new File(file_name));
+        Document document = builder.parse(new File(XMLpath));
         NodeList gemsElements = document.getDocumentElement().getElementsByTagName("gem");
         for(int i = 0; i < gemsElements.getLength(); ++i) {
             Node gemElement = gemsElements.item(i);

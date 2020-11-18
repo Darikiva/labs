@@ -11,13 +11,14 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 class GemDOMParserTest {
 
     @org.junit.jupiter.api.Test
     void parse() throws ParserConfigurationException, SAXException, IOException {
-        ArrayList<Gem> gems_test = GemDOMParser.parse("/home/darik/university/labs/semester5/lab2/Gems/test.xml");
+        ArrayList<Gem> gems_test = GemDOMParser.parse("/home/darik/university/labs/semester5/lab2/Gems/test.xml", null);
         ArrayList<Gem> right_answer = new ArrayList<>();
         right_answer.add(new Gem(
                 "test",

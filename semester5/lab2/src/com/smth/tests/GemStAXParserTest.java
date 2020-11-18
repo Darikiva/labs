@@ -6,7 +6,7 @@ import com.smth.gem.Preciousness;
 import com.smth.gem.VisualParameters;
 import com.smth.parsers.GemDOMParser;
 import com.smth.parsers.GemStAXParser;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -14,13 +14,14 @@ import javax.xml.stream.XMLStreamException;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 class GemStAXParserTest {
 
     @Test
     void parse() throws ParserConfigurationException, SAXException, IOException, XMLStreamException {
-        ArrayList<Gem> gems_test = GemStAXParser.parse("/home/darik/university/labs/semester5/lab2/Gems/test.xml");
+        ArrayList<Gem> gems_test = GemStAXParser.parse("/home/darik/university/labs/semester5/lab2/Gems/test.xml", "");
         ArrayList<Gem> right_answer = new ArrayList<>();
         right_answer.add(new Gem(
                 "test",

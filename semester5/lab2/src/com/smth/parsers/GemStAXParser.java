@@ -20,8 +20,10 @@ import java.util.Map;
 public class GemStAXParser{
     private static final XMLInputFactory factory = XMLInputFactory.newInstance();
 
-    public static ArrayList<Gem> parse(String file_name) throws XMLStreamException, IOException {
-        InputStream s = Files.newInputStream(Path.of(file_name));
+    public static ArrayList<Gem> parse(String XMLpath, String XSDpath) throws XMLStreamException, IOException {
+        if (XSDpath != null)
+            if (!MyValidator.validate(XMLpath, XSDpath)) return new ArrayList<>();
+        InputStream s = Files.newInputStream(Path.of(XMLpath));
         XMLStreamReader reader = factory.createXMLStreamReader(s);
         ArrayList<Gem> gems = new ArrayList<>();
         while (reader.hasNext()) {
