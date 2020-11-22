@@ -13,8 +13,9 @@ public class Main {
                 helo.enqueue(j);
             });
             thr.start();
-            helo.enqueue(i);
+//            helo.enqueue(i);
         }
+//        System.out.println(helo.getTail().get().next);
 
         for (int i = 0; i < 10; ++i) {
             Thread thread = new Thread(() -> {

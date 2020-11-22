@@ -5,6 +5,8 @@ public class MyReentrantLock {
     long threadId;
     private int lockCount;
 
+    private final Object sync_obj = new Object();
+
     public MyReentrantLock() {
         isLocked = false;
         threadId = 0;
@@ -12,11 +14,10 @@ public class MyReentrantLock {
     }
 
     synchronized public void lock() throws InterruptedException {
-        if (threadId == Thread.currentThread().getId()) return;
-        while (isLocked) {
+        while (isLocked && Thread.currentThread().getId() != threadId) {
             wait();
         }
-        System.out.println("Thread " + Thread.currentThread().getId() + " locked this locker");
+//        System.out.println("Thread " + Thread.currentThread().getId() + " locked this locker");
         isLocked = true;
         threadId = Thread.currentThread().getId();
         ++lockCount;
@@ -28,7 +29,7 @@ public class MyReentrantLock {
         }
         -- lockCount;
         if (lockCount == 0) {
-            System.out.println("Thread " + Thread.currentThread().getId() + " UNlocked this locker");
+//            System.out.println("Thread " + Thread.currentThread().getId() + " UNlocked this locker");
             isLocked = false;
             notify();
         }

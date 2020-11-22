@@ -13,8 +13,12 @@ public class Main {
                 e.printStackTrace();
             }
         }}.start();
+        System.out.println(ph.getArrived());
         ph.arrive();
+        System.out.println(ph.getArrived());
         ph.arrive();
+        System.out.println(ph.getArrived());
         ph.arriveAndDeregister();
+        System.out.println(ph.getArrived());
     }
 }

@@ -46,7 +46,7 @@ public class MyClass {
         };
         cyclicBarrier = new MyCyclicBarrier(numWorkers, w);
         for (int i = 0; i < numWorkers; ++i) {
-            ThreadHelper hel = new ThreadHelper((i + 1) * 500);
+            ThreadHelper hel = new ThreadHelper((55 - i * 10) * 500);
             hel.start();
         }
 

@@ -2,6 +2,15 @@ package com.CustomReentrantLock;
 
 public class MyClass {
 
+    int data = 0;
+
+    public int getData() {
+        return data;
+    }
+
+    public void inc() {
+        ++data;
+    }
     static void simulation() {
         System.out.println("wow");
         MyReentrantLock reentrantLock = new MyReentrantLock();

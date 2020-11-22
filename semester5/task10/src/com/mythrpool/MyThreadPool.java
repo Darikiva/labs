@@ -11,7 +11,11 @@ public class MyThreadPool {
     private boolean stopped = false;
     int maxSize;
 
-    public MyThreadPool(int numThreads, int maxThreads) {
+    public int getSize() {
+        return taskQueue.size();
+    }
+
+    public MyThreadPool(int numThreads) {
         taskQueue = new ConcurrentLinkedQueue<Runnable>();
 
         for (int i = 0; i < numThreads; ++i) {

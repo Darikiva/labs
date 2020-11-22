@@ -1,91 +1,78 @@
 package com.nonblockqueue;
 
+import java.util.concurrent.atomic.AtomicReference;
+
 public class NonBlockingQueue {
-    private Node head = null;
-    private Node tail = null;
+    private Node dummy = new Node(0, null);
+    private AtomicReference<Node> head = new AtomicReference<>(dummy);
+    private AtomicReference<Node> tail = new AtomicReference<>(dummy);
 
-    public NonBlockingQueue() {
-        head = tail = new Node(null, 0);
+    public AtomicReference<Node> getTail() {
+        return tail;
     }
 
-    private synchronized boolean compareAndSwap(Node value, Node expectedValue, Node newValue) {
-        if (value == expectedValue) {
-            if (value != null) {
-                value.setNext(newValue);
-            }
-            return true;
+    static public class Node {
+        public int val;
+        public AtomicReference<Node> next;
+
+        Node(int val, Node next) {
+            this.val = val;
+            this.next = new AtomicReference<>(next);
         }
-        return false;
+        public String toString() {
+            return Integer.toString(val);
+        }
     }
+//    public NonBlockingQueue() {
+//        head = tail = new AtomicReference<>(new Node(null, 0));
+//    }
 
     public void enqueue(int value) {
-        Node new_node = new Node(null, value);
-        Node tail = null;
-
+        Node new_node = new Node(value, null);
         while (true) {
-            tail = this.tail;
-            Node next = tail.getNext();
-            if (tail == this.tail) {
-                if (next == null){
-                    synchronized (this) {
-                        if (tail.getNext() == next) {
-                            tail.setNext(new_node);
-                            break;
-                        }
-                    }
+            Node currentTail = tail.get();
+//            System.out.println(currentTail);
+            Node tailNext = currentTail.next.get();
+//            System.out.println(tailNext);
+            if (currentTail == tail.get()) {
+                if (tailNext != null) {
+                    tail.compareAndSet(currentTail, tailNext);
                 } else {
-                    synchronized (this) {
-                        if (this.tail == tail) {
-                            this.tail = next;
-                        }
+                    if (currentTail.next.compareAndSet(null, new_node)){
+                        tail.compareAndSet(currentTail, new_node);
+                        return;
                     }
                 }
-            }
-        }
-        synchronized (this) {
-            if (this.tail == tail) {
-                this.tail = new_node;
             }
         }
     }
 
     public boolean dequeue() {
         while (true) {
-            Node head = this.head;
-            Node tail = this.tail;
-            Node next = head.getNext();
-            if (head == this.head) {
-                if (head == tail) {
-                    if (next == null) {
-                        return false;
-                    }
-                    synchronized (this) {
-                        if (this.tail == tail) {
-                            this.tail = next;
-                        }
-                    }
+            Node first = head.get();
+            Node last = tail.get();
+            Node next = first.next.get();
+            if (first == head.get()) {
+                if (first == last) {
+                    if (next == null) return false;
+                    tail.compareAndSet(last, next);
                 } else {
-                    int pvalue = next.getValue();
-                    synchronized (this) {
-                        if (this.head == head) {
-                            this.head = next;
-                            break;
-                        }
-                    }
+                    int val = next.val;
+                    if (head.compareAndSet(first, next))
+                        return true;
                 }
             }
         }
-        return true;
     }
 
     public String toString() {
         StringBuilder answer = new StringBuilder();
-        Node tmp = head;
+        Node tmp = head.get();
         int counter = 0;
         while (tmp != null) {
             ++counter;
-            answer.append(tmp.getValue());
-            if(tmp.getNext() != null) {
+            answer.append(tmp.val);
+            if(tmp.next != null) {
                 if (counter < 11) {
                     answer.append(' ');
                 } else {
@@ -93,7 +80,7 @@ public class NonBlockingQueue {
                     answer.append('\n');
                 }
             }
-            tmp = tmp.getNext();
+            tmp = tmp.next.get();
         }
         return answer.toString();
     }

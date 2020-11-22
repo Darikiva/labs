@@ -14,7 +14,7 @@ public class PoolTHread extends Thread{
     public void run() {
         while (!stopped) {
             Runnable runnable = taskQueue.poll();
-            runnable.run();
+            if (runnable != null) runnable.run();
         }
     }
 
