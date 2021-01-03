@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gems
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="gems.xsd"
+>
+    <gem>
+        <name value="test"/>
+        <preciousness value="precious"/>
+        <origin value="test"/>
+        <visualParameters color="red" transparency="1" edges="13"/>
+        <weight value="23"/>
+    </gem>
+</gems>

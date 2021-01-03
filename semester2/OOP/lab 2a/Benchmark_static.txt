@@ -1,0 +1,64 @@
+20 elements
+        Add: 0 ms
+        Remove: 0 ms
+        Insert: 0 ms
+40 elements
+        Add: 0 ms
+        Remove: 0 ms
+        Insert: 0 ms
+80 elements
+        Add: 0 ms
+        Remove: 0 ms
+        Insert: 0 ms
+160 elements
+        Add: 0 ms
+        Remove: 0 ms
+        Insert: 1 ms
+320 elements
+        Add: 0 ms
+        Remove: 0 ms
+        Insert: 0 ms
+640 elements
+        Add: 2 ms
+        Remove: 1 ms
+        Insert: 0 ms
+1280 elements
+        Add: 0 ms
+        Remove: 5 ms
+        Insert: 3 ms
+2560 elements
+        Add: 0 ms
+        Remove: 13 ms
+        Insert: 13 ms
+5120 elements
+        Add: 0 ms
+        Remove: 58 ms
+        Insert: 58 ms
+10240 elements
+        Add: 1 ms
+        Remove: 242 ms
+        Insert: 238 ms
+20480 elements
+        Add: 2 ms
+        Remove: 1078 ms
+        Insert: 1046 ms
+24576 elements
+        Add: 3 ms
+        Remove: 1694 ms
+        Insert: 1600 ms
+29491 elements
+        Add: 6 ms
+        Remove: 2237 ms
+        Insert: 2072 ms
+35389 elements
+        Add: 4 ms
+        Remove: 2870 ms
+        Insert: 2940 ms
+42466 elements
+        Add: 9 ms
+        Remove: 5266 ms
+        Insert: 4766 ms
+50959 elements
+        Add: 6 ms
+        Remove: 8400 ms
+        Insert: 8258 ms

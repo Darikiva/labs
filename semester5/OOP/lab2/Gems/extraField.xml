@@ -1,0 +1,11 @@
+<gems>
+  <!--Zero or more repetitions:-->
+  <gem id="3">
+    <mda></mda>
+    <name value="string"/>
+    <preciousness value="semiprecious"/>
+    <origin value="string"/>
+    <visualParameters color="magenta" transparency="3" edges="4"/>
+    <weight value="3"/>
+  </gem>
+</gems>
