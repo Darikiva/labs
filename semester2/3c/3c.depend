@@ -1,8 +1,0 @@
-# depslib dependency file v1.0
-1560499856 source:d:\1 курс, 2 семестр\Лабораторная №3\3c\main.cpp
-	<iostream>
-	<vector>
-	<iterator>
-	<algorithm>
-	<chrono>
-
