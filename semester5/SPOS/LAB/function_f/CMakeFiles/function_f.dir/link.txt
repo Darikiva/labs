@@ -1,0 +1,1 @@
+/usr/bin/clang++-10  -g   CMakeFiles/function_f.dir/main.cpp.o  -o function_f  /usr/lib/x86_64-linux-gnu/libboost_filesystem.so /usr/lib/x86_64-linux-gnu/libboost_system.so 

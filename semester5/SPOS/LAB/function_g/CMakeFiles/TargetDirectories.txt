@@ -1,0 +1,3 @@
+/home/darik/university/SPOS/LAB/function_g/CMakeFiles/rebuild_cache.dir
+/home/darik/university/SPOS/LAB/function_g/CMakeFiles/edit_cache.dir
+/home/darik/university/SPOS/LAB/function_g/CMakeFiles/function_g.dir

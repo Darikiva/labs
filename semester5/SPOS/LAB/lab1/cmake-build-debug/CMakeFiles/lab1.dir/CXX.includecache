@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/darik/university/SPOS/LAB/lab1/main.cpp
+iostream
+-
+boost/process.hpp
+/home/darik/university/SPOS/LAB/lab1/boost/process.hpp
+boost/process/extend.hpp
+/home/darik/university/SPOS/LAB/lab1/boost/process/extend.hpp
+string
+-
+chrono
+/home/darik/university/SPOS/LAB/lab1/chrono
+ncurses.h
+/home/darik/university/SPOS/LAB/lab1/ncurses.h
+

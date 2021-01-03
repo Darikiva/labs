@@ -1,0 +1,4 @@
+/snap/clion/129/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_COMPILER=/usr/bin/clang++-10 -G "CodeBlocks - Unix Makefiles" /home/darik/university/SPOS/LAB/function_f
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/darik/university/SPOS/LAB/function_f

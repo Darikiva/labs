@@ -1,0 +1,1 @@
+/usr/bin/clang++-10  -lncurses -pthread -g   CMakeFiles/lab1.dir/main.cpp.o  -o lab1  /usr/lib/x86_64-linux-gnu/libboost_filesystem.so /usr/lib/x86_64-linux-gnu/libboost_system.so 

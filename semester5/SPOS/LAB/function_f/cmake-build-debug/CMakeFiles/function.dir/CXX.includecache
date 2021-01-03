@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/darik/University/SPOS/function/demofuncs
+chrono
+-
+thread
+-
+optional
+-
+condition_variable
+-
+
+/home/darik/University/SPOS/function/main.cpp
+iostream
+-
+demofuncs
+/home/darik/University/SPOS/function/demofuncs
+boost/process.hpp
+/home/darik/University/SPOS/function/boost/process.hpp
+

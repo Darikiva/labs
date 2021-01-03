@@ -1,0 +1,2 @@
+Cannot generate 'Debug (1)' into /home/darik/university/SPOS/LAB/function_g/cmake-build-debug-1
+CMakeCache.txt is found in the project dir, only in-source generation will be performed.
