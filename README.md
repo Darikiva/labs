@@ -1,3 +1,3 @@
 labs
 
-# Laboratory projects
+# Some useless stuff
