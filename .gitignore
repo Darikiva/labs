@@ -2,3 +2,8 @@
 *.iml
 out/
 *.pdf
+.settings/
+pom.xml
+.project
+.classpath
+target/
