@@ -9,10 +9,10 @@ import javax.swing.event.MouseInputListener;
 public class EndButton extends JButton {
 
     MyThread m_thread;
-    final int m_side;
+    final Side m_side;
     final AtomicInteger m_semaphore;
 
-    EndButton(String name, int side, AtomicInteger semaphore) {
+    EndButton(String name, Side side, AtomicInteger semaphore) {
         super(name);
         this.m_side = side;
         this.m_semaphore = semaphore;
@@ -21,13 +21,13 @@ public class EndButton extends JButton {
 
             @Override
             public void mouseClicked(MouseEvent arg0) {
-                if (m_side == -1) {
+                if (m_side == Side.LEFT) {
                     if (Appb.thread_left != null) {
                         Appb.thread_left.setRunning(false);
                         Appb.thread_left = null;
                         m_semaphore.compareAndSet(1, 0);
                     }
-                } else if (m_side == 1) {
+                } else if (m_side == Side.RIGHT) {
                     if (Appb.thread_right != null) {
                         Appb.thread_right.setRunning(false);
                         Appb.thread_right = null;

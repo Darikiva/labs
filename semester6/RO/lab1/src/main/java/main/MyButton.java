@@ -9,6 +9,7 @@ public class MyButton extends JButton {
 
     MyThread m_thread_left, m_thread_right;
     final Side mySide;
+    
     MyButton(String name, MyThread thread_left, MyThread thread_right, Side side) {
         super(name);
         this.mySide = side;
@@ -18,25 +19,19 @@ public class MyButton extends JButton {
 
             @Override
             public void mouseClicked(MouseEvent arg0) {
-                // TODO Auto-generated method stub
                 if (mySide == Side.LEFT) {
-                    m_thread_left.setPrior(true);
-                    m_thread_right.setPrior(false);
-                    if (!m_thread_left.isAlive()) {
-                        m_thread_left.start();
-                    }
+                    m_thread_left.setRunning(true);
+                    m_thread_left.setPriority(2);
+                    m_thread_right.setPriority(1);
                 } else {
-                    m_thread_left.setPrior(false);
-                    m_thread_right.setPrior(true);
-                    if (!m_thread_right.isAlive()) {
-                        m_thread_right.start();
-                    }
+                    m_thread_right.setRunning(true);
+                    m_thread_left.setPriority(1);
+                    m_thread_right.setPriority(2);
                 }
             }
 
             @Override
             public void mouseEntered(MouseEvent arg0) {
-                // TODO Auto-generated method stub
 
             }
 

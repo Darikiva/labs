@@ -26,10 +26,10 @@ public class Appb {
         slider.setPaintLabels(true);
         Box box = Box.createVerticalBox();
         box.add(slider);
-        StartButton start_left = new StartButton("Start 1", -1, semaphore, slider);
-        StartButton start_right = new StartButton("Start 2", 1, semaphore, slider);
-        EndButton end_left = new EndButton("End 1", -1, semaphore);
-        EndButton end_right = new EndButton("End 2", 1, semaphore);
+        StartButton start_left = new StartButton("Start 1", Side.LEFT, semaphore, slider);
+        StartButton start_right = new StartButton("Start 2", Side.RIGHT, semaphore, slider);
+        EndButton end_left = new EndButton("End 1", Side.LEFT, semaphore);
+        EndButton end_right = new EndButton("End 2", Side.RIGHT, semaphore);
         box.add(start_left);
         box.add(start_right);
         box.add(end_left);

@@ -8,10 +8,9 @@ public class MyThread extends Thread {
     int sign;
     boolean running;
 
-    MyThread(JSlider slider, int sign, boolean prior) {
+    MyThread(JSlider slider, int sign) {
         this.slider = slider;
         this.sign = sign;
-        this.prioritized = prior;
         this.running = true;
     }
 
@@ -23,14 +22,6 @@ public class MyThread extends Thread {
         this.slider = slider;
     }
 
-    public boolean getPrior() {
-        return prioritized;
-    }
-
-    public void setPrior(boolean priority) {
-        this.prioritized = priority;
-    }
-
     public void setRunning(boolean running) {
         this.running = running;
     }
@@ -40,7 +31,7 @@ public class MyThread extends Thread {
         // TODO Auto-generated method stub
         // super.run();
         while (running) {
-            if (prioritized) {
+            // if (prioritized) {
                 synchronized (slider) {
                     if (sign == 1 && slider.getValue() < 90) {
                         slider.setValue(slider.getValue() + 2);
@@ -54,7 +45,7 @@ public class MyThread extends Thread {
                         e.printStackTrace();
                     }
                 }
-            }
+            // }
             // System.out.println("wow ");
         }
 

@@ -12,10 +12,10 @@ import main.App;
 public class StartButton extends JButton {
 
     final AtomicInteger m_semaphore;
-    final int m_side;
+    final Side m_side;
     final JSlider m_slider;
 
-    StartButton(String name, int side, AtomicInteger semaphore, JSlider slider) {
+    StartButton(String name, Side side, AtomicInteger semaphore, JSlider slider) {
         super(name);
         this.m_semaphore = semaphore;
         this.m_slider = slider;
@@ -26,11 +26,11 @@ public class StartButton extends JButton {
             @Override
             public void mouseClicked(MouseEvent arg0) {
                 if (m_semaphore.compareAndSet(0, 1)) {
-                    if (m_side == -1) {
-                        Appb.thread_left = new MyThread(m_slider, -1, true);
+                    if (m_side == Side.LEFT) {
+                        Appb.thread_left = new MyThread(m_slider, -1);
                         Appb.thread_left.start();
-                    } else if (m_side == 1) {
-                        Appb.thread_right = new MyThread(m_slider, 1, true);
+                    } else if (m_side == Side.RIGHT) {
+                        Appb.thread_right = new MyThread(m_slider, 1);
                         Appb.thread_right.start();
                     }
                 }
