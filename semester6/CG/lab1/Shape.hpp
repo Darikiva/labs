@@ -5,8 +5,11 @@
 
 struct Point
 {
-    int x, y;
+    double x, y;
     explicit Point(int x, int y) : x(x), y(y) {}
+    bool operator==(const Point& other) const {
+        return this->x == other.x && this->y == other.y;
+    }
 };
 
 struct Edge
@@ -42,6 +45,7 @@ struct Shape
             edge.organizeY();
             const Point& p1 = edge.p1;
             const Point& p2 = edge.p2;
+            if (p1 == point || p2 == point) return true;
             if (p1.y > point.y || p2.y < point.y) continue;
             int num = (p1.y - p2.y) * point.x + (p2.x - p1.x) * point.y + (p1.x * p2.y - p2.x * p1.y);
             if (num <= 0) ++res;
