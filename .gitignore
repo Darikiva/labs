@@ -372,3 +372,4 @@ pom.xml
 target/
 .vscode
 main
+go.mod
