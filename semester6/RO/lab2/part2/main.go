@@ -4,46 +4,46 @@ import (
 	"fmt"
 )
 
-func Ivanov(value []int, input chan int) {
-	chanel1 := make(chan int)
-	go Petrov(chanel1, input)
-	for i := 0; i < len(value); i++ {
-		chanel1 <- value[i]
+func Ivanov(property []int, done chan int) {
+	ch := make(chan int)
+	go Petrov(ch, done)
+	for i := 0; i < len(property); i++ {
+		ch <- property[i]
 	}
-	close(chanel1)
+	close(ch)
 }
 
-func Petrov(c chan int, input chan int) {
-	chanel2 := make(chan int)
-	go Necheporchuk(chanel2, input)
+func Petrov(input chan int, done chan int) {
+	ch := make(chan int)
+	go Necheporchuk(ch, done)
 
 	for {
-		x, wow := <-c
-		if !wow {
+		val, opened := <-input
+		if !opened {
 			break
 		}
-		chanel2 <- x
+		ch <- val
 	}
-	close(chanel2)
+	close(ch)
 }
 
-func Necheporchuk(c chan int, input chan int) {
+func Necheporchuk(input chan int, done chan int) {
 	for {
-		x, wow := <-c
-		if !wow {
+		val, opened := <-input
+		if !opened {
 			break
 		}
-		fmt.Println(x)
+		fmt.Println(val)
 	}
-	close(input)
+	close(done)
 }
 
 func main() {
-	var input = make(chan int)
-	var arr []int = []int{1, 2, 30, 4, 5, 6, 7, 8, 9, 10}
-	go Ivanov(arr, input)
+	var done = make(chan int)
+	var property []int = []int{1, 2, 30, 4, 5, 6, 7, 8, 9, 10}
+	go Ivanov(property, done)
 	for {
-		_, open := <-input
+		_, open := <-done
 		if !open {
 			break
 		}
