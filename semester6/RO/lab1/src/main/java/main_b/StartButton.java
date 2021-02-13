@@ -7,8 +7,6 @@ import javax.swing.JButton;
 import javax.swing.JSlider;
 import javax.swing.event.MouseInputListener;
 
-import main.App;
-
 public class StartButton extends JButton {
 
     final AtomicInteger m_semaphore;
