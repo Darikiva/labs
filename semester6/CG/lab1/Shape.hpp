@@ -5,6 +5,7 @@
 
 struct Point
 {
+    Point() {}
     double x, y;
     explicit Point(int x, int y) : x(x), y(y) {}
     bool operator==(const Point& other) const {
@@ -28,8 +29,10 @@ struct Edge
 
 struct Shape
 {
+    Shape() {}
     std::vector<Edge> edges;
-    explicit Shape(std::vector<Point> points)
+    std::vector<Point> points;
+    explicit Shape(std::vector<Point> points): points(points)
     {
         edges.emplace_back(Edge(points[0], points.back()));
         for (int i = 1; i < points.size(); ++i)
