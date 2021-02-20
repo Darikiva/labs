@@ -371,6 +371,6 @@ out/
 pom.xml
 target/
 .vscode
-main
 go.mod
 build/
+test/
