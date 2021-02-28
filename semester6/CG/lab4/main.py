@@ -72,30 +72,39 @@ def read_points(file_name):
 
     i = 0
     while i < len(input_array):
-        points_list.append([int(input_array[i]), int(input_array[i + 1])])
+        points_list.append([float(input_array[i]), float(input_array[i + 1])])
         i += 2
     points_list = sorted(points_list, key=lambda x: x[0])
     return points_list
 
 def draw_points(points, region):
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(2)
+    ax[0].set_xlim([-5, 9])
+    ax[0].set_ylim([-5, 9])
+    ax[1].set_xlim([-5, 9])
+    ax[1].set_ylim([-5, 9])
+    
 
     rect = patches.Rectangle((region[0][0], region[1][0]), region[0][1], region[1][1], linewidth = 1, edgecolor='r', facecolor='none')
-    ax.add_patch(rect)
+    ax[0].add_patch(rect)
 
     for point in points:
         circle = patches.Circle((point[0], point[1]), radius=0.051, color='g')
-        ax.add_patch(circle)
-    ax.autoscale()
+        ax[0].add_patch(circle)
+    # ax.autoscale()
+
+    rect2 = patches.Rectangle((region[0][0], region[1][0]), region[0][1], region[1][1], linewidth = 1, edgecolor='r', facecolor='none')
+
+    ax[1].add_patch(rect2)
+    answer = []
+    tree = build_tree(points, 0, len(points) - 1, 0)
+    find_points_in_region(tree, 0, answer, region)
+    for point in answer:
+        circle = patches.Circle((point[0], point[1]), radius=0.051, color='g')
+        ax[1].add_patch(circle)
+    
     plt.show()
 
 points = read_points("points.txt")
 region = read_points("region.txt")
 draw_points(points, region)
-tree = build_tree(points, 0, len(points) - 1, 0)
-answer = []
-find_points_in_region(tree, 0, answer, region)
-print(answer)
-print(region)
-print(tree)
-draw_points(answer, region)
