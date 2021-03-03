@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import matplotlib.patches as patches
 from matplotlib.collections import LineCollection
 
 # return value of numerator of the 'distance point to line'-formula
@@ -66,9 +67,13 @@ def first_point(S):
 def draw_smth(points, convex_hull):
     fig, ax = plt.subplots()
 
+    ax.set_xlim([-2, 10])
+    ax.set_ylim([-2, 10])
+
     ps = []
     for point in points:
-        ps.append([(point[0], point[1]),(point[0], point[1]+0.6)])
+        circle = patches.Circle((point[0], point[1]), radius=0.15, color='g')
+        ax.add_patch(circle)
         
     lc1 = LineCollection(ps, linewidths=10, colors='r')
     ax.add_collection(lc1)
@@ -81,7 +86,7 @@ def draw_smth(points, convex_hull):
     lc = LineCollection(lines, linewidths=1, colors='k')
     ax.add_collection(lc)
     
-    ax.autoscale()
+    # ax.autoscale()
     plt.show()
 
 
