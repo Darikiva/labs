@@ -18,9 +18,11 @@ def farthest_point(S, l, r):
     answer = [0, 0]
     for point in S:
         new_dist = abs(calc_distance(l, r, point))
+        # print(new_dist)
         if (new_dist > dist):
             dist = new_dist
             answer = point
+    # print(dist)
     return answer
 
 # return points on the left of line built on points l and r
@@ -33,12 +35,20 @@ def points_on_the_left(S, l, r):
 
 # the same idea as in the quick sort
 def quick_convex_hull(S, l, r):
+    if len(S) == 0:
+        return []
     if (S == [l, r]):
          return [l, r]
     elif S == [r, l]:
         return [l, r]
+    elif S ==[l]:
+        return [l]
+    elif S == [r]:
+        return [r]
     else :
         h = farthest_point(S, l, r)
+        if h == l or h == r:
+            return [l, r]
         S1 = points_on_the_left(S, l, h)
         S2 = points_on_the_left(S, h, r)
         return quick_convex_hull(S1, l, h) + quick_convex_hull(S2, h, r)
