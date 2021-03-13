@@ -35,6 +35,7 @@ public class Simulation implements Runnable {
                 e.printStackTrace();
             }
             buffer.putInSecondary(field);
+            Manager.updated = true;
         }
     }
 }

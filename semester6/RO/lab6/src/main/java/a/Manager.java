@@ -2,8 +2,10 @@ package a;
 
 import java.util.ArrayList;
 import java.util.concurrent.CyclicBarrier;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import javax.swing.JFrame;
+import javax.swing.text.StyledEditorKit.BoldAction;
 
 public class Manager {
     static final int CIVILIZATION_NUMBER = 1;
@@ -11,6 +13,7 @@ public class Manager {
     static final int COLUMNS = 50;
     static final int THREAD_NUM = 4;
     static final int TASK_SIZE = 20;
+    static volatile boolean updated = true;
     private int cell_size;
 
     Manager(int cell_size) {
@@ -19,7 +22,14 @@ public class Manager {
 
     public void work() {
         Buffer buffer = new Buffer();
-        CyclicBarrier barrier = new CyclicBarrier(THREAD_NUM + 1);
+        CyclicBarrier barrier = new CyclicBarrier(THREAD_NUM + 1, new Runnable(){
+
+            @Override
+            public void run() {
+                updated = false;
+            }
+            
+        });
         Simulation simulation = new Simulation(buffer, barrier, ROWS, COLUMNS);
         Drawing drawing = new Drawing(buffer, cell_size);
         JFrame frame = new JFrame();

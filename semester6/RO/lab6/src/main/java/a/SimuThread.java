@@ -42,6 +42,9 @@ public class SimuThread extends Thread {
     @Override
     public void run() {
         while (true) {
+            while (!Manager.updated){
+                Thread.yield();
+            }
             Integer[][] field = simulation.getField();
             Integer[][] new_field = new Integer[task_size][Manager.COLUMNS];
             for (int i = start; i < start + task_size; ++i) {
