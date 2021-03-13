@@ -1,16 +1,15 @@
 package a;
 
-import java.security.KeyStore.TrustedCertificateEntry;
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
 
-public class MyThread extends Thread {
+public class SimuThread extends Thread {
     CyclicBarrier barrier;
     private Simulation simulation;
     private int start;
     private int task_size;
 
-    MyThread(CyclicBarrier barrier, Simulation simulation, int start, int task_size) {
+    SimuThread(CyclicBarrier barrier, Simulation simulation, int start, int task_size) {
         this.barrier = barrier;
         this.simulation = simulation;
         this.start = start;
@@ -38,28 +37,6 @@ public class MyThread extends Thread {
             }
         }
         return answer;
-    }
-
-    private Integer[] countAllNeighbors(int i, int j, Integer[][] field) {
-        Integer neighbors[] = new Integer[Manager.CIVILIZATION_NUMBER];
-        for (int k = 0; k < neighbors.length; ++k) {
-            neighbors[k] = 0;
-        }
-        int shifts[] = { -1, 0, 1 };
-        for (int shift_x : shifts) {
-            for (int shift_y : shifts) {
-                if (shift_x == 0 && shift_y == 0)
-                    continue;
-                int x = i + shift_x;
-                int y = j + shift_y;
-                if (insideField(x, y, field)) {
-                    if (field[x][y] != 0) {
-                        ++neighbors[field[x][y] - 1];
-                    }
-                }
-            }
-        }
-        return neighbors;
     }
 
     @Override
@@ -91,7 +68,6 @@ public class MyThread extends Thread {
             try {
                 barrier.await();
             } catch (InterruptedException | BrokenBarrierException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }

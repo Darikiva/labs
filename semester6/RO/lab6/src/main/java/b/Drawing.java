@@ -9,7 +9,7 @@ public class Drawing extends JPanel implements Runnable {
     private int cell_size;
     Integer[][] field;
     Buffer buffer;
-    private Color[] colors = {Color.BLACK, Color.WHITE, Color.YELLOW, Color.RED, Color.PINK};
+    private Color[] colors = { Color.BLACK, Color.WHITE, Color.YELLOW, Color.RED, Color.PINK };
 
     Drawing(Buffer buffer, int cell_size) {
         this.cell_size = cell_size;
@@ -18,7 +18,8 @@ public class Drawing extends JPanel implements Runnable {
 
     @Override
     public void paint(Graphics g) {
-        if (field == null) return;
+        if (field == null)
+            return;
         for (int i = 0; i < field.length; ++i) {
             for (int j = 0; j < field[0].length; ++j) {
                 Color color = colors[field[i][j]];
@@ -26,10 +27,6 @@ public class Drawing extends JPanel implements Runnable {
                 g.fillRect(i * cell_size, j * cell_size, (i + 1) * cell_size, (j + 1) * cell_size);
             }
         }
-    }
-
-    public void getData() {
-        this.field = buffer.getFromPrimary();
     }
 
     @Override

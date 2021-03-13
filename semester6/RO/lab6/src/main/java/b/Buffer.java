@@ -8,12 +8,12 @@ public class Buffer {
     private AtomicBoolean was_read;
     private AtomicBoolean was_written;
 
-    Buffer()
-    {
+    Buffer() {
         primary = secondary = null;
         was_read = new AtomicBoolean(true);
         was_written = new AtomicBoolean(false);
     }
+
     public void putInSecondary(Integer[][] data) {
         while (!was_read.get()) {
             Thread.yield();

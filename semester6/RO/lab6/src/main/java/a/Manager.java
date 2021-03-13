@@ -31,20 +31,20 @@ public class Manager {
 
         Thread draw = new Thread(drawing);
         Thread simulate = new Thread(simulation);
-        MyThread[] threads = new MyThread[THREAD_NUM];
+        SimuThread[] threads = new SimuThread[THREAD_NUM];
         int generated = 0;
         for (int i = 0; i < THREAD_NUM - 1; ++i) {
-            threads[i] = new MyThread(barrier, simulation, generated, TASK_SIZE);
+            threads[i] = new SimuThread(barrier, simulation, generated, TASK_SIZE);
             generated += TASK_SIZE;
         }
-        threads[THREAD_NUM - 1] = new MyThread(barrier, simulation, generated, ROWS - generated);
+        threads[THREAD_NUM - 1] = new SimuThread(barrier, simulation, generated, ROWS - generated);
         simulate.start();
         draw.start();
         for (int i = 0; i < THREAD_NUM; ++i) {
             threads[i].start();
         }
-        while (true)
-        {
+        while (true) {
+            Thread.yield();
         }
     }
 }

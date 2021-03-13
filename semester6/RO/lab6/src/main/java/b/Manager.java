@@ -30,8 +30,7 @@ public class Manager {
         Thread simulate = new Thread(simulation);
         simulate.start();
         draw.start();
-        while (true)
-        {
+        while (true) {
         }
     }
 }

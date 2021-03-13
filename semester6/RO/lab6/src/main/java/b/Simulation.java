@@ -7,11 +7,7 @@ public class Simulation implements Runnable {
     private int row_number;
     private int column_number;
     Buffer buffer;
-
-    Integer[][] getField() {
-        return field;
-    }
-
+    
     Simulation(Buffer buffer, int row_number, int column_number) {
         this.buffer = buffer;
         this.row_number = row_number;
