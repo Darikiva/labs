@@ -1,0 +1,50 @@
+package a;
+
+import java.util.ArrayList;
+import java.util.concurrent.CyclicBarrier;
+
+import javax.swing.JFrame;
+
+public class Manager {
+    static final int CIVILIZATION_NUMBER = 1;
+    static final int ROWS = 90;
+    static final int COLUMNS = 50;
+    static final int THREAD_NUM = 4;
+    static final int TASK_SIZE = 20;
+    private int cell_size;
+
+    Manager(int cell_size) {
+        this.cell_size = cell_size;
+    }
+
+    public void work() {
+        Buffer buffer = new Buffer();
+        CyclicBarrier barrier = new CyclicBarrier(THREAD_NUM + 1);
+        Simulation simulation = new Simulation(buffer, barrier, ROWS, COLUMNS);
+        Drawing drawing = new Drawing(buffer, cell_size);
+        JFrame frame = new JFrame();
+        frame.setSize((COLUMNS) * cell_size, (ROWS + 3) * cell_size);
+        frame.getContentPane().add(drawing);
+        frame.setLocationRelativeTo(null);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+
+        Thread draw = new Thread(drawing);
+        Thread simulate = new Thread(simulation);
+        MyThread[] threads = new MyThread[THREAD_NUM];
+        int generated = 0;
+        for (int i = 0; i < THREAD_NUM - 1; ++i) {
+            threads[i] = new MyThread(barrier, simulation, generated, TASK_SIZE);
+            generated += TASK_SIZE;
+        }
+        threads[THREAD_NUM - 1] = new MyThread(barrier, simulation, generated, ROWS - generated);
+        simulate.start();
+        draw.start();
+        for (int i = 0; i < THREAD_NUM; ++i) {
+            threads[i].start();
+        }
+        while (true)
+        {
+        }
+    }
+}
