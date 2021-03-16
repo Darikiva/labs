@@ -1,0 +1,94 @@
+import { Component } from 'react';
+import $ from "jquery";
+
+class Form extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      login: '',
+      password: ''
+    };
+    this.onHandleChangeLogin = this.onHandleChangeLogin.bind(this);
+    this.onHandleChangePassword = this.onHandleChangePassword.bind(this);
+    this.componentDidMount = this.componentDidMount.bind(this);
+  }
+
+  componentDidMount() {
+    localStorage.setItem("username", '');
+    $(document).on("submit", "#loginform", async function (event) {
+
+      async function postData(url = '', data = {}) {
+        const response = await fetch(url,
+          {
+            method: 'POST',
+            redirect: 'follow',
+            body: JSON.stringify(data)
+          });
+        return await response.json();
+      }
+
+      postData('http://localhost:8080/lab1/login', {
+        login: this.state.login,
+        password: this.state.password
+      })
+        .then((data) => {
+          localStorage.setItem("username", data.name);
+          if (data.admin) {
+            window.location.href = '/m_u' + this.state.login;
+          } else {
+            window.location.href = '/m_u' + this.state.login;
+          }
+          alert(data.admin)
+        })
+        .catch((error) => {
+          alert(error)
+        });
+
+      this.setState({
+        password: ""
+      });
+    }.bind(this));
+  }
+
+  onHandleChangeLogin(e) {
+    this.setState({
+      login: e.target.value
+    });
+  }
+  onHandleChangePassword(e) {
+    this.setState({
+      password: e.target.value
+    });
+  }
+
+  render() {
+    return (
+      <div>
+        <div id="errormsg"></div>
+        <form id="loginform">
+          <label>Name:
+              <input
+              type="text"
+              name="login"
+              onChange={this.onHandleChangeLogin}
+              value={this.state.login}
+            /><br />
+          </label>
+
+          <label>Password:
+            <input
+              type="password"
+              name="password"
+              onChange={this.onHandleChangePassword}
+              value={this.state.password}
+            /><br />
+          </label>
+
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    )
+  }
+}
+
+export default Form;

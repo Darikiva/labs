@@ -368,7 +368,6 @@ out/
 .classpath
 .project
 .settings/
-pom.xml
 target/
 .vscode
 go.mod
