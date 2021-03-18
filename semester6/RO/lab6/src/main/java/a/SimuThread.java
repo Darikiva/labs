@@ -17,7 +17,8 @@ public class SimuThread extends Thread {
     }
 
     private boolean insideField(int i, int j, Integer[][] field) {
-        return i >= start && i < start + task_size && j >= 0 && j < field[0].length;
+        // return i >= start && i < start + task_size && j >= 0 && j < field[0].length;
+        return i >= 0 && i < field.length && j >= 0 && j < field[0].length;        
     }
 
     private int countAlliedNeighbors(int i, int j, Integer[][] field) {
