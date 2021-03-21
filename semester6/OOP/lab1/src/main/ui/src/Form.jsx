@@ -33,10 +33,11 @@ class Form extends Component {
       })
         .then((data) => {
           localStorage.setItem("username", data.name);
+          localStorage.setItem("id_iser", data.id);
           if (data.admin) {
-            window.location.href = '/m_u' + this.state.login;
+            window.location.href = '/l_u=' + this.state.login;
           } else {
-            window.location.href = '/m_u' + this.state.login;
+            window.location.href = '/c_u=' + this.state.login;
           }
           alert(data.admin)
         })

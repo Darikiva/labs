@@ -4,27 +4,20 @@ public class User {
     private int id;
     private String name;
     private String surname;
-    private String phoneNumber;
-    private int idAreaCode;
-    private int idBilling;
     private String login;
     private String password;
-    private boolean isAdmin;
+    private boolean admin;
 
     public User() {
     }
 
-    public User(int idAbonent, String name, String surname, String phoneNumber, int idAreaCode,
-                   int idBilling, String login, String password, Boolean isAdmin) {
+    public User(int idAbonent, String name, String surname, String login, String password, Boolean isAdmin) {
         this.id = idAbonent;
         this.name = name;
         this.surname = surname;
-        this.phoneNumber = phoneNumber;
-        this.idAreaCode = idAreaCode;
-        this.idBilling = idBilling;
         this.login = login;
         this.password = password;
-        this.isAdmin = isAdmin;
+        this.admin = isAdmin;
     }
 
     public User(int id, String name, String surname, String login, String password, boolean isAdmin)
@@ -34,7 +27,7 @@ public class User {
         this.surname = surname;
         this.login = login;
         this.password = password;
-        this.isAdmin = isAdmin;
+        this.admin = isAdmin;
     }
 
     public String getLogin() {
@@ -46,10 +39,10 @@ public class User {
     }
 
     public boolean getIsAdmin() {
-        return isAdmin;
+        return admin;
     }
 
-    public int getIdAbonent() {
+    public int getId() {
         return id;
     }
 
@@ -59,18 +52,6 @@ public class User {
 
     public String getSurname() {
         return surname;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public int getIdAreaCode() {
-        return idAreaCode;
-    }
-
-    public int getIdBilling() {
-        return idBilling;
     }
 
     public void setIdAbonent(int idAbonent) {
@@ -85,18 +66,6 @@ public class User {
         this.surname = surname;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public void setIdAreaCode(int idAreaCode) {
-        this.idAreaCode = idAreaCode;
-    }
-
-    public void setIdBilling(int idBilling) {
-        this.idBilling = idBilling;
-    }
-
     public void setLogin(String login) {
         this.login = login;
     }
@@ -106,6 +75,6 @@ public class User {
     }
 
     public void setIsAdmin(Boolean isAdmin) {
-        this.isAdmin = isAdmin;
+        this.admin = isAdmin;
     }
 }

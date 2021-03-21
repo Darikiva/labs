@@ -3,37 +3,27 @@ package com.univ.webService.dataModel;
 import java.sql.Date;
 
 public class Reading {
-    private int user_id;
-    private int book_id;
-    private Date date;
+    private int id_user;
+    private int id_book;
 
-    Reading(int user_id, int book_id, Date date){
+    public Reading(int user_id, int book_id){
         this.setUser_id(user_id);
         this.setBook_id(book_id);
-        this.setDate(date);
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
     }
 
     public int getBook_id() {
-        return book_id;
+        return id_book;
     }
 
     public void setBook_id(int book_id) {
-        this.book_id = book_id;
+        this.id_book = book_id;
     }
 
     public int getUser_id() {
-        return user_id;
+        return id_user;
     }
 
     public void setUser_id(int user_id) {
-        this.user_id = user_id;
+        this.id_user = user_id;
     }
 }

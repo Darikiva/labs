@@ -372,4 +372,3 @@ target/
 .vscode
 go.mod
 build/
-test/

@@ -35,63 +35,75 @@ public class BookDAO {
         return books;
     }
 
-    static public boolean takeBook(int id) throws SQLException {
+    static public boolean takeBook(int id_book) {
         boolean book_taken = false;
-        Connection connection = DataConnection.getDBConnection();
-        final String sqlSelect = String.format("SELECT amount FROM books WHERE id = %s", id);
-        PreparedStatement pstmt = connection.prepareStatement(sqlSelect);
-        ResultSet rs = pstmt.executeQuery();
-        if (rs.next()) {
-            int amount = rs.getInt("amount");
-            if (amount != 0) {
-                --amount;
-                String sqlUpdate = String.format("UPDATE books SET amount = %s WHERE id = %s", amount, id);
-                PreparedStatement st = connection.prepareStatement(sqlUpdate);
-                st.executeUpdate();
-                st.close();
-                book_taken = true;
+        Connection connection;
+        try {
+            connection = DataConnection.getDBConnection();
+            final String sqlSelect = String.format("SELECT amount FROM books WHERE id = %s", id_book);
+            PreparedStatement pstmt = connection.prepareStatement(sqlSelect);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                int amount = rs.getInt("amount");
+                if (amount != 0) {
+                    --amount;
+                    String sqlUpdate = String.format("UPDATE books SET amount = %s WHERE id = %s", amount, id_book);
+                    PreparedStatement st = connection.prepareStatement(sqlUpdate);
+                    st.executeUpdate();
+                    st.close();
+                    book_taken = true;
+                }
             }
+            connection.close();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
-        connection.close();
         return book_taken;
     }
 
-    static public boolean returnBook(int id) throws SQLException {
+    static public boolean returnBook(int id){
         boolean book_returned = false;
-        Connection connection = DataConnection.getDBConnection();
-        final String sqlSelect = String.format("SELECT amount, total_amount FROM books WHERE id = %s", id);
-        PreparedStatement pstmt = connection.prepareStatement(sqlSelect);
-        ResultSet rs = pstmt.executeQuery();
-        if (rs.next()) {
-            int amount = rs.getInt("amount");
-            int total_amount = rs.getInt("total_amount");
-            if (amount < total_amount) {
-                ++amount;
-                String sqlUpdate = String.format("UPDATE books SET amount = %s WHERE id = %s", amount, id);
-                PreparedStatement st = connection.prepareStatement(sqlUpdate);
-                st.executeUpdate();
-                st.close();
-                book_returned = true;
+        Connection connection;
+        try {
+            connection = DataConnection.getDBConnection();
+            final String sqlSelect = String.format("SELECT amount, total_amount FROM books WHERE id = %s", id);
+            PreparedStatement pstmt = connection.prepareStatement(sqlSelect);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                int amount = rs.getInt("amount");
+                int total_amount = rs.getInt("total_amount");
+                if (amount < total_amount) {
+                    ++amount;
+                    String sqlUpdate = String.format("UPDATE books SET amount = %s WHERE id = %s", amount, id);
+                    PreparedStatement st = connection.prepareStatement(sqlUpdate);
+                    st.executeUpdate();
+                    st.close();
+                    book_returned = true;
+                }
             }
+            connection.close();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
-        connection.close();
         return book_returned;
     }
 
     public static void main(String[] args) {
         // try {
-        //     ArrayList<Book> books = getBooksFromDB(1, "");
-        //     for (Book book : books) {
-        //         System.out.println(book.getName());
-        //     }
-        //     // boolean wow = takeBook(2);
-        //     // System.out.println(wow);
-        //     // wow = returnBook(2);
-        //     // System.out.println(wow);
-        //     // returnBook(1);
+        // ArrayList<Book> books = getBooksFromDB(1, "");
+        // for (Book book : books) {
+        // System.out.println(book.getName());
+        // }
+        // // boolean wow = takeBook(2);
+        // // System.out.println(wow);
+        // // wow = returnBook(2);
+        // // System.out.println(wow);
+        // // returnBook(1);
         // } catch (SQLException e) {
-        //     // TODO Auto-generated catch block
-        //     e.printStackTrace();
+        // // TODO Auto-generated catch block
+        // e.printStackTrace();
         // }
     }
 }
