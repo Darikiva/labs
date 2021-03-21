@@ -92,7 +92,6 @@ class DeveloperWorkspace extends Component {
 
     async unrequestBook() {
         let select = $('#reqs').find(":selected");
-        alert(select.val());
         await fetch('http://localhost:8080/lab1/client',
             {
                 method: 'POST',
@@ -107,7 +106,6 @@ class DeveloperWorkspace extends Component {
 
     async takeHome() {
         let select = $('#reqs').find(":selected");
-        alert(select.val());
         const response = await fetch('http://localhost:8080/lab1/client',
             {
                 method: 'POST',
@@ -119,7 +117,6 @@ class DeveloperWorkspace extends Component {
                 })
             });
         let ans = await response.json();
-        alert(ans.message);
         if (ans.status == false) {
         } else {
             localStorage.setItem("current_book", select.val());
@@ -166,7 +163,7 @@ class DeveloperWorkspace extends Component {
                 <Greeting />
                 <br />
                 Client
-                <table width="100%">
+                <table width="100%" class="grid">
                     <tbody>
                         <tr>
                             <td>

@@ -24,8 +24,6 @@ class ManagerWorkspace extends Component {
     async acceptBook() {
         let iduser = $('#reqs').find(":selected").data('user');
         let idbook = $('#reqs').find(":selected").data('book');
-        alert(iduser);
-        alert(idbook);
         const response = await fetch('http://localhost:8080/lab1/librarian',
             {
                 method: 'POST',
@@ -69,7 +67,7 @@ class ManagerWorkspace extends Component {
             <div width="100%">
                 <Greeting />
                 Librarian
-                <table width="%100" align="center">
+                <table width="%100" align="center" class="grid">
                     <tbody>
                         <tr>
                             <td>

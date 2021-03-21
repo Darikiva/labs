@@ -16,7 +16,7 @@ public class UserDAO {
                 String.format(
                         "SELECT * FROM users WHERE %s AND login %s AND password %s AND %s",
                         id == Constants.SELECT_ALL_INT ? "CAST(id as TEXT) LIKE '%'" : "id = " + id,
-                        login.equals(Constants.SELECT_ALL_STR) ? "LIKE '%'" : "= '" + login + "'",
+                        "= '" + login + "'",
                         password.equals(Constants.SELECT_ALL_STR) ? "LIKE '%'" : "= '" + password + "'",
                         isAdmin == Constants.SELECT_ALL_INT ? "CAST(admin as TEXT) LIKE '%'" : ("admin = " + (isAdmin != 0 ? true: false))
                 );

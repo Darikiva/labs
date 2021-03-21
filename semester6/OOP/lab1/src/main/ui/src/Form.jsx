@@ -1,5 +1,9 @@
 import { Component } from 'react';
 import $ from "jquery";
+import './style.css';
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
 
 class Form extends Component {
   constructor(props) {
@@ -15,8 +19,15 @@ class Form extends Component {
 
   componentDidMount() {
     localStorage.setItem("username", '');
+
+
     $(document).on("submit", "#loginform", async function (event) {
 
+      cookies.remove("LOGIN");
+      cookies.remove("PASSWORD");
+      cookies.remove("ROLE", { path: '/lab1' });
+      cookies.set("LOGIN", this.state.login, { path: '/lab1' });
+      cookies.set("PASSWORD", this.state.password, { path: '/lab1' });
       async function postData(url = '', data = {}) {
         const response = await fetch(url,
           {
@@ -39,7 +50,6 @@ class Form extends Component {
           } else {
             window.location.href = '/c_u=' + this.state.login;
           }
-          alert(data.admin)
         })
         .catch((error) => {
           alert(error)

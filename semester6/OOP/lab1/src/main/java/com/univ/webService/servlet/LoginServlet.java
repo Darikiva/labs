@@ -23,13 +23,6 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         System.out.println("wow");
-        HttpSession session = request.getSession();
-        if (session.getAttribute("sessionId") == null) {
-            session.setAttribute("sessionId", Constants.LOGIN_ACCOUNT);
-        }
-        if (request.getParameter("sessionId") != null) {
-            session.setAttribute("sessionId", request.getParameter("sessionId"));
-        }
 
         JsonObject data = new Gson().fromJson(request.getReader(), JsonObject.class);
 
@@ -38,9 +31,10 @@ public class LoginServlet extends HttpServlet {
 
         try {
             // UserDAO abonentDAO = (UserDAO) BeanFactory.getBean(UserDAO.class);
-            List<User> abonent = new ArrayList<>();
-            abonent = UserDAO.getUserFromDB(Constants.SELECT_ALL_INT, login, password, Constants.SELECT_ALL_INT);
-            String json = new Gson().toJson(abonent.get(0));
+            List<User> users = new ArrayList<>();
+            users = UserDAO.getUserFromDB(Constants.SELECT_ALL_INT, login, password, Constants.SELECT_ALL_INT);
+            if (users.isEmpty()) return;
+            String json = new Gson().toJson(users.get(0));
             response.addHeader("Access-Control-Allow-Origin", "http://localhost:5000");
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
