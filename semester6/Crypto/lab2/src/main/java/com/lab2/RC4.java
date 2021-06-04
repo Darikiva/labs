@@ -4,13 +4,12 @@ import java.util.*;
 
 public class RC4 {
     private Character[] key;
-    private Character[] permutations;
+    private Character[] S;
     private static final Random rand = new Random();
 
-    // generates n-byte key
     public RC4(int n) {
         if (n < 1 || n > 256) {
-            throw new IllegalArgumentException("Illegal key length");
+            throw new IllegalArgumentException("Invalid length");
         }
         key = new Character[n];
         for (int i = 0; i < n; ++i) {
@@ -18,55 +17,55 @@ public class RC4 {
         }
     }
 
-    public String encipher(String str) {
+    public String encode(String str) {
         return convert(str);
     }
 
-    public String decipher(String str) {
+    public String decode(String str) {
         return convert(str);
     }
 
     private String convert(String str) {
         if (str == null || str.length() == 0) {
-            throw new IllegalArgumentException("Str shouldn't be empty or null");
+            throw new IllegalArgumentException("Invalid str");
         }
 
-        Character[] keystream = getKeystream(str.length());
-        StringBuilder cstr = new StringBuilder();
+        Character[] keystream = getKey(str.length());
+        StringBuilder strbld = new StringBuilder();
 
         for (int i = 0; i < str.length(); ++i) {
             char c = (char) (str.charAt(i) ^ keystream[i]);
-            cstr.append(c);
+            strbld.append(c);
         }
-        return cstr.toString();
+        return strbld.toString();
     }
 
     private void KSA() {
-        permutations = new Character[256];
+        S = new Character[256];
         for (int i = 0; i < 256; ++i) {
-            permutations[i] = (char) i;
+            S[i] = (char) i;
         }
 
         int i = 0, j = 0;
         for (i = 0; i < 256; ++i) {
-            j = (j + permutations[i] + key[i % key.length]) % 256;
-            swap(permutations, i, j);
+            j = (j + S[i] + key[i % key.length]) % 256;
+            swap(S, i, j);
         }
 
     }
 
-    private Character[] getKeystream(int length) {
+    private Character[] getKey(int length) {
         KSA();
-        Character[] keystream = new Character[length];
+        Character[] key = new Character[length];
         int i = 0, j = 0;
         for (int k = 0; k < length; ++k) {
             i = (i + 1) % 256;
-            j = (j + permutations[i]) % 256;
-            swap(permutations, i, j);
-            int t = (permutations[i] + permutations[j]) % 256;
-            keystream[k] = permutations[t];
+            j = (j + S[i]) % 256;
+            swap(S, i, j);
+            int t = (S[i] + S[j]) % 256;
+            key[k] = S[t];
         }
-        return keystream;
+        return key;
     }
 
     public static final <T> void swap(T[] a, int i, int j) {
