@@ -45,6 +45,12 @@ public class UserController {
     @RolesAllowed({ "admin", "user" })
     @GetMapping(value = "/list_books")
     public ResponseEntity<List<BookDTO>> getAllBooks(@RequestHeader String Authorization) {
+        var answer = bookService.getBooks();
+        System.out.println(answer.size());
+        if (answer.size() > 0)
+        {
+            System.out.println(answer.get(0).getName());
+        }
         return ResponseEntity.ok(bookService.getBooks());
     }
 
