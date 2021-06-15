@@ -1,76 +1,84 @@
 import { Component } from "react";
 import Greeting from "./Greeting.jsx";
 import $ from "jquery"
+import axios from "axios";
 
 const ClientWorkspace = props => {
     const listBooks = () => {
-        const response = fetch('http://localhost:8080/lab1/client',
-            {
-                method: 'POST',
-                redirect: 'follow',
-                body: JSON.stringify({
-                    action: 'list_books'
-                })
-            });
-        let data = response.json();
-        let select = $('#books');
-        select.empty();
-        $.each(data, function (index, item) {
-            select.append('<option name="book" value="' + item.id + '">' + item.name + '</option>');
-        });
+        alert(props.token);
+        axios.get('http://localhost:8000/user/list_books', {
+            headers: {
+                'Authorization': 'bearer ' + props.token,
+                'Content-Type': 'application/json'
+            }
+        })
+            .then((response) => {
+                let data = response.data;
+                alert(data);
+                let select = $('#books');
+                select.empty();
+                $.each(data, function (index, item) {
+                    select.append('<option name="book" value="' + item.id + '">' + item.name + '</option>');
+                });
+            })
+            .catch(error => alert(error));
     }
 
     const listReqs = () => {
-        const response = fetch('http://localhost:8080/lab1/client',
+        axios.get('http://localhost:8000/user/list_requests',
             {
-                method: 'POST',
-                redirect: 'follow',
-                body: JSON.stringify({
-                    action: 'list_requests',
-                    id_user: localStorage.getItem("id_iser")
-                })
+                headers: {
+                    'Authorization': 'bearer ' + props.token,
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then((response) => {
+                let data = response.data;
+                let select = $('#reqs');
+                select.empty();
+                $.each(data, function (index, item) {
+                    select.append('<option name="req" value="' + item.id_book + '">' + item.id_book + ' ' + item.accepted + '</option>');
+                });
             });
-        let data = response.json();
-        let select = $('#reqs');
-        select.empty();
-        $.each(data, function (index, item) {
-            select.append('<option name="req" value="' + item.id_book + '">' + item.id_book + ' ' + item.accepted + '</option>');
-        });
     }
 
     const takeBook = () => {
         let select = $('#books').find(":selected");
-        const response = fetch('http://localhost:8080/lab1/client',
+        axios.post('http://localhost:8000/user/take_book',
             {
-                method: 'POST',
-                redirect: 'follow',
-                body: JSON.stringify({
-                    action: 'take_book',
-                    id_user: localStorage.getItem("id_iser"),
-                    id_book: select.val()
-                })
+                id_book: select.val()
+            },
+            {
+                headers: {
+                    'Authorization': 'bearer ' + props.token,
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then((response) => {
+                let data = response.data;
+                let stat = $('#status');
+                if (data.status == false) {
+                    stat.text(data.message);
+                } else {
+                    localStorage.setItem("current_book", select.val());
+                    $('#reading_book').text(localStorage.getItem("current_book"));
+                    stat.text("Success");
+                }
+
             });
-        let data = response.json();
-        let stat = $('#status');
-        if (data.status == false) {
-            stat.text(data.message);
-        } else {
-            localStorage.setItem("current_book", select.val());
-            $('#reading_book').text(localStorage.getItem("current_book"));
-            stat.text("Success");
-        }
     }
 
     const returnBook = () => {
-        fetch('http://localhost:8080/lab1/client',
+        axios.post('http://localhost:8000/user/return_book',
             {
-                method: 'POST',
-                redirect: 'follow',
-                body: JSON.stringify({
-                    action: 'return_book',
-                    id_user: localStorage.getItem("id_iser"),
-                    id_book: localStorage.getItem("current_book")
-                })
+                id_book: localStorage.getItem("current_book")
+
+            },
+            {
+                headers: {
+                    'Authorization': 'bearer ' + props.token,
+                    'Content-Type': 'application/json'
+                }
             });
         localStorage.setItem("current_book", -1);
         $('#reading_book').text("-1");
@@ -78,104 +86,80 @@ const ClientWorkspace = props => {
 
     const requestBook = () => {
         let select = $('#books').find(":selected");
-        fetch('http://localhost:8080/lab1/client',
+        axios.post('http://localhost:8080/user/request_book',
             {
-                method: 'POST',
-                redirect: 'follow',
-                body: JSON.stringify({
-                    action: 'request_book',
-                    id_user: localStorage.getItem("id_iser"),
-                    id_book: select.val()
-                })
-            });
+                id_book: select.val()
+            },
+            {
+                headers: {
+                    'Authorization': 'bearer ' + props.token,
+                    'Content-Type': 'application/json'
+                }
+            }
+        );
     }
 
     const unrequestBook = () => {
         let select = $('#reqs').find(":selected");
-        fetch('http://localhost:8080/lab1/client',
+        axios.post('http://localhost:8080/user/unrequest_book',
             {
-                method: 'POST',
-                redirect: 'follow',
-                body: JSON.stringify({
-                    action: 'unrequest_book',
-                    id_user: localStorage.getItem("id_iser"),
-                    id_book: select.val()
-                })
+                id_book: select.val()
+            },
+            {
+                headers: {
+                    'Authorization': 'bearer ' + props.token,
+                    'Content-Type': 'application/json'
+                }
             });
     }
 
     const takeHome = () => {
         let select = $('#reqs').find(":selected");
-        const response = fetch('http://localhost:8080/lab1/client',
+        axios.post('http://localhost:8080/user/take_home',
             {
-                method: 'POST',
-                redirect: 'follow',
-                body: JSON.stringify({
-                    action: 'take_home',
-                    id_user: localStorage.getItem("id_iser"),
-                    id_book: select.val()
-                })
+                id_book: select.val()
+            },
+            {
+                headers: {
+                    'Authorization': 'bearer ' + props.token,
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then((response) => {
+                let ans = response.data;
+                if (ans.status == false) {
+                } else {
+                    localStorage.setItem("current_book", select.val());
+                    $('#reading_book').text(localStorage.getItem("current_book"));
+                }
             });
-        let ans = response.json();
-        if (ans.status == false) {
-        } else {
-            localStorage.setItem("current_book", select.val());
-            $('#reading_book').text(localStorage.getItem("current_book"));
-        }
     }
 
     const findBook = () => {
         let idbook = $("#input_find").val();
-        const response = fetch('http://localhost:8080/lab1/client',
+        axios.get('http://localhost:8080/user/find_book',
             {
-                method: 'POST',
-                redirect: 'follow',
-                body: JSON.stringify({
-                    action: 'find_book',
-                    id_book: idbook
-                })
+                id_book: idbook
+            },
+            {
+                headers: {
+                    'Authorization': 'bearer ' + props.token,
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then((response) => {
+                let data = response.data;
+                let select = $("#found");
+                select.empty();
+                $.each(data, function (index, item) {
+                    select.append('<option name="book" value="' + item.id + '">' + item.name + " " + item.amount + '</option>');
+                });
             });
-        let data = response.json();
-        let select = $("#found");
-        select.empty();
-        $.each(data, function (index, item) {
-            select.append('<option name="book" value="' + item.id + '">' + item.name + " " + item.amount + '</option>');
-        });
     }
 
     const changeReadingBook = () => {
         $('#reading_book').text(localStorage.getItem("current_book"));
     }
-
-    // async componentDidMount() {
-    //     this.listBooks = this.listBooks.bind(this);
-    //     this.listReqs = this.listReqs.bind(this);
-    //     this.takeBook = this.takeBook.bind(this);
-    //     this.returnBook = this.returnBook.bind(this);
-    //     this.requestBook = this.requestBook.bind(this);
-    //     this.unrequestBook = this.unrequestBook.bind(this);
-    //     this.takeHome = this.takeHome.bind(this);
-    //     this.changeReadingBook = this.changeReadingBook.bind(this);
-    //     this.findBook = this.findBook.bind(this);
-
-    //     this.listBooks();
-    //     const response = await fetch('http://localhost:8080/lab1/client',
-    //         {
-    //             method: 'POST',
-    //             redirect: 'follow',
-    //             body: JSON.stringify({
-    //                 action: 'get_reading',
-    //                 id_user: localStorage.getItem("id_iser")
-    //             })
-    //         });
-    //     let data = await response.json();
-    //     if (data.status != false) {
-    //         localStorage.setItem("current_book", data.id_book);
-    //     } else {
-    //         localStorage.setItem("current_book", -1);
-    //     }
-    //     this.changeReadingBook();
-    // }
 
     return (
         <div width="100%">

@@ -4,7 +4,7 @@ import com.library.dto.RequestBookDTO;
 import com.library.entity.RequestBook;
 
 public class RequestBookConverter {
-    static RequestBook toEntity(RequestBookDTO dto) {
+    static public RequestBook toEntity(RequestBookDTO dto) {
         RequestBook entity = new RequestBook();
         entity.setId(dto.getId());
         entity.setBook(dto.getBook());
@@ -13,7 +13,7 @@ public class RequestBookConverter {
         return entity;
     }
 
-    static RequestBookDTO toDTO(RequestBook entity) {
+    static public RequestBookDTO toDTO(RequestBook entity) {
         RequestBookDTO dto = new RequestBookDTO();
         dto.setId(entity.getId());
         dto.setBook(entity.getBook());

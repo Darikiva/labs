@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class ReadingService {
     @Autowired
-    ReadingRepository repo;
+    private ReadingRepository repo;
 
     public List<Reading> findByUser(User user) {
         return repo.findByUser(user);
@@ -21,5 +21,23 @@ public class ReadingService {
 
     public List<Reading> findByBook(Book book) {
         return repo.findByBook(book);
+    }
+
+    public Reading findByBookAndUser(Book book, User user) {
+        var readings = repo.findByUser(user);
+        for (Reading reading : readings) {
+            if (reading.getBook().getId() == book.getId()) {
+                return reading;
+            }
+        }
+        return null;
+    }
+
+    public void saveReading(Reading reading) {
+        repo.save(reading);
+    }
+
+    public void deleteReading(Reading reading) {
+        repo.delete(reading);
     }
 }

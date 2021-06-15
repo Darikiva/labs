@@ -1,11 +1,14 @@
 package com.library.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import com.library.converter.UserConverter;
 import com.library.dto.UserDTO;
 import com.library.entity.User;
+import com.library.repository.BookRepository;
 import com.library.repository.UserRepository;
 
 import org.keycloak.KeycloakPrincipal;
@@ -18,15 +21,19 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
+    private UserRepository userRepo;
+
     @Autowired
-    private UserRepository repo;
+    public UserService(UserRepository repo) {
+        this.userRepo = repo;
+    }
 
     public Optional<User> findById(long id) {
-        return repo.findById(id);
+        return userRepo.findById(id);
     }
 
     public List<User> findByLogin(String login) {
-        return repo.findByLogin(login);
+        return userRepo.findByLogin(login);
     }
 
     public UserDTO getUserDto(String Authorization) {
@@ -47,5 +54,18 @@ public class UserService {
             }
         }
         return userDTO;
+    }
+
+    public List<UserDTO> getAllUsers() {
+        List<User> users = userRepo.findAll();
+        List<UserDTO> answer = new ArrayList<>();
+        for (User user : users) {
+            answer.add(UserConverter.toDTO(user));
+        }
+        return answer;
+    }
+
+    public void returnBook(int id_user, int id_book) {
+
     }
 }

@@ -1,8 +1,12 @@
 package com.library.controller;
 
+import java.util.List;
+
 import javax.annotation.security.RolesAllowed;
 
 import com.library.dto.UserDTO;
+import com.library.dto.BookDTO;
+import com.library.service.BookService;
 import com.library.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,15 +17,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 public class TestController {
 
     private UserService userService;
+    private BookService bookService;
 
     @Autowired
-    public TestController(UserService userService) {
+    public TestController(UserService userService, BookService bookService) {
       this.userService = userService;
+      this.bookService = bookService;
     }
 
     @RequestMapping(value = "/anonymous", method = RequestMethod.GET)
@@ -54,9 +61,5 @@ public class TestController {
     }
 
 
-    @RolesAllowed({ "admin", "user" })
-    @RequestMapping(value = "/user/list_books", method = RequestMethod.GET)
-    public ResponseEntity<String> getAllBooks(@RequestHeader String Authorization) {
-        return ResponseEntity.ok("Hello All User");
-    }
+
 }
